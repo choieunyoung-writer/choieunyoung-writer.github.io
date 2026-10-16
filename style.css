@@ -396,3 +396,9 @@ html[lang="en"] .kicker-dark,html[lang="en"] .label,html[lang="en"] h2{letter-sp
 /* 『쇼코의 미소』 실제 표지(고운대표 지시, 서점 이미지에서 잘라 씀 — 출판사 사용 허락 확인 필요) */
 .book-shoko:not(.ed) .cover,.book-shoko.ko-ed .cover{background:#E9C9DD url(images/cover-shoko.jpg) center/cover no-repeat}
 .book-shoko:not(.ed) .cover > span,.book-shoko.ko-ed .cover > span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+/* 실제 표지 4권(교보 이미지, 개인비서 수집 070700b — 출판사 사용 허락 확인 필요). 번역판 칸(.ed)엔 쓰지 않음 */
+.book-harmless:not(.ed) .cover{background:#F5D850 url(images/cover-harmless.jpg) center/cover no-repeat}
+.book-bright-night:not(.ed) .cover{background:#F9D7CC url(images/cover-bright-night.jpg) center/cover no-repeat}
+.book-effortless:not(.ed) .cover{background:#94BDDD url(images/cover-effortless.jpg) center/cover no-repeat}
+.book-faint-light:not(.ed) .cover{background:#D9C3BB url(images/cover-faint-light.jpg) center/cover no-repeat}
+.book-harmless:not(.ed) .cover > span,.book-bright-night:not(.ed) .cover > span,.book-effortless:not(.ed) .cover > span,.book-faint-light:not(.ed) .cover > span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
