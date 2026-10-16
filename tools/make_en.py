@@ -7,6 +7,13 @@ os.chdir(ROOT)
 PAGES = sorted(p for p in glob.glob('*.html'))
 M = [
  # 긴 문장부터
+ ('내게는 지난 이 년이 성인이 된 이후 보낸 가장 어려운 시간이었다. 그 시간의 절반 동안은 글을 쓰지 못했고 나머지 시간 동안 『밝은 밤』을 썼다. 그 시기의 나는 사람이 아니었던 것 같은데, 누가 툭 치면 쏟아져내릴 물주머니 같은 것이었는데, 이 소설을 쓰는 일은 그런 내가 다시 내 몸을 얻고, 내 마음을 얻어 한 사람이 되어가는 과정이었다.', '[From the author’s afterword — English translation pending the author’s confirmation]'),
+ ('— ‘작가의 말’에서', '— from the author’s afterword'),
+ ('여러 나라의 『밝은 밤』', '[English title] around the world'),
+ ('제11회 젊은작가상', '11th Young Writers’ Award'),
+ ('제51회 한국일보문학상', '51st Hankook Ilbo Literary Award'),
+ ('제1회 이해조소설문학상', '1st Lee Hae-jo Literary Award for Fiction'),
+ ('제24회 김준성문학상', '24th Kim Jun-seong Literary Award'),
  ('최은영은 1984년 경기도 광명에서 태어난 소설가다. 고려대학교 국어국문학과 출신으로, 2013년 『작가세계』 신인상에 중편소설 「쇼코의 미소」가 당선되며 작품 활동을 시작했다.', 'Choi Eunyoung is a novelist born in 1984 in Gwangmyeong, Gyeonggi Province. She studied Korean Language and Literature at Korea University, and made her debut in 2013 when her novella “Shoko’s Smile” won the Writer’s World (Jakga Segye) New Writer’s Award.'),
  ('[작품 세계 소개 — 작가님이 주시거나 확인하신 글로 채웁니다]', '[About her work — from text the author provides or confirms]'),
  ('소설집 『쇼코의 미소』(2016), 『내게 무해한 사람』(2018), 『아주 희미한 빛으로도』(2023), 장편소설 『밝은 밤』(2021), 짧은 소설 『애쓰지 않아도』(2022), 산문집 『백지 앞에서』(2026)를 펴냈다.', 'Her books include the story collections Shoko’s Smile (2016), A Person Harmless to Me (2018) and Even with the Faintest Light (2023), the novel Bright Night (2021), the short fiction Effortless (2022), and the essay collection Before the Blank Page (2026). [English titles pending confirmation]'),

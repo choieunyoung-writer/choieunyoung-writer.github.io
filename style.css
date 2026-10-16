@@ -505,3 +505,10 @@ html[lang="en"] .kicker-dark,html[lang="en"] .label,html[lang="en"] h2{letter-sp
 /* 영어판: 이름이 두 번(CHOI EUNYOUNG + Choi Eunyoung) 나오지 않게, 한 줄로 */
 html[lang="en"] .spread-kicker{display:none}
 html[lang="en"] .spread-title{font-size:clamp(2.2rem,1.6rem + 2.2vw,3.3rem);white-space:nowrap}
+/* 『밝은 밤』 상세: 한국어판 칸에도 실제 표지, 작가의 말 인용(책날개) */
+.book-bright-night.ko-ed .cover{background:#F9D7CC url(images/cover-bright-night.jpg) center/cover no-repeat;aspect-ratio:400/579}
+.book-bright-night.ko-ed .cover > span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.author-note{margin:22px 0 26px;padding:4px 0 4px 18px;border-left:2px solid rgb(var(--hero-2) / .8);max-width:34em}
+.author-note p{margin:0;font-size:1rem;line-height:2;color:var(--ink)}
+.author-note footer{margin:10px 0 0;font-size:.82rem;color:var(--soft);background:none;padding:0}
+.author-note footer{text-align:left;letter-spacing:0;border:0;margin-top:10px}
