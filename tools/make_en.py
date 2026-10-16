@@ -7,6 +7,16 @@ os.chdir(ROOT)
 PAGES = sorted(p for p in glob.glob('*.html'))
 M = [
  # 긴 문장부터
+ ('내밀하고 미세한 감정의 결을 파고들어 현재 가장 뜨거운 문제와 접촉시키는 7편의 감정-사회 소설', '[Publisher’s description — English pending]'),
+ ('시간이 지나고 하나의 관계가 끝날 때마다 나는 누가 떠나는 쪽이고 누가 남겨지는 쪽인지 생각했다. 어떤 경우 나는 떠났고, 어떤 경우 남겨졌지만 정말 소중한 관계가 부서졌을 때는 누가 떠나고 누가 남겨지는 쪽인지 알 수 없었다.', '[Excerpt from the book — English translation pending]'),
+ ('— 「씬짜오, 씬짜오」에서', '— [source, English pending]'),
+ ('미숙했던 지난날의 작은 모서리를 쓰다듬는 부드러운 손길', '[Publisher’s description — English pending]'),
+ ('물질은 사라지지 않는다. 변형될 뿐. 산화되어 재만 남는다고 하더라도 보이지 않는 영역에서 물질은 아주 작은 부분도 사라지지 않고 여전히 존재한다. 그 과학적 명제는 어린 나에게 세상 어떤 위로의 말보다도 다정하게 다가왔었다.', '[Excerpt from the book — English translation pending]'),
+ ('— 「모래로 지은 집」에서', '— [source, English pending]'),
+ ('백 년의 시간을 감싸안으며 이어지는 사랑과 숨의 기록', '[Publisher’s description — English pending]'),
+ ('그녀에게는 희망이라는 싹이 있었다. 그건 아무리 뽑아내도 잡초처럼 퍼져나가서 막을 수 없었다. 그녀는 희망을 지배할 수 없었다. 희망이 끌고 가면 그곳이 가시덤불이라도 그저 끌려갈 수밖에 없었다.', '[Excerpt from the book — English translation pending]'),
+ ('— 본문에서', '— [source, English pending]'),
+ ('여러 나라의 『내게 무해한 사람』', '[English title] around the world'),
  ('내게는 지난 이 년이 성인이 된 이후 보낸 가장 어려운 시간이었다. 그 시간의 절반 동안은 글을 쓰지 못했고 나머지 시간 동안 『밝은 밤』을 썼다. 그 시기의 나는 사람이 아니었던 것 같은데, 누가 툭 치면 쏟아져내릴 물주머니 같은 것이었는데, 이 소설을 쓰는 일은 그런 내가 다시 내 몸을 얻고, 내 마음을 얻어 한 사람이 되어가는 과정이었다.', '[From the author’s afterword — English translation pending the author’s confirmation]'),
  ('— ‘작가의 말’에서', '— from the author’s afterword'),
  ('여러 나라의 『밝은 밤』', '[English title] around the world'),
