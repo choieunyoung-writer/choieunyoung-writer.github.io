@@ -5,7 +5,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="alternate" hreflang="ko" href="https://choieunyoung-writer.github.io/news.html"><link rel="alternate" hreflang="en" href="https://choieunyoung-writer.github.io/en/news.html">
-<link rel="stylesheet" href="../style.css?v=24">
+<link rel="stylesheet" href="../style.css?v=25">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="page-news">
@@ -17,8 +17,15 @@
 </header>
 <main class="panel">
   <section class="wrap">
+    <h2 class="reveal">Events</h2>
+    <!-- 공유 구글 캘린더(고운대표 2026-10-16): 캘린더에 Events을 적으면 여기 자동으로 뜬다.
+         캘린더 ID를 data-cal에 넣으면 된다(예: abc123@group.calendar.google.com). 비어 있으면 자리표시만 보인다. -->
+    <div class="cal reveal" data-cal="" data-tz="Asia/Seoul">
+      <p class="cal-empty">[Talks, readings and events — shown automatically once the shared calendar is connected]</p>
+    </div>
+  </section>
+  <section class="wrap">
     <div class="news reveal">
-      <div><h3>Events</h3><ul class="newslist"><li><span class="date">[Date]</span>[Talks and readings]</li></ul></div>
       <div><h3>Interviews</h3><ul class="newslist"><li><span class="date">[Date]</span>[Outlet · Title link]</li></ul></div>
       <div><h3>Reviews</h3><ul class="newslist"><li><span class="date">[Date]</span>[Outlet · Title link]</li></ul></div>
     </div>
@@ -32,6 +39,17 @@
   if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{rootMargin:'0px 0px -8% 0px'});
   els.forEach(function(e){io.observe(e)});
+})();
+</script>
+<script>
+// 공유 구글 캘린더 붙이기: data-cal에 캘린더 ID가 있으면 Events 목록(agenda)으로 보여 준다
+(function(){
+  var box=document.querySelector('.cal'); if(!box) return;
+  var id=(box.dataset.cal||'').trim(); if(!id) return;
+  var tz=box.dataset.tz||'Asia/Seoul', en=document.documentElement.lang==='en';
+  var q='src='+encodeURIComponent(id)+'&ctz='+encodeURIComponent(tz)+'&mode=AGENDA&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&showNav=1&wkst=1&bgcolor=%23ffffff&hl='+(en?'en':'ko');
+  box.innerHTML='<iframe title="'+(en?'Events calendar':'Events 캘린더')+'" src="https://calendar.google.com/calendar/embed?'+q+'" loading="lazy"></iframe>'
+    +'<p class="cal-sub"><a href="https://calendar.google.com/calendar/u/0?cid='+encodeURIComponent(btoa(id))+'" target="_blank" rel="noopener">'+(en?'Add to my Google Calendar ↗':'내 구글 캘린더에 추가 ↗')+'</a></p>';
 })();
 </script>
 </body></html>

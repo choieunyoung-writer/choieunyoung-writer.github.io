@@ -383,3 +383,8 @@ html[lang="en"] .kicker-dark,html[lang="en"] .label,html[lang="en"] h2{letter-sp
 .ed-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,clamp(92px,26vw,128px)),1fr))}
 .ed-lang,.ed-year{overflow-wrap:anywhere;white-space:normal}
 .ed .cover > span{overflow-wrap:anywhere}
+
+/* 소식: 공유 구글 캘린더 */
+.cal iframe{display:block;width:100%;height:clamp(360px,60vh,520px);border:1px solid var(--line);border-radius:3px;background:#fff}
+.cal-empty{margin:0;padding:28px 20px;border:1px dashed var(--line);border-radius:3px;color:var(--soft);text-align:center;font-size:.92rem}
+.cal-sub{margin:10px 0 0;font-size:.85rem}
