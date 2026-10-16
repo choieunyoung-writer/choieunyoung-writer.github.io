@@ -491,3 +491,17 @@ html[lang="en"] .kicker-dark,html[lang="en"] .label,html[lang="en"] h2{letter-sp
 }
 .spread-credit{bottom:auto;top:clamp(12px,3vw,20px);text-shadow:0 1px 4px rgba(0,0,0,.45)}
 @media (min-width:900px){.spread-photo{aspect-ratio:auto;height:min(84vh,780px)}}
+/* 소개 사진 위 글자 대비(디자인 터미널 PR #23 점검): 아래쪽 스크림 진하게, 작은 영문 키우고 그림자, 촬영자 표기는 사진 밖 먹색 캡션 */
+.spread-photo::after{height:60%;background:linear-gradient(to top,rgba(12,16,22,.72) 0%,rgba(12,16,22,.45) 35%,rgba(12,16,22,0) 100%)}
+.spread-name{text-shadow:0 1px 3px rgba(0,0,0,.55),0 0 18px rgba(0,0,0,.35)}
+.spread-kicker{font-size:.8rem;font-weight:600;opacity:1}
+.spread-credit{position:static;margin:10px 20px 0;padding:0;max-width:none;text-align:left;font-size:.78rem;color:var(--soft);text-shadow:none}
+@media (min-width:900px){
+  .spread-photo{position:relative;top:auto;height:max(440px,calc(100vh - 320px));max-height:780px}
+  .spread-media{position:sticky;top:24px}
+  .spread-credit{margin:10px 0 0}
+}
+.spread-photo::after{height:62%;background:linear-gradient(to top,rgba(12,16,22,.82) 0%,rgba(12,16,22,.66) 28%,rgba(12,16,22,.3) 60%,rgba(12,16,22,0) 100%)}
+/* 영어판: 이름이 두 번(CHOI EUNYOUNG + Choi Eunyoung) 나오지 않게, 한 줄로 */
+html[lang="en"] .spread-kicker{display:none}
+html[lang="en"] .spread-title{font-size:clamp(2.2rem,1.6rem + 2.2vw,3.3rem);white-space:nowrap}
