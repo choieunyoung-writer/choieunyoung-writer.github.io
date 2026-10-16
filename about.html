@@ -5,7 +5,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="alternate" hreflang="ko" href="https://choieunyoung-writer.github.io/about.html"><link rel="alternate" hreflang="en" href="https://choieunyoung-writer.github.io/en/about.html">
-<link rel="stylesheet" href="style.css?v=36">
+<link rel="stylesheet" href="style.css?v=37">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="page-about">
@@ -15,28 +15,21 @@
   <nav class="menu" aria-label="주 메뉴"><a href="works.html">작품</a><a href="news.html">소식</a><a href="about.html" aria-current="page">소개</a><a href="contact.html">연락</a></nav>
   <div class="lang" aria-label="언어"><a href="about.html" aria-current="true" lang="ko">한국어</a><span aria-hidden="true">·</span><a href="en/about.html" lang="en" hreflang="en">EN</a></div>
 </header>
-<main class="panel">
-  <section class="wrap">
-    <div class="about reveal">
-      <div class="prose"><p>[작가 소개 — 작가님이 주신 글로 채웁니다]</p><p>[이어지는 소개 문단]</p></div>
-    </div>
-  </section>
-  <section class="wrap">
-    <h2 class="reveal">프로필</h2>
-    <!-- 출처: 네이버 인물정보(본인참여 2017.04.07), 고운대표 전달 2026-10-16 -->
-    <dl class="facts profile reveal">
-      <dt>출생</dt><dd>1984년, 경기도 광명</dd>
-      <dt>데뷔</dt><dd>2013년 『작가세계』 신인상, 중편소설 「쇼코의 미소」 당선</dd>
-      <dt>학력</dt><dd>고려대학교 국어국문학과</dd>
-    </dl>
-  </section>
-  <section class="wrap">
-    <h2 class="reveal">사진</h2>
-    <figure class="photo-fig reveal"><img src="images/author-munjang.jpg" alt="소설가 최은영" width="667" height="1000" loading="lazy"><figcaption>사진: 문학광장 작가정보 [촬영자 표기 — 작가님 확인 후]</figcaption></figure>
-    <!-- 출처: docs/photo-sources.md. author-naver.jpg(120×150)는 작은 썸네일 전용 -->
-  </section>
-  <section class="wrap">
-    <details class="quiet reveal"><summary>수상</summary>
+<main class="panel about-page">
+  <article class="spread">
+    <figure class="spread-photo">
+      <img src="images/author-munjang.jpg" alt="소설가 최은영" width="667" height="1000">
+      <figcaption class="spread-name"><span class="spread-kicker" lang="en">CHOI EUNYOUNG</span><span class="spread-title">최은영</span></figcaption>
+      <small class="spread-credit">사진: 문학광장 [촬영자 표기 — 작가님 확인 후]</small>
+    </figure>
+    <div class="spread-text">
+      <!-- 사실 문단: 네이버 인물정보(본인참여)·출간 정보, 고운대표 전달 2026-10-16. 해석·평가 문단은 작가님 확인 전 자리표시 -->
+      <p class="spread-lead reveal">최은영은 1984년 경기도 광명에서 태어난 소설가다. 고려대학교 국어국문학과 출신으로, 2013년 『작가세계』 신인상에 중편소설 「쇼코의 미소」가 당선되며 작품 활동을 시작했다.</p>
+      <p class="reveal">[작품 세계 소개 — 작가님이 주시거나 확인하신 글로 채웁니다]</p>
+      <p class="reveal">소설집 『쇼코의 미소』(2016), 『내게 무해한 사람』(2018), 『아주 희미한 빛으로도』(2023), 장편소설 『밝은 밤』(2021), 짧은 소설 『애쓰지 않아도』(2022), 산문집 『백지 앞에서』(2026)를 펴냈다.</p>
+      <p class="reveal">작품은 영어·일본어·중국어·스페인어 등으로 번역되어 출간되었다. <span class="ph">(작가님 확인 전)</span></p>
+      <p class="reveal">[작가님이 덧붙이고 싶은 이야기 — 작가님 확인 후]</p>
+      <details class="quiet reveal"><summary>수상</summary>
         <!-- 출처: 네이버 인물정보 수상(본인참여), 고운대표 전달 2026-10-16 -->
         <ul class="awards">
           <li><span class="y">2021</span>제29회 대산문학상 소설부문</li>
@@ -47,7 +40,8 @@
         </ul>
         <p class="awards-note">[전체 수상 목록 — 작가님 확인 후 보완]</p>
     </details>
-  </section>
+    </div>
+  </article>
 </main>
 <footer><nav class="footnav"><a href="works.html">작품</a><a href="news.html">소식</a><a href="about.html">소개</a><a href="contact.html">연락</a></nav>© 최은영</footer>
 <script>
