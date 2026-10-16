@@ -365,3 +365,4 @@ html[lang="en"] .kicker-dark,html[lang="en"] .label,html[lang="en"] h2{letter-sp
 .awards{list-style:none;margin:4px 0 0;padding:0;color:var(--ink)}
 .awards li{padding:3px 0;line-height:1.6}
 .awards .y{display:inline-block;min-width:3.2em;color:var(--soft);font-variant-numeric:tabular-nums}
+.awards-note{margin:8px 0 0;font-size:.8rem;color:var(--soft)}
