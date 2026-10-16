@@ -360,3 +360,8 @@ section.flush{padding-top:clamp(16px,3vw,32px)}
 .sitehead .lang{grid-column:1 / -1}
 html[lang="en"] .sitehead .brand{font-size:clamp(1.6rem,1.1rem + 2.2vw,2.8rem);letter-spacing:.02em;line-height:1.15}
 html[lang="en"] .kicker-dark,html[lang="en"] .label,html[lang="en"] h2{letter-spacing:.25em}
+
+/* 소개: 수상 목록 */
+.awards{list-style:none;margin:4px 0 0;padding:0;color:var(--ink)}
+.awards li{padding:3px 0;line-height:1.6}
+.awards .y{display:inline-block;min-width:3.2em;color:var(--soft);font-variant-numeric:tabular-nums}
