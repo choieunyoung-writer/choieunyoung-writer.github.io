@@ -286,7 +286,7 @@ section.flush{padding-top:clamp(16px,3vw,32px)}
 
 /* 첫 화면은 빛만 — 문장은 아래 흰 바탕에 어두운 글자로(대비 확보, 번짐 유지) */
 .hero-inner::before{content:none}
-.page-index .hero{min-height:min(62vh,560px);padding:0}
+.page-index .hero{min-height:min(52vh,460px);padding:0}
 .kicker-dark{margin:0 0 18px;font-size:.85rem;letter-spacing:.5em;color:var(--accent)}
 .hero-line{margin:0 auto 28px;max-width:26em;font-size:clamp(1.25rem,1.1rem + .9vw,1.7rem);line-height:1.7;color:var(--ink)}
 .page-index main.home > section:first-child{padding-top:clamp(8px,2vw,24px)}
