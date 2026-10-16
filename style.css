@@ -379,3 +379,7 @@ html[lang="en"] .kicker-dark,html[lang="en"] .label,html[lang="en"] h2{letter-sp
 [class*="book-"] .cover > span{background:rgba(255,255,255,.82);color:#1F2430;padding:3px 7px;border-radius:2px;line-height:1.45;letter-spacing:.04em}
 /* 흰 표지(백지 앞에서): 윤곽 더 또렷하게 */
 .book-blank-page .cover{box-shadow:inset 0 0 0 1px rgba(31,36,48,.25),inset 7px 0 9px -7px rgba(35,37,47,.3),0 2px 4px rgba(31,36,48,.08),var(--shadow)}
+/* 판본 칸 라벨이 좁은 칸을 넘지 않게(영어 긴 라벨) */
+.ed-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,clamp(92px,26vw,128px)),1fr))}
+.ed-lang,.ed-year{overflow-wrap:anywhere;white-space:normal}
+.ed .cover > span{overflow-wrap:anywhere}
