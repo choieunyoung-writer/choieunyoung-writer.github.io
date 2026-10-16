@@ -366,3 +366,4 @@ html[lang="en"] .kicker-dark,html[lang="en"] .label,html[lang="en"] h2{letter-sp
 .awards li{padding:3px 0;line-height:1.6}
 .awards .y{display:inline-block;min-width:3.2em;color:var(--soft);font-variant-numeric:tabular-nums}
 .awards-note{margin:8px 0 0;font-size:.8rem;color:var(--soft)}
+.ph{color:var(--soft);font-size:.85em}
