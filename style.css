@@ -393,3 +393,6 @@ html[lang="en"] .kicker-dark,html[lang="en"] .label,html[lang="en"] h2{letter-sp
    번역판 칸(.ed)에는 쓰지 않고 한국어판(.ko-ed)에만. */
 .book-blank-page:not(.ed) .cover,.book-blank-page.ko-ed .cover{background:#F3F3F3 url(images/cover-blank-page.jpg) center/cover no-repeat}
 .book-blank-page:not(.ed) .cover > span,.book-blank-page.ko-ed .cover > span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+/* 『쇼코의 미소』 실제 표지(고운대표 지시, 서점 이미지에서 잘라 씀 — 출판사 사용 허락 확인 필요) */
+.book-shoko:not(.ed) .cover,.book-shoko.ko-ed .cover{background:#E9C9DD url(images/cover-shoko.jpg) center/cover no-repeat}
+.book-shoko:not(.ed) .cover > span,.book-shoko.ko-ed .cover > span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
