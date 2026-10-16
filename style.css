@@ -300,3 +300,34 @@ section.flush{padding-top:clamp(16px,3vw,32px)}
 .home-shelf .t{display:block;margin-top:12px;font-size:.88rem;font-style:italic;line-height:1.5}
 .home-shelf .pick{display:inline-block;margin-top:6px;font-size:.7rem;letter-spacing:.2em;color:var(--accent);border:1px solid rgba(22,76,139,.35);border-radius:999px;padding:1px 8px}
 .home-shelf .work:hover .cover{transform:translateY(-6px) rotate(-.6deg)}
+
+/* 작품 상세: 여러 나라 판본(작가님 요청 2026-10-16) — 한눈에 보이고, 누르면 설명 */
+.editions{margin-top:clamp(48px,8vw,80px)}
+.editions h2{text-transform:none}
+.ed-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(92px,26vw,128px),1fr));gap:clamp(16px,3vw,28px)}
+.ed{display:block;width:100%;padding:0;border:0;background:none;font:inherit;color:var(--ink);text-align:left;cursor:pointer;flex:none}
+.ed .cover{font-size:.68rem;padding:9px 8px}
+.ed-lang{display:block;margin-top:10px;font-size:.85rem}
+.ed-year{display:block;font-size:.75rem;color:var(--soft)}
+.ed:hover .cover,.ed[aria-expanded="true"] .cover{transform:translateY(-6px) rotate(-.6deg)}
+.ed[aria-expanded="true"] .ed-lang{color:var(--accent);text-decoration:underline;text-underline-offset:.3em}
+.ed-panel{margin-top:24px;padding:20px 22px;border-left:2px solid var(--accent);background:rgba(255,255,255,.7)}
+.ed-panel .ed-title{margin:0 0 4px;font-size:1.15rem;font-weight:500;font-style:italic}
+.ed-panel p{margin:6px 0}
+
+/* ── 책마다 자기 표지 색(고운대표 2026-10-16: "책이 전부 한 권 디자인만 적용됨") ──
+   목업은 그 책 표지에서 뽑은 4색(--c1 진한색, --c2 중간색, --c3·--c4 밝은 포인트)과 바탕(--cbase)으로 칠한다.
+   책 요소에 class="book-<영문이름>"을 달면 아래 팔레트가 적용된다. 색은 디자인 터미널이 표지에서 뽑아 준 값만 쓴다.
+   값이 없는 책은 메인 책 색(--hero-*)으로 칠한다. */
+.cover{
+  --c1:var(--hero-1);--c2:var(--hero-2);--c3:var(--hero-3);--c4:var(--hero-4);
+  --cbase:linear-gradient(180deg,#7C879C,#EBD9D3 70%,#FAF7F6)}
+[class*="book-"] .cover,.cover[class*="book-"]{background:
+  radial-gradient(80% 50% at 20% 15%,rgb(var(--c1) / .92),rgb(var(--c1) / 0) 70%),
+  radial-gradient(70% 45% at 85% 35%,rgb(var(--c2) / .85),rgb(var(--c2) / 0) 70%),
+  radial-gradient(60% 35% at 40% 82%,rgb(var(--c3) / .9),rgb(var(--c3) / 0) 70%),
+  radial-gradient(50% 30% at 75% 70%,rgb(var(--c4) / .8),rgb(var(--c4) / 0) 70%),
+  var(--cbase)}
+/* 책별 팔레트 — 값 받는 대로 채움. 예:
+.book-faint-light .cover{--c1:35 37 47;--c2:111 132 166;--c3:236 185 160;--c4:235 197 201;--cbase:linear-gradient(180deg,#4A5368,#E9D3CC 70%,#FAF7F6)}
+*/

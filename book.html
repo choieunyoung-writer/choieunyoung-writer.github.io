@@ -4,7 +4,7 @@
 <title>[작품명] | 최은영</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=14">
+<link rel="stylesheet" href="style.css?v=15">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="page-book">
@@ -31,6 +31,45 @@
         <p class="buy">[서점 링크 — 작가님 확인 후]</p>
       </div>
     </article>
+    <section class="editions reveal" aria-labelledby="ed-h">
+      <h2 id="ed-h">여러 나라의 『[작품명]』</h2>
+      <p class="hint">판본을 누르면 설명이 열립니다.</p>
+      <!-- 판본 칸 순서는 docs/translations-form.md와 같다: 언어/나라 · 번역판 제목 · 출판사 · 연도 · 번역가 · 소개 · 링크.
+           표지는 "표지: 됨"인 판본만 실제 이미지, 나머지는 메인 책 색 목업 -->
+      <ul class="ed-grid">
+      <li><button type="button" class="ed work pair-1" aria-expanded="false" aria-controls="ed-panel" data-ed="1">
+        <span class="cover"><span>[한국어판]</span></span>
+        <span class="ed-lang">한국어/한국</span><span class="ed-year">[연도]</span>
+      </button>
+      <template id="ed-1"><h3 class="ed-title">[작품명]</h3><dl class="facts"><dt>언어/나라</dt><dd>한국어/한국</dd><dt>출판사</dt><dd>[출판사]</dd><dt>연도</dt><dd>[연도]</dd></dl><p>[소개 한두 줄 — 작가님이 주신 내용으로]</p><p class="buy">[링크 — 작가님이 주신 링크]</p></template></li>
+      <li><button type="button" class="ed work pair-2" aria-expanded="false" aria-controls="ed-panel" data-ed="2">
+        <span class="cover"><span>[번역판 제목]</span></span>
+        <span class="ed-lang">[언어/나라]</span><span class="ed-year">[연도]</span>
+      </button>
+      <template id="ed-2"><h3 class="ed-title">[번역판 제목]</h3><dl class="facts"><dt>언어/나라</dt><dd>[언어/나라]</dd><dt>출판사</dt><dd>[출판사]</dd><dt>연도</dt><dd>[연도]</dd><dt>번역</dt><dd>[번역가]</dd></dl><p>[소개 한두 줄 — 작가님이 주신 내용으로]</p><p class="buy">[링크 — 작가님이 주신 링크]</p></template></li>
+      <li><button type="button" class="ed work pair-3" aria-expanded="false" aria-controls="ed-panel" data-ed="3">
+        <span class="cover"><span>[번역판 제목]</span></span>
+        <span class="ed-lang">[언어/나라]</span><span class="ed-year">[연도]</span>
+      </button>
+      <template id="ed-3"><h3 class="ed-title">[번역판 제목]</h3><dl class="facts"><dt>언어/나라</dt><dd>[언어/나라]</dd><dt>출판사</dt><dd>[출판사]</dd><dt>연도</dt><dd>[연도]</dd><dt>번역</dt><dd>[번역가]</dd></dl><p>[소개 한두 줄 — 작가님이 주신 내용으로]</p><p class="buy">[링크 — 작가님이 주신 링크]</p></template></li>
+      <li><button type="button" class="ed work pair-4" aria-expanded="false" aria-controls="ed-panel" data-ed="4">
+        <span class="cover"><span>[번역판 제목]</span></span>
+        <span class="ed-lang">[언어/나라]</span><span class="ed-year">[연도]</span>
+      </button>
+      <template id="ed-4"><h3 class="ed-title">[번역판 제목]</h3><dl class="facts"><dt>언어/나라</dt><dd>[언어/나라]</dd><dt>출판사</dt><dd>[출판사]</dd><dt>연도</dt><dd>[연도]</dd><dt>번역</dt><dd>[번역가]</dd></dl><p>[소개 한두 줄 — 작가님이 주신 내용으로]</p><p class="buy">[링크 — 작가님이 주신 링크]</p></template></li>
+      <li><button type="button" class="ed work pair-2" aria-expanded="false" aria-controls="ed-panel" data-ed="5">
+        <span class="cover"><span>[번역판 제목]</span></span>
+        <span class="ed-lang">[언어/나라]</span><span class="ed-year">[연도]</span>
+      </button>
+      <template id="ed-5"><h3 class="ed-title">[번역판 제목]</h3><dl class="facts"><dt>언어/나라</dt><dd>[언어/나라]</dd><dt>출판사</dt><dd>[출판사]</dd><dt>연도</dt><dd>[연도]</dd><dt>번역</dt><dd>[번역가]</dd></dl><p>[소개 한두 줄 — 작가님이 주신 내용으로]</p><p class="buy">[링크 — 작가님이 주신 링크]</p></template></li>
+      <li><button type="button" class="ed work pair-1" aria-expanded="false" aria-controls="ed-panel" data-ed="6">
+        <span class="cover"><span>[번역판 제목]</span></span>
+        <span class="ed-lang">[언어/나라]</span><span class="ed-year">[연도]</span>
+      </button>
+      <template id="ed-6"><h3 class="ed-title">[번역판 제목]</h3><dl class="facts"><dt>언어/나라</dt><dd>[언어/나라]</dd><dt>출판사</dt><dd>[출판사]</dd><dt>연도</dt><dd>[연도]</dd><dt>번역</dt><dd>[번역가]</dd></dl><p>[소개 한두 줄 — 작가님이 주신 내용으로]</p><p class="buy">[링크 — 작가님이 주신 링크]</p></template></li>
+      </ul>
+      <div id="ed-panel" class="ed-panel" hidden aria-live="polite"></div>
+    </section>
   </section>
 </main>
 <footer><nav class="footnav"><a href="works.html">작품</a><a href="news.html">소식</a><a href="about.html">소개</a><a href="contact.html">연락</a></nav>© 최은영</footer>
@@ -41,6 +80,20 @@
   if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{rootMargin:'0px 0px -8% 0px'});
   els.forEach(function(e){io.observe(e)});
+})();
+</script>
+<script>
+// 판본 누르면 아래에 설명 열기(같은 판본 다시 누르면 닫기)
+(function(){
+  var panel=document.getElementById('ed-panel');
+  document.querySelectorAll('.ed').forEach(function(b){b.addEventListener('click',function(){
+    var open=b.getAttribute('aria-expanded')==='true';
+    document.querySelectorAll('.ed').forEach(function(x){x.setAttribute('aria-expanded','false')});
+    if(open){panel.hidden=true;return;}
+    b.setAttribute('aria-expanded','true');
+    panel.innerHTML='';panel.appendChild(document.getElementById('ed-'+b.dataset.ed).content.cloneNode(true));
+    panel.hidden=false;
+  })});
 })();
 </script>
 </body></html>
