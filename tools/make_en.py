@@ -7,6 +7,13 @@ os.chdir(ROOT)
 PAGES = sorted(p for p in glob.glob('*.html'))
 M = [
  # 긴 문장부터
+ ('최은영은 1984년 경기도 광명에서 태어난 소설가다. 고려대학교 국어국문학과 출신으로, 2013년 『작가세계』 신인상에 중편소설 「쇼코의 미소」가 당선되며 작품 활동을 시작했다.', 'Choi Eunyoung is a novelist born in 1984 in Gwangmyeong, Gyeonggi Province. She studied Korean Language and Literature at Korea University, and made her debut in 2013 when her novella “Shoko’s Smile” won the Writer’s World (Jakga Segye) New Writer’s Award.'),
+ ('[작품 세계 소개 — 작가님이 주시거나 확인하신 글로 채웁니다]', '[About her work — from text the author provides or confirms]'),
+ ('소설집 『쇼코의 미소』(2016), 『내게 무해한 사람』(2018), 『아주 희미한 빛으로도』(2023), 장편소설 『밝은 밤』(2021), 짧은 소설 『애쓰지 않아도』(2022), 산문집 『백지 앞에서』(2026)를 펴냈다.', 'Her books include the story collections Shoko’s Smile (2016), A Person Harmless to Me (2018) and Even with the Faintest Light (2023), the novel Bright Night (2021), the short fiction Effortless (2022), and the essay collection Before the Blank Page (2026). [English titles pending confirmation]'),
+ ('작품은 영어·일본어·중국어·스페인어 등으로 번역되어 출간되었다.', 'Her work has been published in English, Japanese, Chinese, Spanish and other languages.'),
+ ('(작가님 확인 전)', '(pending confirmation)'),
+ ('[작가님이 덧붙이고 싶은 이야기 — 작가님 확인 후]', '[Anything else the author would like to add — pending confirmation]'),
+ ('사진: 문학광장 [촬영자 표기 — 작가님 확인 후]', 'Photo: Munhak Gwangjang [photographer credit pending]'),
  ('시안입니다. 아래 내용은 작가님 확인 전 자리표시이며 실제 정보가 아닙니다.', 'Draft. Content below is placeholder, pending the author’s confirmation.'),
  ('[문의 용도 한두 줄 — 예: 강연·번역·출판 문의. 작가님 확인 후]', '[One or two lines on enquiries — e.g. talks, translation, publishing. Pending confirmation]'),
  ('2013년 『작가세계』 신인상, 중편소설 「쇼코의 미소」 당선', '2013, Writer’s World (Jakga Segye) New Writer’s Award for the novella “Shoko’s Smile”'),
