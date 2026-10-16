@@ -2,20 +2,51 @@
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><!-- 시안 단계: 작가님 확인 후 삭제 -->
 <title>최은영 | 소설가</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3"></head>
-<body>
-<div class="wrap"><p class="draft">시안입니다. 아래 내용은 작가님 확인 전 자리표시이며 실제 정보가 아닙니다.</p></div>
-<header><div class="wrap"><h1>최은영</h1><p>소설가</p></div></header>
-<nav><a href="#about">소개</a><a href="#works">작품</a><a href="#news">소식</a><a href="#contact">연락</a></nav>
-<main class="wrap">
-<section id="about"><h2>소개</h2><p>[작가 소개 — 작가님이 주신 글로 채웁니다]</p></section>
-<section id="works"><h2>작품</h2>
-<div class="book"><div class="cover">표지</div><div><h3>[작품명]</h3><p class="meta">[출판사 · 출간 연도]</p><p>[한 줄 소개]</p></div></div>
-<div class="book"><div class="cover">표지</div><div><h3>[작품명]</h3><p class="meta">[출판사 · 출간 연도]</p><p>[한 줄 소개]</p></div></div>
-</section>
-<section id="news"><h2>소식</h2><p>[강연·행사·인터뷰 소식]</p></section>
-<section id="contact"><h2>연락</h2><p>이메일: [작가님 공개 이메일 — 확인 후 기재]</p></section>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=8">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="page-index">
+<p class="draft">시안입니다. 아래 내용은 작가님 확인 전 자리표시이며 실제 정보가 아닙니다.</p>
+<header class="sitehead">
+  <a class="brand" href="index.html">최은영</a>
+  <nav class="menu" aria-label="주 메뉴"><a href="works.html">작품</a><a href="news.html">소식</a><a href="about.html">소개</a><a href="contact.html">연락</a></nav>
+</header>
+<header class="hero">
+  <div class="hero-inner reveal">
+    <p class="kicker">소설가</p>
+    <h1>최은영</h1>
+    <p class="line">[작가님이 고른 문장 한 줄]</p>
+  </div>
+</header>
+<main>
+  <section class="wrap feature">
+    <h2 class="reveal">최근 작품</h2>
+    <div class="feature-body reveal">
+      <div class="work pair-1"><div class="cover"><span>[작품명]</span></div></div>
+      <div><p class="kind">[연도 · 분류 · 출판사]</p><h3 class="feature-title">[최근 작품명]</h3><p class="quote">[작품 속 문장 한 줄]</p><a class="more" href="works.html">모든 작품 보기 →</a></div>
+    </div>
+  </section>
+  <section class="wrap">
+    <h2 class="reveal">소개</h2>
+    <p class="lead reveal">[작가 소개 요약 두세 줄 — 작가님이 주신 글로 채웁니다]</p>
+    <a class="more reveal" href="about.html">소개 더 보기 →</a>
+  </section>
+  <section class="wrap">
+    <h2 class="reveal">소식</h2>
+    <ul class="newslist reveal"><li><span class="date">[날짜]</span>[행사·인터뷰 소식]</li><li><span class="date">[날짜]</span>[행사·인터뷰 소식]</li></ul>
+    <a class="more reveal" href="news.html">소식 더 보기 →</a>
+  </section>
 </main>
-<footer>© 최은영</footer>
+<footer><nav class="footnav"><a href="works.html">작품</a><a href="news.html">소식</a><a href="about.html">소개</a><a href="contact.html">연락</a></nav>© 최은영</footer>
+<script>
+// 스크롤하면 은은하게 나타나기. 움직임을 꺼 둔 사용자에겐 CSS에서 바로 보이게 처리.
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
 </body></html>

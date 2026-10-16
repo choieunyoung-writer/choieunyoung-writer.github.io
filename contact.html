@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><!-- 시안 단계: 작가님 확인 후 삭제 -->
+<title>연락 | 최은영</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=8">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="page-contact">
+<p class="draft">시안입니다. 아래 내용은 작가님 확인 전 자리표시이며 실제 정보가 아닙니다.</p>
+<header class="sitehead">
+  <a class="brand" href="index.html">최은영</a>
+  <nav class="menu" aria-label="주 메뉴"><a href="works.html">작품</a><a href="news.html">소식</a><a href="about.html">소개</a><a href="contact.html" aria-current="page">연락</a></nav>
+</header>
+<main class="panel">
+  <section class="wrap">
+    <div class="contact reveal">
+      <dl class="channels">
+        <dt>강연 · 인터뷰</dt><dd>[문의 창구 — 작가님 확인 후 기재]</dd>
+        <dt>저작권 · 번역 · 인용 허락</dt><dd>[출판사 또는 대리인 창구 — 작가님 확인 후 기재]</dd>
+        <dt>이메일</dt><dd>[작가님 공개 이메일 — 확인 후 기재]</dd>
+      </dl>
+    </div>
+  </section>
+</main>
+<footer><nav class="footnav"><a href="works.html">작품</a><a href="news.html">소식</a><a href="about.html">소개</a><a href="contact.html">연락</a></nav>© 최은영</footer>
+<script>
+// 스크롤하면 은은하게 나타나기. 움직임을 꺼 둔 사용자에겐 CSS에서 바로 보이게 처리.
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body></html>
