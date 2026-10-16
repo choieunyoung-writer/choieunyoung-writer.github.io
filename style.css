@@ -1,18 +1,21 @@
 /* 색: 『아주 희미한 빛으로도』(문학동네 2023) 표지에서 뽑은 색 */
 :root{--ink:#1F3A4D;--soft:#566377;--line:#E2D4CD;--bg:#FDF1E9;--surface:#FDE5D9;--cream:#F5E8DA;--accent:#164C8B}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Serif KR","Apple SD Gothic Neo",serif;line-height:1.85}
+html{background:#FBE7DC}
+/* 종이 질감 + 위에서 번지는 희미한 빛 */
+body{margin:0;min-height:100vh;background-color:var(--bg);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .38 0 0 0 0 .30 0 0 0 .13 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 140% 70% at 50% -10%,#FFFCF8 0%,rgba(255,252,248,.6) 35%,rgba(255,252,248,0) 70%),linear-gradient(180deg,#FDF1E9 0%,#FBE7DC 100%);background-size:180px 180px,100% 100%,100% 100%;color:var(--ink);font-family:"Noto Serif KR","Apple SD Gothic Neo",serif;line-height:1.85}
 .wrap{max-width:720px;margin:0 auto;padding:0 20px}
-header{padding:72px 0 40px;text-align:center;border-bottom:1px solid var(--line)}
+header{padding:72px 0 40px;text-align:center;background:linear-gradient(90deg,rgba(226,212,205,0),var(--line) 20%,var(--line) 80%,rgba(226,212,205,0)) bottom/100% 1px no-repeat}
 header h1{font-size:2.2rem;letter-spacing:.15em;margin:0;font-weight:500;color:var(--accent)}
 header p{color:var(--soft);margin:.6em 0 0;letter-spacing:.1em}
-nav{display:flex;justify-content:center;gap:28px;padding:18px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+nav{display:flex;justify-content:center;gap:28px;padding:18px 0;background:linear-gradient(90deg,rgba(226,212,205,0),var(--line) 20%,var(--line) 80%,rgba(226,212,205,0)) bottom/100% 1px no-repeat;font-size:.95rem}
 a{color:var(--accent)}
 nav a{color:var(--ink);text-decoration:none}nav a:hover{color:var(--accent)}
-section{padding:56px 0;border-bottom:1px solid var(--line)}
+section{padding:56px 0;background:linear-gradient(90deg,rgba(226,212,205,0),var(--line) 20%,var(--line) 80%,rgba(226,212,205,0)) bottom/100% 1px no-repeat}
+section:last-child{background:none}
 h2{font-size:1.15rem;letter-spacing:.2em;color:var(--accent);font-weight:500;margin:0 0 24px}
 .book{display:grid;grid-template-columns:110px 1fr;gap:20px;margin-bottom:28px}
-.cover{width:110px;height:160px;background:var(--surface);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--soft);font-size:.8rem}
+.cover{width:110px;height:160px;background:linear-gradient(135deg,#FEEDE4 0%,var(--surface) 45%,#F7D8C8 100%);border-radius:2px 4px 4px 2px;box-shadow:inset 7px 0 8px -6px rgba(31,58,77,.22),0 10px 18px -10px rgba(31,58,77,.4);display:flex;align-items:center;justify-content:center;color:var(--soft);font-size:.8rem}
 .book h3{margin:0;font-size:1.05rem;font-weight:500}.meta{color:var(--soft);font-size:.9rem}
 .draft{background:#fff4e5;border-left:4px solid #f59f00;padding:10px 14px;font-family:sans-serif;font-size:.85rem}
 footer{padding:40px 0 60px;text-align:center;color:var(--soft);font-size:.85rem}
