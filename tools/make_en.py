@@ -120,7 +120,7 @@ for f in PAGES:
     ko = ko.replace('<link rel="stylesheet"', f'<link rel="alternate" hreflang="ko" href="https://choieunyoung-writer.github.io/{f}"><link rel="alternate" hreflang="en" href="https://choieunyoung-writer.github.io/en/{f}">\n<link rel="stylesheet"', 1)
     open(f, 'w').write(ko)
     en = ko.replace('<html lang="ko">', '<html lang="en">')
-    en = re.sub(r'(href|src)="(?!https?:|#|\.\./|mailto:)(style\.css[^"]*|images/[^"]*)"', r'\1="../\2"', en)
+    en = re.sub(r'(href|src)="(?!https?:|#|\.\./|mailto:)(style\.css[^"]*|book-open\.js[^"]*|images/[^"]*)"', r'\1="../\2"', en)
     en = en.replace(toggle(f, False), toggle(f, True))
     en = en.replace('>한국어<', '>@@KO@@<')
     for k, v in M:
