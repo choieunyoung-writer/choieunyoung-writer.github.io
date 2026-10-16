@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><!-- 시안 단계: 작가님 확인 후 삭제 -->
+<title>[작품명] | 최은영</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=10">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="page-book">
+<p class="draft">시안입니다. 아래 내용은 작가님 확인 전 자리표시이며 실제 정보가 아닙니다.</p>
+<header class="sitehead">
+  <a class="brand" href="index.html">최은영</a>
+  <nav class="menu" aria-label="주 메뉴"><a href="works.html" aria-current="page">작품</a><a href="news.html">소식</a><a href="about.html">소개</a><a href="contact.html">연락</a></nav>
+</header>
+<main class="panel">
+  <section class="wrap">
+    <a class="more back" href="works.html">← 작품 목록</a>
+    <article class="book reveal">
+      <a class="work pair-1" aria-hidden="true" tabindex="-1"><span class="cover"><span>[작품명]</span></span></a>
+      <div class="book-text">
+        <h1 class="book-title">[작품명]</h1>
+        <p class="entry-meta"><time>[출간일]</time> · [분류 · 출판사]</p>
+        <p class="quote">[작품 속 문장 한 줄 — 작가님이 고른 것]</p>
+        <div class="prose"><p>[작품 소개 — 작가님·출판사 확인 후]</p></div>
+        <dl class="facts">
+          <dt>수상</dt><dd>[작가님 확인 후]</dd>
+          <dt>번역</dt><dd>[언어 · 출판사 — 작가님 확인 후]</dd>
+          <dt>서평</dt><dd>[매체 인용 — 허락 확인 후]</dd>
+        </dl>
+        <p class="buy">[서점 링크 — 작가님 확인 후]</p>
+      </div>
+    </article>
+  </section>
+</main>
+<footer><nav class="footnav"><a href="works.html">작품</a><a href="news.html">소식</a><a href="about.html">소개</a><a href="contact.html">연락</a></nav>© 최은영</footer>
+<script>
+// 스크롤하면 은은하게 나타나기. 움직임을 꺼 둔 사용자에겐 CSS에서 바로 보이게 처리.
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body></html>
