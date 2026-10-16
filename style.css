@@ -30,7 +30,7 @@ a{color:var(--accent);text-underline-offset:.2em}
 .draft{margin:0;background:#fff4e5;border-bottom:1px solid #f5d9a8;padding:8px 20px;font-family:sans-serif;font-size:.8rem;line-height:1.5;color:#7a4b00;text-align:center}
 
 /* 메뉴: 화면 위에 붙어 따라오는 반투명 띠 */
-.topnav{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:16px;
+.topnav-unused{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:16px;
   padding:14px clamp(16px,4vw,40px);background:rgba(255,255,255,.72);
   -webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);
   border-bottom:1px solid rgba(236,230,227,.7);font-size:.92rem}
@@ -169,3 +169,47 @@ section.flush{padding-top:clamp(16px,3vw,32px)}
 .footnav{display:flex;justify-content:center;gap:22px;margin-bottom:14px;letter-spacing:.1em}
 .footnav a{color:var(--soft);text-decoration:none}
 .footnav a:hover{color:var(--accent)}
+
+/* ── 머리: han-kang.net 참고(2026-10-16 고운대표) ──
+   왼쪽 큰 이름, 오른쪽에 세로로 쌓인 메뉴, 지금 페이지는 흐리게. 그 아래 본문은 메인 책 색이 옅게 깔린 판(panel). */
+.sitehead{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;
+  padding:clamp(24px,5vw,44px) clamp(20px,6vw,64px) clamp(20px,4vw,36px);background:var(--bg)}
+.sitehead .brand{color:var(--ink);text-decoration:none;font-weight:500;line-height:1.1;letter-spacing:.06em;
+  font-size:clamp(1.9rem,1.4rem + 2.4vw,3rem)}
+.sitehead .menu{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.sitehead .menu a{color:var(--ink);text-decoration:none;font-size:clamp(1.15rem,1rem + .8vw,1.6rem);line-height:1.45;letter-spacing:.06em;transition:color .2s}
+.sitehead .menu a:hover{color:var(--accent)}
+.sitehead .menu a[aria-current="page"]{color:#B9BEC7}
+/* 홈에서는 머리가 첫 화면 위에 얹힌다 */
+.page-index .sitehead{position:absolute;inset:auto 0 auto 0;z-index:5;background:transparent}
+.page-index .sitehead .brand,.page-index .sitehead .menu a{color:#fff;text-shadow:0 1px 14px rgba(35,37,47,.35)}
+.page-index .hero{padding-top:clamp(200px,32vw,260px)}
+.page-index .hero h1{display:none}
+.page-index .draft{position:relative;z-index:6}
+
+/* 본문 판: 메인 책 색이 옅게 번진 면, 화면 끝까지 */
+.panel{min-height:70vh;padding-bottom:clamp(64px,10vw,120px);
+  background:
+    radial-gradient(70% 50% at 0% 0%,rgb(var(--hero-2) / .16),rgb(var(--hero-2) / 0) 70%),
+    radial-gradient(60% 45% at 100% 10%,rgb(var(--hero-3) / .22),rgb(var(--hero-3) / 0) 70%),
+    radial-gradient(70% 50% at 60% 100%,rgb(var(--hero-4) / .2),rgb(var(--hero-4) / 0) 70%),
+    #FCFAF9}
+.panel > section:first-child{padding-top:clamp(40px,7vw,72px)}
+.panel + footer{margin-top:0;background:#FCFAF9}
+
+/* 연락: 오른쪽 정렬 */
+.page-contact .contact{text-align:right}
+.page-contact .contact .lead{margin-left:auto}
+
+/* 작품 분류 거르기 */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.filters button{font:inherit;font-size:.85rem;letter-spacing:.08em;padding:6px 14px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line);background:rgba(255,255,255,.7);color:var(--soft);transition:all .2s var(--ease)}
+.filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.shelf .work[hidden]{display:none}
+
+/* 연락: 용도별 창구 */
+.channels{margin:0}
+.channels dt{font-size:.78rem;letter-spacing:.25em;color:var(--c-blue);margin-top:28px}
+.channels dt:first-child{margin-top:0}
+.channels dd{margin:6px 0 0;font-size:clamp(1rem,.96rem + .3vw,1.15rem)}

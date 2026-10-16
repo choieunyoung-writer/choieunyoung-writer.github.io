@@ -4,25 +4,27 @@
 <title>연락 | 최은영</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=7">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="page-contact">
 <p class="draft">시안입니다. 아래 내용은 작가님 확인 전 자리표시이며 실제 정보가 아닙니다.</p>
-<nav class="topnav" aria-label="주 메뉴">
+<header class="sitehead">
   <a class="brand" href="index.html">최은영</a>
-  <div class="links"><a href="about.html">소개</a><a href="works.html">작품</a><a href="news.html">소식</a><a href="contact.html" aria-current="page">연락</a></div>
-</nav>
-<header class="pagehead"><div class="wrap reveal"><p class="kicker">Contact</p><h1>연락</h1></div></header>
-<main>
+  <nav class="menu" aria-label="주 메뉴"><a href="works.html">작품</a><a href="news.html">소식</a><a href="about.html">소개</a><a href="contact.html" aria-current="page">연락</a></nav>
+</header>
+<main class="panel">
   <section class="wrap">
     <div class="contact reveal">
-      <p class="lead">강연·인터뷰·출판 관련 문의는 아래 이메일로 보내 주세요.</p>
-      <p class="mail">이메일: [작가님 공개 이메일 — 확인 후 기재]</p>
+      <dl class="channels">
+        <dt>강연 · 인터뷰</dt><dd>[문의 창구 — 작가님 확인 후 기재]</dd>
+        <dt>저작권 · 번역 · 인용 허락</dt><dd>[출판사 또는 대리인 창구 — 작가님 확인 후 기재]</dd>
+        <dt>이메일</dt><dd>[작가님 공개 이메일 — 확인 후 기재]</dd>
+      </dl>
     </div>
   </section>
 </main>
-<footer><nav class="footnav"><a href="about.html">소개</a><a href="works.html">작품</a><a href="news.html">소식</a><a href="contact.html">연락</a></nav>© 최은영</footer>
+<footer><nav class="footnav"><a href="works.html">작품</a><a href="news.html">소식</a><a href="about.html">소개</a><a href="contact.html">연락</a></nav>© 최은영</footer>
 <script>
 // 스크롤하면 은은하게 나타나기. 움직임을 꺼 둔 사용자에겐 CSS에서 바로 보이게 처리.
 (function(){
