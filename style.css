@@ -219,3 +219,48 @@ section.flush{padding-top:clamp(16px,3vw,32px)}
   background:radial-gradient(closest-side,rgb(var(--hero-1) / .38),rgb(var(--hero-1) / 0));filter:blur(8px)}
 .hero .kicker{opacity:1;font-weight:500}
 .hero .line{opacity:1}
+
+/* ── sonbomi.com 기준(작가님이 처음 보여 준 사이트, 2026-10-16) ──
+   홈은 정보량을 줄여 가운데 정렬, 작품은 한 권씩 세로로, 책마다 상세 페이지, 넓은 여백·본문 폭 약 680px. */
+.wrap{max-width:720px}
+.center{text-align:center}
+.home section{padding-top:clamp(56px,9vw,96px)}
+.intro{margin:0 auto;max-width:28em;font-size:clamp(1.05rem,1rem + .4vw,1.25rem);line-height:2}
+.label{margin:0 0 20px;font-size:.75rem;letter-spacing:.45em;color:var(--c-blue)}
+.newbook{display:inline-flex;flex-direction:column;align-items:center;gap:6px;color:var(--ink);text-decoration:none}
+.newbook .work{flex:none;width:clamp(150px,40vw,190px);margin-bottom:14px}
+.newbook-title{font-size:clamp(1.15rem,1rem + .6vw,1.4rem);font-weight:500;font-style:italic}
+.newbook-meta{font-size:.82rem;color:var(--soft)}
+.newbook:hover .cover{transform:translateY(-6px) rotate(-.6deg)}
+.picks{list-style:none;margin:0 0 20px;padding:0}
+.picks li{padding:6px 0}
+.picks a{color:var(--ink);text-decoration:none;font-size:clamp(1.05rem,1rem + .3vw,1.2rem);font-style:italic;border-bottom:1px solid transparent;transition:border-color .2s}
+.picks a:hover{border-color:var(--accent)}
+
+/* 작품 목록: 한 권씩 */
+.entries{list-style:none;margin:0;padding:0}
+.entry{display:grid;grid-template-columns:clamp(110px,30vw,180px) 1fr;gap:clamp(20px,5vw,44px);align-items:start;
+  padding:clamp(28px,5vw,44px) 0;border-bottom:1px solid var(--line)}
+.entry:last-child{border-bottom:0}
+.entry[hidden]{display:none}
+.entry .work,.book .work{display:block;flex:none}
+.entry h3{margin:0 0 6px;font-size:clamp(1.15rem,1rem + .7vw,1.5rem);font-weight:500;font-style:italic}
+.entry h3 a{color:var(--ink);text-decoration:none}
+.entry h3 a:hover{color:var(--accent)}
+.entry-meta{margin:0 0 12px;font-size:.85rem;color:var(--soft)}
+.entry-line{margin:0 0 6px}
+.entry-trans{margin:0;font-size:.82rem;color:var(--soft)}
+.entry:hover .cover{transform:translateY(-6px) rotate(-.6deg)}
+
+/* 작품 상세 */
+.back{margin-bottom:28px}
+.book{display:grid;gap:clamp(24px,5vw,48px)}
+.book .work{width:clamp(170px,48vw,240px)}
+.book-title{margin:0 0 6px;font-size:clamp(1.6rem,1.3rem + 1.6vw,2.4rem);font-weight:500;font-style:italic}
+.book .quote{border:0;padding:0;margin:20px 0;font-size:1.02rem;color:var(--ink);opacity:.85}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:10px 20px;margin:24px 0;font-size:.92rem}
+.facts dt{color:var(--c-blue);letter-spacing:.2em;font-size:.78rem;padding-top:3px}
+.facts dd{margin:0}
+.buy{font-size:.9rem}
+@media(min-width:760px){.book{grid-template-columns:240px 1fr}}
+.entry a.work,.book a.work{text-decoration:none}
