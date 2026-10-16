@@ -346,3 +346,17 @@ section.flush{padding-top:clamp(16px,3vw,32px)}
 /* 소개: 프로필 */
 .profile{max-width:34em;margin:0;font-size:clamp(.98rem,.95rem + .2vw,1.05rem);gap:14px 28px}
 .profile dt{padding-top:4px}
+
+/* 언어 바꾸기(한국어 · EN) — 머리 맨 위 오른쪽 작은 줄 */
+.sitehead{flex-wrap:wrap;row-gap:10px}
+.lang{order:-1;flex-basis:100%;display:flex;justify-content:flex-end;gap:8px;font-size:.8rem;letter-spacing:.08em;color:var(--soft)}
+.lang a{color:var(--soft);text-decoration:none}
+.lang a:hover{color:var(--accent)}
+.lang a[aria-current]{color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:.3em}
+.page-index .lang,.page-index .lang a{color:#fff;text-shadow:0 1px 2px rgb(var(--hero-1) / .6)}
+.page-index .lang a[aria-current]{text-decoration-color:#fff}
+/* 머리 배치를 격자로: 언어 줄(위 전체) / 이름(왼쪽) / 메뉴(오른쪽) — 영어 이름이 길어도 메뉴가 밀리지 않게 */
+.sitehead{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;column-gap:20px}
+.sitehead .lang{grid-column:1 / -1}
+html[lang="en"] .sitehead .brand{font-size:clamp(1.6rem,1.1rem + 2.2vw,2.8rem);letter-spacing:.02em;line-height:1.15}
+html[lang="en"] .kicker-dark,html[lang="en"] .label,html[lang="en"] h2{letter-spacing:.25em}
