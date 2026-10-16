@@ -4,65 +4,42 @@
 <title>최은영 | 소설가</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 <script>document.documentElement.classList.add('js')</script>
 </head>
-<body>
+<body class="page-index">
 <p class="draft">시안입니다. 아래 내용은 작가님 확인 전 자리표시이며 실제 정보가 아닙니다.</p>
-
 <nav class="topnav" aria-label="주 메뉴">
-  <a class="brand" href="#top">최은영</a>
-  <div class="links"><a href="#about">소개</a><a href="#works">작품</a><a href="#news">소식</a><a href="#contact">연락</a></div>
+  <a class="brand" href="index.html">최은영</a>
+  <div class="links"><a href="about.html">소개</a><a href="works.html">작품</a><a href="news.html">소식</a><a href="contact.html">연락</a></div>
 </nav>
-
-<header id="top" class="hero">
+<header class="hero">
   <div class="hero-inner reveal">
     <p class="kicker">소설가</p>
     <h1>최은영</h1>
     <p class="line">[작가님이 고른 문장 한 줄]</p>
   </div>
 </header>
-
 <main>
-  <section id="about" class="wrap">
+  <section class="wrap feature">
+    <h2 class="reveal">최근 작품</h2>
+    <div class="feature-body reveal">
+      <div class="work pair-1"><div class="cover"><span>[작품명]</span></div></div>
+      <div><p class="kind">[연도 · 분류 · 출판사]</p><h3 class="feature-title">[최근 작품명]</h3><p class="quote">[작품 속 문장 한 줄]</p><a class="more" href="works.html">모든 작품 보기 →</a></div>
+    </div>
+  </section>
+  <section class="wrap">
     <h2 class="reveal">소개</h2>
-    <div class="about reveal">
-      <p>[작가 소개 — 작가님이 주신 글로 채웁니다]</p>
-      <aside class="note"><span class="note-label">수상</span>[수상 내역 — 작가님 확인 후]</aside>
-    </div>
+    <p class="lead reveal">[작가 소개 요약 두세 줄 — 작가님이 주신 글로 채웁니다]</p>
+    <a class="more reveal" href="about.html">소개 더 보기 →</a>
   </section>
-
-  <section id="works">
-    <div class="wrap"><h2 class="reveal">작품</h2>
-      <p class="hint reveal">출간 연도순 · 옆으로 넘겨 보세요</p></div>
-    <ol class="shelf" aria-label="출간 연도순 작품">
-      <li class="work pair-1" id="work-1"><time class="year">[연도]</time><div class="cover"><span>[작품명]</span></div><h3>[작품명]</h3><p class="kind">[소설집 · 출판사]</p><p class="quote">[작품 속 문장 한 줄]</p></li>
-      <li class="work pair-2" id="work-2"><time class="year">[연도]</time><div class="cover"><span>[작품명]</span></div><h3>[작품명]</h3><p class="kind">[소설집 · 출판사]</p><p class="quote">[작품 속 문장 한 줄]</p></li>
-      <li class="work pair-3" id="work-3"><time class="year">[연도]</time><div class="cover"><span>[작품명]</span></div><h3>[작품명]</h3><p class="kind">[장편 · 출판사]</p><p class="quote">[작품 속 문장 한 줄]</p></li>
-      <li class="work pair-4" id="work-4"><time class="year">[연도]</time><div class="cover"><span>[작품명]</span></div><h3>[작품명]</h3><p class="kind">[소설집 · 출판사]</p><p class="quote">[작품 속 문장 한 줄]</p></li>
-      <li class="work pair-1" id="work-5"><time class="year">[연도]</time><div class="cover"><span>[작품명]</span></div><h3>[작품명]</h3><p class="kind">[산문 · 출판사]</p><p class="quote">[작품 속 문장 한 줄]</p></li>
-    </ol>
-    <div class="wrap">
-      <details class="biblio reveal"><summary>전체 서지 보기</summary><p>[수록작·번역 출간 정보 — 작가님 확인 후]</p></details>
-    </div>
-  </section>
-
-  <section id="news" class="wrap">
+  <section class="wrap">
     <h2 class="reveal">소식</h2>
-    <div class="news reveal">
-      <div><h3>행사</h3><p>[날짜 · 강연·낭독 일정]</p></div>
-      <div><h3>인터뷰</h3><p>[매체 · 제목 링크]</p></div>
-      <div><h3>리뷰</h3><p>[매체 · 제목 링크]</p></div>
-    </div>
-  </section>
-
-  <section id="contact" class="wrap">
-    <h2 class="reveal">연락</h2>
-    <p class="reveal">이메일: [작가님 공개 이메일 — 확인 후 기재]</p>
+    <ul class="newslist reveal"><li><span class="date">[날짜]</span>[행사·인터뷰 소식]</li><li><span class="date">[날짜]</span>[행사·인터뷰 소식]</li></ul>
+    <a class="more reveal" href="news.html">소식 더 보기 →</a>
   </section>
 </main>
-<footer>© 최은영</footer>
-
+<footer><nav class="footnav"><a href="about.html">소개</a><a href="works.html">작품</a><a href="news.html">소식</a><a href="contact.html">연락</a></nav>© 최은영</footer>
 <script>
 // 스크롤하면 은은하게 나타나기. 움직임을 꺼 둔 사용자에겐 CSS에서 바로 보이게 처리.
 (function(){
