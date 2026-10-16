@@ -34,37 +34,39 @@
     <section class="editions reveal" aria-labelledby="ed-h">
       <h2 id="ed-h">여러 나라의 『[작품명]』</h2>
       <p class="hint">판본을 누르면 설명이 열립니다.</p>
+      <!-- 판본 칸 순서는 docs/translations-form.md와 같다: 언어/나라 · 번역판 제목 · 출판사 · 연도 · 번역가 · 소개 · 링크.
+           표지는 "표지: 됨"인 판본만 실제 이미지, 나머지는 메인 책 색 목업 -->
       <ul class="ed-grid">
       <li><button type="button" class="ed work pair-1" aria-expanded="false" aria-controls="ed-panel" data-ed="1">
         <span class="cover"><span>[한국어판]</span></span>
-        <span class="ed-lang">한국어</span><span class="ed-year">[연도]</span>
+        <span class="ed-lang">한국어/한국</span><span class="ed-year">[연도]</span>
       </button>
-      <template id="ed-1"><h3 class="ed-title">[작품명]</h3><p class="entry-meta">한국어 · [출판사] · [연도]</p><p>[이 판본 소개 — 작가님이 주신 내용으로]</p><p class="buy">[판본 링크 — 작가님이 주신 링크]</p></template></li>
+      <template id="ed-1"><h3 class="ed-title">[작품명]</h3><dl class="facts"><dt>언어/나라</dt><dd>한국어/한국</dd><dt>출판사</dt><dd>[출판사]</dd><dt>연도</dt><dd>[연도]</dd></dl><p>[소개 한두 줄 — 작가님이 주신 내용으로]</p><p class="buy">[링크 — 작가님이 주신 링크]</p></template></li>
       <li><button type="button" class="ed work pair-2" aria-expanded="false" aria-controls="ed-panel" data-ed="2">
         <span class="cover"><span>[번역판 제목]</span></span>
-        <span class="ed-lang">[언어]</span><span class="ed-year">[연도]</span>
+        <span class="ed-lang">[언어/나라]</span><span class="ed-year">[연도]</span>
       </button>
-      <template id="ed-2"><h3 class="ed-title">[번역판 제목]</h3><p class="entry-meta">[언어] · [출판사] · [연도] · 번역 [번역가]</p><p>[이 판본 소개 — 작가님이 주신 내용으로]</p><p class="buy">[판본 링크 — 작가님이 주신 링크]</p></template></li>
+      <template id="ed-2"><h3 class="ed-title">[번역판 제목]</h3><dl class="facts"><dt>언어/나라</dt><dd>[언어/나라]</dd><dt>출판사</dt><dd>[출판사]</dd><dt>연도</dt><dd>[연도]</dd><dt>번역</dt><dd>[번역가]</dd></dl><p>[소개 한두 줄 — 작가님이 주신 내용으로]</p><p class="buy">[링크 — 작가님이 주신 링크]</p></template></li>
       <li><button type="button" class="ed work pair-3" aria-expanded="false" aria-controls="ed-panel" data-ed="3">
         <span class="cover"><span>[번역판 제목]</span></span>
-        <span class="ed-lang">[언어]</span><span class="ed-year">[연도]</span>
+        <span class="ed-lang">[언어/나라]</span><span class="ed-year">[연도]</span>
       </button>
-      <template id="ed-3"><h3 class="ed-title">[번역판 제목]</h3><p class="entry-meta">[언어] · [출판사] · [연도] · 번역 [번역가]</p><p>[이 판본 소개 — 작가님이 주신 내용으로]</p><p class="buy">[판본 링크 — 작가님이 주신 링크]</p></template></li>
+      <template id="ed-3"><h3 class="ed-title">[번역판 제목]</h3><dl class="facts"><dt>언어/나라</dt><dd>[언어/나라]</dd><dt>출판사</dt><dd>[출판사]</dd><dt>연도</dt><dd>[연도]</dd><dt>번역</dt><dd>[번역가]</dd></dl><p>[소개 한두 줄 — 작가님이 주신 내용으로]</p><p class="buy">[링크 — 작가님이 주신 링크]</p></template></li>
       <li><button type="button" class="ed work pair-4" aria-expanded="false" aria-controls="ed-panel" data-ed="4">
         <span class="cover"><span>[번역판 제목]</span></span>
-        <span class="ed-lang">[언어]</span><span class="ed-year">[연도]</span>
+        <span class="ed-lang">[언어/나라]</span><span class="ed-year">[연도]</span>
       </button>
-      <template id="ed-4"><h3 class="ed-title">[번역판 제목]</h3><p class="entry-meta">[언어] · [출판사] · [연도] · 번역 [번역가]</p><p>[이 판본 소개 — 작가님이 주신 내용으로]</p><p class="buy">[판본 링크 — 작가님이 주신 링크]</p></template></li>
+      <template id="ed-4"><h3 class="ed-title">[번역판 제목]</h3><dl class="facts"><dt>언어/나라</dt><dd>[언어/나라]</dd><dt>출판사</dt><dd>[출판사]</dd><dt>연도</dt><dd>[연도]</dd><dt>번역</dt><dd>[번역가]</dd></dl><p>[소개 한두 줄 — 작가님이 주신 내용으로]</p><p class="buy">[링크 — 작가님이 주신 링크]</p></template></li>
       <li><button type="button" class="ed work pair-2" aria-expanded="false" aria-controls="ed-panel" data-ed="5">
         <span class="cover"><span>[번역판 제목]</span></span>
-        <span class="ed-lang">[언어]</span><span class="ed-year">[연도]</span>
+        <span class="ed-lang">[언어/나라]</span><span class="ed-year">[연도]</span>
       </button>
-      <template id="ed-5"><h3 class="ed-title">[번역판 제목]</h3><p class="entry-meta">[언어] · [출판사] · [연도] · 번역 [번역가]</p><p>[이 판본 소개 — 작가님이 주신 내용으로]</p><p class="buy">[판본 링크 — 작가님이 주신 링크]</p></template></li>
+      <template id="ed-5"><h3 class="ed-title">[번역판 제목]</h3><dl class="facts"><dt>언어/나라</dt><dd>[언어/나라]</dd><dt>출판사</dt><dd>[출판사]</dd><dt>연도</dt><dd>[연도]</dd><dt>번역</dt><dd>[번역가]</dd></dl><p>[소개 한두 줄 — 작가님이 주신 내용으로]</p><p class="buy">[링크 — 작가님이 주신 링크]</p></template></li>
       <li><button type="button" class="ed work pair-1" aria-expanded="false" aria-controls="ed-panel" data-ed="6">
         <span class="cover"><span>[번역판 제목]</span></span>
-        <span class="ed-lang">[언어]</span><span class="ed-year">[연도]</span>
+        <span class="ed-lang">[언어/나라]</span><span class="ed-year">[연도]</span>
       </button>
-      <template id="ed-6"><h3 class="ed-title">[번역판 제목]</h3><p class="entry-meta">[언어] · [출판사] · [연도] · 번역 [번역가]</p><p>[이 판본 소개 — 작가님이 주신 내용으로]</p><p class="buy">[판본 링크 — 작가님이 주신 링크]</p></template></li>
+      <template id="ed-6"><h3 class="ed-title">[번역판 제목]</h3><dl class="facts"><dt>언어/나라</dt><dd>[언어/나라]</dd><dt>출판사</dt><dd>[출판사]</dd><dt>연도</dt><dd>[연도]</dd><dt>번역</dt><dd>[번역가]</dd></dl><p>[소개 한두 줄 — 작가님이 주신 내용으로]</p><p class="buy">[링크 — 작가님이 주신 링크]</p></template></li>
       </ul>
       <div id="ed-panel" class="ed-panel" hidden aria-live="polite"></div>
     </section>
