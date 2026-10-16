@@ -213,3 +213,9 @@ section.flush{padding-top:clamp(16px,3vw,32px)}
 .channels dt{font-size:.78rem;letter-spacing:.25em;color:var(--c-blue);margin-top:28px}
 .channels dt:first-child{margin-top:0}
 .channels dd{margin:6px 0 0;font-size:clamp(1rem,.96rem + .3vw,1.15rem)}
+
+/* 첫 화면 글자 대비: 글자 뒤에 메인 책 먹색을 옅게 번지게 깐다(디자인 터미널 확인 의견) */
+.hero-inner::before{content:"";position:absolute;z-index:-1;inset:-60px -90px;border-radius:50%;
+  background:radial-gradient(closest-side,rgb(var(--hero-1) / .38),rgb(var(--hero-1) / 0));filter:blur(8px)}
+.hero .kicker{opacity:1;font-weight:500}
+.hero .line{opacity:1}
