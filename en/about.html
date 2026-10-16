@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><!-- 시안 단계: 작가님 확인 후 삭제 -->
+<title>About | Choi Eunyoung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="alternate" hreflang="ko" href="https://choieunyoung-writer.github.io/about.html"><link rel="alternate" hreflang="en" href="https://choieunyoung-writer.github.io/en/about.html">
+<link rel="stylesheet" href="../style.css?v=20">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="page-about">
+<p class="draft">Draft. Content below is placeholder, pending the author's confirmation.</p>
+<header class="sitehead">
+  <a class="brand" href="index.html">Choi Eunyoung</a>
+  <nav class="menu" aria-label="Main menu"><a href="works.html">Books</a><a href="news.html">News</a><a href="about.html" aria-current="page">About</a><a href="contact.html">Contact</a></nav>
+  <div class="lang" aria-label="Language"><a href="../about.html" lang="ko" hreflang="ko">한국어</a><span aria-hidden="true">·</span><a href="about.html" aria-current="true" lang="en">EN</a></div>
+</header>
+<main class="panel">
+  <section class="wrap">
+    <div class="about reveal">
+      <div class="prose"><p>[Author biography — from the author’s own text]</p><p>[Further paragraph]</p></div>
+      <aside class="note"><span class="note-label">Awards</span>
+        <!-- English award names are provisional translations — pending confirmation -->
+        <ul class="awards">
+          <li><span class="y">2021</span>29th Daesan Literary Award (Fiction)</li>
+          <li><span class="y">2017</span>8th Young Writers’ Award</li>
+          <li><span class="y">2016</span>8th Heo Gyun Literary Award for Writers</li>
+          <li><span class="y">2014</span>5th Young Writers’ Award</li>
+          <li><span class="y">2013</span>Writer’s World New Writer’s Award</li>
+        </ul>
+        <p class="awards-note">[Full list of awards — pending confirmation]</p></aside>
+    </div>
+  </section>
+  <section class="wrap">
+    <h2 class="reveal">Profile</h2>
+    <!-- 출처: 네이버 인물정보(본인참여 2017.04.07), 고운대표 전달 2026-10-16 -->
+    <dl class="facts profile reveal">
+      <dt>Born</dt><dd>1984, Gwangmyeong, Gyeonggi Province, South Korea</dd>
+      <dt>Debut</dt><dd>2013, Writer’s World (Jakga Segye) New Writer’s Award for the novella “Shoko’s Smile”</dd>
+      <dt>Education</dt><dd>Korea University, Korean Language and Literature</dd>
+    </dl>
+  </section>
+  <section class="wrap">
+    <h2 class="reveal">Photo</h2>
+    <div class="photo reveal"><span>[Author photo — pending permission]</span></div>
+  </section>
+</main>
+<footer><nav class="footnav"><a href="works.html">Books</a><a href="news.html">News</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>© Choi Eunyoung</footer>
+<script>
+// 스크롤하면 은은하게 나타나기. 움직임을 꺼 둔 사용자에겐 CSS에서 바로 보이게 처리.
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body></html>

@@ -342,3 +342,40 @@ section.flush{padding-top:clamp(16px,3vw,32px)}
 .book-blank-page .cover{--c1:177 177 177;--c2:183 200 221;--c3:243 243 243;--c4:210 218 227;--a1:0.35;--cbase:linear-gradient(180deg,#F3F3F3 0%,#F3F3F3 55%,#B8C8DE 100%)}
 .book-shoko .cover,.book-harmless .cover,.book-bright-night .cover,.book-blank-page .cover{color:rgba(31,36,48,.75)}
 .book-blank-page .cover{box-shadow:inset 0 0 0 1px rgba(31,36,48,.12),inset 7px 0 9px -7px rgba(35,37,47,.25),var(--shadow)}
+
+/* 소개: 프로필 */
+.profile{max-width:34em;margin:0;font-size:clamp(.98rem,.95rem + .2vw,1.05rem);gap:14px 28px}
+.profile dt{padding-top:4px}
+
+/* 언어 바꾸기(한국어 · EN) — 머리 맨 위 오른쪽 작은 줄 */
+.sitehead{flex-wrap:wrap;row-gap:10px}
+.lang{order:-1;flex-basis:100%;display:flex;justify-content:flex-end;gap:8px;font-size:.8rem;letter-spacing:.08em;color:var(--soft)}
+.lang a{color:var(--soft);text-decoration:none}
+.lang a:hover{color:var(--accent)}
+.lang a[aria-current]{color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:.3em}
+.page-index .lang,.page-index .lang a{color:#fff;text-shadow:0 1px 2px rgb(var(--hero-1) / .6)}
+.page-index .lang a[aria-current]{text-decoration-color:#fff}
+/* 머리 배치를 격자로: 언어 줄(위 전체) / 이름(왼쪽) / 메뉴(오른쪽) — 영어 이름이 길어도 메뉴가 밀리지 않게 */
+.sitehead{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;column-gap:20px}
+.sitehead .lang{grid-column:1 / -1}
+html[lang="en"] .sitehead .brand{font-size:clamp(1.6rem,1.1rem + 2.2vw,2.8rem);letter-spacing:.02em;line-height:1.15}
+html[lang="en"] .kicker-dark,html[lang="en"] .label,html[lang="en"] h2{letter-spacing:.25em}
+
+/* 소개: 수상 목록 */
+.awards{list-style:none;margin:4px 0 0;padding:0;color:var(--ink)}
+.awards li{padding:3px 0;line-height:1.6}
+.awards .y{display:inline-block;min-width:3.2em;color:var(--soft);font-variant-numeric:tabular-nums}
+.awards-note{margin:8px 0 0;font-size:.8rem;color:var(--soft)}
+.ph{color:var(--soft);font-size:.85em}
+.ed-more{cursor:default}
+.ed-more .cover{background:repeating-linear-gradient(135deg,#F6F3F2 0 10px,#FBF9F8 10px 20px)!important;color:var(--soft);justify-content:center;align-items:center;font-size:1.6rem;box-shadow:inset 0 0 0 1px var(--line)}
+/* 소개: 작가 사진 */
+.photo-fig{margin:0;display:inline-block}
+.photo-fig img{display:block;width:clamp(180px,48vw,240px);height:auto;border-radius:3px;box-shadow:var(--shadow)}
+.photo-fig figcaption{margin-top:10px;font-size:.78rem;color:var(--soft)}
+
+/* 디자인 터미널 PR #9 점검: 목업 위 [작품명] 라벨은 아래쪽에, 옅은 흰 받침 위 먹색 글자로(모든 책 4.5:1 이상) */
+[class*="book-"] .cover{align-items:flex-end}
+[class*="book-"] .cover > span{background:rgba(255,255,255,.82);color:#1F2430;padding:3px 7px;border-radius:2px;line-height:1.45;letter-spacing:.04em}
+/* 흰 표지(백지 앞에서): 윤곽 더 또렷하게 */
+.book-blank-page .cover{box-shadow:inset 0 0 0 1px rgba(31,36,48,.25),inset 7px 0 9px -7px rgba(35,37,47,.3),0 2px 4px rgba(31,36,48,.08),var(--shadow)}
