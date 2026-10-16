@@ -264,3 +264,14 @@ section.flush{padding-top:clamp(16px,3vw,32px)}
 .buy{font-size:.9rem}
 @media(min-width:760px){.book{grid-template-columns:240px 1fr}}
 .entry a.work,.book a.work{text-decoration:none}
+
+/* 대비 보강(디자인 터미널 점검, 4.5:1 이상) */
+.sitehead .menu a[aria-current="page"]{color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:1px;text-underline-offset:.3em}
+.hero .kicker{font-size:clamp(.95rem,.9rem + .3vw,1.05rem);letter-spacing:.45em}
+.hero .line{font-size:clamp(1.05rem,1rem + .4vw,1.2rem);font-weight:400}
+.hero .kicker,.hero .line{text-shadow:0 1px 2px rgb(var(--hero-1) / .55),0 0 18px rgb(var(--hero-1) / .5)}
+.hero-inner::before{background:radial-gradient(closest-side,rgb(var(--hero-1) / .5),rgb(var(--hero-1) / 0))}
+.page-index .sitehead::before{content:"";position:absolute;inset:0 0 -40px 0;z-index:-1;
+  background:linear-gradient(180deg,rgb(var(--hero-1) / .35),rgb(var(--hero-1) / 0))}
+.page-index .sitehead .brand,.page-index .sitehead .menu a{text-shadow:0 1px 2px rgb(var(--hero-1) / .6),0 0 16px rgb(var(--hero-1) / .45)}
+.page-index .sitehead .menu a[aria-current="page"]{color:#fff}
