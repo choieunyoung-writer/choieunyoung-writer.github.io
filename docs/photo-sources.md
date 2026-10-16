@@ -15,3 +15,4 @@
 - images/cover-bright-night.jpg — 밝은 밤(문학동네 2021, 단행본), https://contents.kyobobook.co.kr/sih/fit-in/600x0/pdt/9788954681179.jpg
 - images/cover-effortless.jpg — 애쓰지 않아도(마음산책 2022), https://contents.kyobobook.co.kr/sih/fit-in/600x0/pdt/9788960907348.jpg
 - images/cover-faint-light.jpg — 아주 희미한 빛으로도(문학동네 2023), https://contents.kyobobook.co.kr/sih/fit-in/600x0/pdt/9788954695053.jpg
+- images/cover-blank-page-600.jpg — 백지 앞에서(문학동네 2026) 선명한 판, 폭 500px(교보 1000px 원본에서 축소), https://contents.kyobobook.co.kr/sih/fit-in/1000x0/pdt/9791141603373.jpg . 실물 띠지 포함.
