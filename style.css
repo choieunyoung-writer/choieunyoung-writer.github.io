@@ -402,3 +402,10 @@ html[lang="en"] .kicker-dark,html[lang="en"] .label,html[lang="en"] h2{letter-sp
 .book-effortless:not(.ed) .cover{background:#94BDDD url(images/cover-effortless.jpg) center/cover no-repeat}
 .book-faint-light:not(.ed) .cover{background:#D9C3BB url(images/cover-faint-light.jpg) center/cover no-repeat}
 .book-harmless:not(.ed) .cover > span,.book-bright-night:not(.ed) .cover > span,.book-effortless:not(.ed) .cover > span,.book-faint-light:not(.ed) .cover > span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+/* 실제 표지 칸은 표지 원본 비율에 맞춰 잘림 없이(디자인 터미널 제안 ①) */
+.book-shoko:not(.ed) .cover,.book-shoko.ko-ed .cover{aspect-ratio:400/601}
+.book-harmless:not(.ed) .cover{aspect-ratio:400/579}
+.book-bright-night:not(.ed) .cover{aspect-ratio:400/579}
+.book-effortless:not(.ed) .cover{aspect-ratio:400/572}
+.book-faint-light:not(.ed) .cover{aspect-ratio:400/601}
+.book-blank-page:not(.ed) .cover,.book-blank-page.ko-ed .cover{aspect-ratio:400/615}
