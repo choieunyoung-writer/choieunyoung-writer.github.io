@@ -314,3 +314,20 @@ section.flush{padding-top:clamp(16px,3vw,32px)}
 .ed-panel{margin-top:24px;padding:20px 22px;border-left:2px solid var(--accent);background:rgba(255,255,255,.7)}
 .ed-panel .ed-title{margin:0 0 4px;font-size:1.15rem;font-weight:500;font-style:italic}
 .ed-panel p{margin:6px 0}
+
+/* ── 책마다 자기 표지 색(고운대표 2026-10-16: "책이 전부 한 권 디자인만 적용됨") ──
+   목업은 그 책 표지에서 뽑은 4색(--c1 진한색, --c2 중간색, --c3·--c4 밝은 포인트)과 바탕(--cbase)으로 칠한다.
+   책 요소에 class="book-<영문이름>"을 달면 아래 팔레트가 적용된다. 색은 디자인 터미널이 표지에서 뽑아 준 값만 쓴다.
+   값이 없는 책은 메인 책 색(--hero-*)으로 칠한다. */
+.cover{
+  --c1:var(--hero-1);--c2:var(--hero-2);--c3:var(--hero-3);--c4:var(--hero-4);
+  --cbase:linear-gradient(180deg,#7C879C,#EBD9D3 70%,#FAF7F6)}
+[class*="book-"] .cover,.cover[class*="book-"]{background:
+  radial-gradient(80% 50% at 20% 15%,rgb(var(--c1) / .92),rgb(var(--c1) / 0) 70%),
+  radial-gradient(70% 45% at 85% 35%,rgb(var(--c2) / .85),rgb(var(--c2) / 0) 70%),
+  radial-gradient(60% 35% at 40% 82%,rgb(var(--c3) / .9),rgb(var(--c3) / 0) 70%),
+  radial-gradient(50% 30% at 75% 70%,rgb(var(--c4) / .8),rgb(var(--c4) / 0) 70%),
+  var(--cbase)}
+/* 책별 팔레트 — 값 받는 대로 채움. 예:
+.book-faint-light .cover{--c1:35 37 47;--c2:111 132 166;--c3:236 185 160;--c4:235 197 201;--cbase:linear-gradient(180deg,#4A5368,#E9D3CC 70%,#FAF7F6)}
+*/
