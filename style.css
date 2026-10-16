@@ -226,7 +226,7 @@ section.flush{padding-top:clamp(16px,3vw,32px)}
 .center{text-align:center}
 .home section{padding-top:clamp(56px,9vw,96px)}
 .intro{margin:0 auto;max-width:28em;font-size:clamp(1.05rem,1rem + .4vw,1.25rem);line-height:2}
-.label{margin:0 0 20px;font-size:.75rem;letter-spacing:.45em;color:var(--c-blue)}
+.label{margin:0 0 20px;font-size:.75rem;letter-spacing:.45em;color:var(--accent)}
 .newbook{display:inline-flex;flex-direction:column;align-items:center;gap:6px;color:var(--ink);text-decoration:none}
 .newbook .work{flex:none;width:clamp(150px,40vw,190px);margin-bottom:14px}
 .newbook-title{font-size:clamp(1.15rem,1rem + .6vw,1.4rem);font-weight:500;font-style:italic}
@@ -275,3 +275,18 @@ section.flush{padding-top:clamp(16px,3vw,32px)}
   background:linear-gradient(180deg,rgb(var(--hero-1) / .35),rgb(var(--hero-1) / 0))}
 .page-index .sitehead .brand,.page-index .sitehead .menu a{text-shadow:0 1px 2px rgb(var(--hero-1) / .6),0 0 16px rgb(var(--hero-1) / .45)}
 .page-index .sitehead .menu a[aria-current="page"]{color:#fff}
+
+/* 대비 2차(디자인 터미널 재점검: 작은 흰 글자 4.5:1 이상) */
+.hero-inner::before{inset:-90px -140px;background:radial-gradient(closest-side,rgb(var(--hero-1) / .72) 0%,rgb(var(--hero-1) / .55) 45%,rgb(var(--hero-1) / 0) 100%);filter:blur(14px)}
+.page-index .sitehead::before{inset:0 0 -110px 0;background:linear-gradient(180deg,rgb(var(--hero-1) / .5),rgb(var(--hero-1) / .3) 60%,rgb(var(--hero-1) / 0))}
+.hero-inner::before{background:radial-gradient(closest-side,rgb(var(--hero-1) / .82) 0%,rgb(var(--hero-1) / .7) 50%,rgb(var(--hero-1) / 0) 100%)}
+.page-index .sitehead::before{background:
+  radial-gradient(60% 120% at 100% 0%,rgb(var(--hero-1) / .55),rgb(var(--hero-1) / 0) 80%),
+  linear-gradient(180deg,rgb(var(--hero-1) / .5),rgb(var(--hero-1) / .3) 60%,rgb(var(--hero-1) / 0))}
+
+/* 첫 화면은 빛만 — 문장은 아래 흰 바탕에 어두운 글자로(대비 확보, 번짐 유지) */
+.hero-inner::before{content:none}
+.page-index .hero{min-height:min(62vh,560px);padding:0}
+.kicker-dark{margin:0 0 18px;font-size:.85rem;letter-spacing:.5em;color:var(--accent)}
+.hero-line{margin:0 auto 28px;max-width:26em;font-size:clamp(1.25rem,1.1rem + .9vw,1.7rem);line-height:1.7;color:var(--ink)}
+.page-index main.home > section:first-child{padding-top:clamp(8px,2vw,24px)}
