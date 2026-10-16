@@ -54,6 +54,8 @@ M = [
  ('작가세계 신인상', 'Writer’s World New Writer’s Award'),
  ('1984년, 경기도 광명', '1984, Gwangmyeong, Gyeonggi Province, South Korea'),
  ('고려대학교 국어국문학과', 'Korea University, Korean Language and Literature'),
+ ('[강연·낭독·행사 일정 — 공유 캘린더 연결 후 자동 표시]', '[Talks, readings and events — shown automatically once the shared calendar is connected]'),
+ ('일정', 'Events'),
  ('판본 페이지 보기 ↗', 'View this edition ↗'),
  ('[더 있는 판본]', '[More editions]'),
  ('작가님 확인 후', 'Pending confirmation'),
