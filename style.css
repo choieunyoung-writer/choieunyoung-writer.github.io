@@ -1,16 +1,22 @@
-/* 색: 『아주 희미한 빛으로도』(문학동네 2023) 표지의 분위기 — 고운대표 합격(2026-10-16)
-   바탕은 흰색, 글자는 거의 검정 하나. 표지의 먹색·흐린 파랑·살구·분홍은 번지는 빛과 표지 목업에만.
-   참고 기법: docs/references.md */
+/* 색: 지금 메인 책 『백지 앞에서』(문학동네 2026) 표지의 분위기 — 고운대표 결정(2026-10-16, 최신작으로 전환)
+   바탕은 흰색, 글자는 거의 검정 하나. 표지의 종이 흰빛·옅은 회색·분필 같은 하늘색은 번지는 빛과 표지 목업에만.
+   이전 메인: 『아주 희미한 빛으로도』 값은 docs/cover-colors.md. 참고 기법: docs/references.md */
 :root{
   /* ── 메인 책 색 ──────────────────────────────────────────────
      홈 첫 화면과 하위 페이지 머리의 빛은 "그때그때 메인이 되는 책"의 표지 색을 쓴다(고운대표 2026-10-16).
-     메인 책이 바뀌면 이 다섯 줄만 그 책 표지에서 뽑은 색으로 바꾼다. 값은 "R G B".
-     현재: 『아주 희미한 빛으로도』(문학동네 2023) — 먹색 / 흐린 파랑 / 살구 / 분홍 */
-  --hero-1:35 37 47;
-  --hero-2:111 132 166;
-  --hero-3:236 185 160;
-  --hero-4:235 197 201;
-  --hero-base:linear-gradient(160deg,#4A5368 0%,#9AA6BC 40%,#E9D3CC 70%,#FAF7F6 100%);
+     메인 책이 바뀌면 이 다섯 줄(+ 아래 첫 화면 글자 세 줄)만 그 책 표지에서 뽑은 색으로 바꾼다. 값은 "R G B".
+     현재: 『백지 앞에서』(문학동네 2026) — 종이 흰빛 / 하늘색 띠 / 옅은 회색
+     (『아주 희미한 빛으로도』였을 때: 35 37 47 · 111 132 166 · 236 185 160 · 235 197 201,
+      base linear-gradient(160deg,#4A5368 0%,#9AA6BC 40%,#E9D3CC 70%,#FAF7F6 100%), 글자 #fff·그림자 있음·판 1) */
+  --hero-1:206 213 222;
+  --hero-2:183 199 220;
+  --hero-3:243 243 243;
+  --hero-4:200 214 232;
+  --hero-base:linear-gradient(172deg,#F8F8F7 0%,#F2F3F3 38%,#DCE4EE 72%,#C3D2E4 100%);
+  /* 첫 화면 위 글자: 밝은 표지면 먹색·그림자 없음·어두운 판 0 / 어두운 표지면 #fff·그림자·판 1 */
+  --hero-text:#1F2430;
+  --hero-text-shadow:none;
+  --hero-shade:0;
   /* ─────────────────────────────────────────────────────────── */
   --bg:#FFFFFF;
   --ink:#1F2430;--soft:#5D6675;--line:#ECE6E3;
@@ -409,3 +415,23 @@ html[lang="en"] .kicker-dark,html[lang="en"] .label,html[lang="en"] h2{letter-sp
 .book-effortless:not(.ed) .cover{aspect-ratio:400/572}
 .book-faint-light:not(.ed) .cover{aspect-ratio:400/601}
 .book-blank-page:not(.ed) .cover,.book-blank-page.ko-ed .cover{aspect-ratio:498/750}
+/* 책 펼치며 들어가기(book-open.js). transform·opacity만 움직임 */
+.bo-layer{position:fixed;inset:0;z-index:100;pointer-events:none;perspective:1800px}
+.bo-book{position:absolute;transform-origin:0 50%;transform-style:preserve-3d;will-change:transform}
+.bo-block,.bo-sheet,.bo-cover{position:absolute;inset:0;border-radius:2px 5px 5px 2px;transform-origin:0 50%;transform-style:preserve-3d}
+.bo-block{inset:1.5% 1% 1.5% 0;background:#FBF9F6;box-shadow:inset 6px 0 10px -6px rgba(35,37,47,.25),0 18px 40px -12px rgba(31,36,48,.35)}
+.bo-sheet{inset:1.5% 1.5% 1.5% 0;background:linear-gradient(90deg,#EFEBE6,#FDFCFA 12%,#FFFFFF);
+  box-shadow:inset 0 0 0 1px rgba(31,36,48,.05);backface-visibility:visible;will-change:transform}
+.bo-cover{will-change:transform}
+.bo-out,.bo-in{position:absolute;inset:0;border-radius:inherit;backface-visibility:hidden}
+.bo-out{box-shadow:inset 7px 0 9px -7px rgba(35,37,47,.4)}
+.bo-in{transform:rotateY(180deg);background:#F6F2EE;box-shadow:inset -6px 0 10px -6px rgba(35,37,47,.2)}
+.bo-dim,.bo-veil{position:absolute;inset:0;background:#fff;opacity:0}
+/* 상세 페이지에 도착하면 흰 종이빛에서 서서히 */
+@keyframes bo-arrive{from{opacity:0}to{opacity:1}}
+.arrive body{animation:bo-arrive .6s ease-out both}
+@media (prefers-reduced-motion:reduce){.arrive body{animation:none}}
+/* 첫 화면 위 글자색은 메인 책 표지의 밝기를 따름(맨 위 --hero-text 세 줄) */
+.page-index .sitehead .brand,.page-index .sitehead .menu a,.page-index .sitehead .menu a[aria-current="page"],
+.page-index .lang,.page-index .lang a{color:var(--hero-text);text-shadow:var(--hero-text-shadow)}
+.page-index .sitehead::before{opacity:var(--hero-shade)}
