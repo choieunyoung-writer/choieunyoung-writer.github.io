@@ -4,7 +4,7 @@
 <title>최은영 | 소설가</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=12">
+<link rel="stylesheet" href="style.css?v=13">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="page-index">
@@ -28,10 +28,17 @@
       <span class="newbook-meta">[연도 · 분류 · 출판사]</span>
     </a>
   </section>
-  <section class="wrap center">
-    <p class="label reveal">대표작</p>
-    <ul class="picks reveal"><li><a href="book.html">[대표작 1]</a></li><li><a href="book.html">[대표작 2]</a></li><li><a href="book.html">[대표작 3]</a></li></ul>
-    <a class="more reveal" href="works.html">모든 작품 →</a>
+  <section class="home-shelf">
+    <div class="wrap center"><p class="label reveal">출간 연도순</p></div>
+    <ol class="shelf" aria-label="출간 연도순 작품">
+      <li class="work pair-1"><a href="book.html"><time class="year">[연도]</time><span class="cover"><span>[작품명]</span></span><span class="t">[작품명]</span><span class="pick">대표작</span></a></li>
+      <li class="work pair-2"><a href="book.html"><time class="year">[연도]</time><span class="cover"><span>[작품명]</span></span><span class="t">[작품명]</span></a></li>
+      <li class="work pair-3"><a href="book.html"><time class="year">[연도]</time><span class="cover"><span>[작품명]</span></span><span class="t">[작품명]</span><span class="pick">대표작</span></a></li>
+      <li class="work pair-4"><a href="book.html"><time class="year">[연도]</time><span class="cover"><span>[작품명]</span></span><span class="t">[작품명]</span></a></li>
+      <li class="work pair-2"><a href="book.html"><time class="year">[연도]</time><span class="cover"><span>[작품명]</span></span><span class="t">[작품명]</span><span class="pick">대표작</span></a></li>
+      <li class="work pair-1"><a href="book.html"><time class="year">[연도]</time><span class="cover"><span>[작품명]</span></span><span class="t">[작품명]</span></a></li>
+    </ol>
+    <div class="wrap center"><a class="more reveal" href="works.html">모든 작품 →</a></div>
   </section>
 </main>
 <footer><nav class="footnav"><a href="works.html">작품</a><a href="news.html">소식</a><a href="about.html">소개</a><a href="contact.html">연락</a></nav>© 최은영</footer>

@@ -290,3 +290,13 @@ section.flush{padding-top:clamp(16px,3vw,32px)}
 .kicker-dark{margin:0 0 18px;font-size:.85rem;letter-spacing:.5em;color:var(--accent)}
 .hero-line{margin:0 auto 28px;max-width:26em;font-size:clamp(1.25rem,1.1rem + .9vw,1.7rem);line-height:1.7;color:var(--ink)}
 .page-index main.home > section:first-child{padding-top:clamp(8px,2vw,24px)}
+
+/* 홈: 대표작 자리에 연도순 책 목업 가로 줄(고운대표 2026-10-16) — 대표작은 작은 표시로 */
+.home-shelf .shelf{padding-top:12px;padding-bottom:28px}
+.home-shelf .work{flex:0 0 clamp(112px,30vw,150px)}
+.home-shelf .work a{display:block;color:var(--ink);text-decoration:none}
+.home-shelf .work .year{font-size:clamp(1.1rem,1rem + .6vw,1.4rem);margin-bottom:10px}
+.home-shelf .cover{font-size:.7rem;padding:10px 9px}
+.home-shelf .t{display:block;margin-top:12px;font-size:.88rem;font-style:italic;line-height:1.5}
+.home-shelf .pick{display:inline-block;margin-top:6px;font-size:.7rem;letter-spacing:.2em;color:var(--accent);border:1px solid rgba(22,76,139,.35);border-radius:999px;padding:1px 8px}
+.home-shelf .work:hover .cover{transform:translateY(-6px) rotate(-.6deg)}
