@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>홈페이지 응접실</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="assets/icon-180.png"><link rel="icon" href="assets/icon-192.png">
+<meta name="theme-color" content="#7a5aa8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="응접실"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<style>
+:root{--bg:#f4efe6;--card:#fffdf8;--ink:#2b2622;--sub:#7a6f63;--line:#e3d9c8;--acc:#7a5aa8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+.wrap{max-width:560px;margin:0 auto;padding:max(12px,env(safe-area-inset-top)) 16px max(40px,env(safe-area-inset-bottom))}
+h1{font-size:18px;margin:4px 0 2px}.sub{color:var(--sub);font-size:12.5px}
+#demo{display:none;background:#fff3c4;border:1px solid #f0d878;border-radius:10px;padding:8px 10px;font-size:13px;margin:8px 0}
+canvas{width:100%;height:auto;display:block;border-radius:14px;image-rendering:pixelated;box-shadow:0 4px 14px rgba(0,0,0,.12);margin-top:8px;background:#d8b98f}
+.btns{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:12px 0}
+.btns button{border:0;border-radius:14px;padding:14px 8px;font:800 16px -apple-system,"Apple SD Gothic Neo",sans-serif;color:#fff;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+.b1{background:#e07a5f}.b2{background:#3d85c6}.b3{background:#2e9e5b}.b4{background:#7a5aa8}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0;display:none}
+.panel.on{display:block}
+label{display:block;font-weight:700;font-size:14px;margin:8px 0 4px}
+select,input[type=text],input[type=date],textarea{width:100%;border:1px solid #cdbfa6;border-radius:10px;padding:10px;font:15px -apple-system,"Apple SD Gothic Neo",sans-serif;background:#fff;color:var(--ink)}
+textarea{min-height:90px}
+.send{margin-top:10px;width:100%;border:0;background:var(--acc);color:#fff;border-radius:12px;padding:13px;font:800 16px -apple-system,sans-serif;cursor:pointer}
+.chat{background:#b2c7da;border-radius:14px;padding:10px;max-height:320px;overflow:auto;margin-top:10px}
+.m{display:flex;gap:6px;margin:6px 0;align-items:flex-end}.m.me{justify-content:flex-end}
+.b{max-width:80%;padding:8px 11px;border-radius:14px;white-space:pre-wrap;word-break:break-word;font-size:14px}
+.them .b{background:#fff;border-top-left-radius:4px}.me .b{background:#fee500;border-top-right-radius:4px}
+.tm{font-size:10px;color:#445}
+.req{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0;font-size:14px}
+.chip{display:inline-block;border-radius:8px;padding:1px 8px;font-size:12px;font-weight:700;color:#fff}
+.req .act{display:flex;gap:6px;margin-top:8px}.req .act button{flex:1;border:0;border-radius:10px;padding:10px;font:700 14px -apple-system,sans-serif;cursor:pointer}
+#gate{position:fixed;inset:0;background:var(--bg);display:none;align-items:center;justify-content:center;z-index:10;padding:16px}#gate.on{display:flex}#gate .box{background:var(--card);border-radius:16px;padding:20px;max-width:340px;width:100%;box-shadow:0 6px 24px rgba(0,0,0,.12)}
+#pick{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;z-index:9;padding:16px}
+#pick.on{display:flex}
+#pick .box{background:var(--card);border-radius:16px;padding:16px;max-width:440px;width:100%}
+.chars{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:10px 0}
+.chars div{height:76px;border-radius:12px;border:2px solid transparent;background-color:#eee4d2;background-repeat:no-repeat;background-size:140px 120px;background-position:-6px -6px;image-rendering:pixelated;cursor:pointer}
+.chars div.on{border-color:var(--acc);background-color:#e6ddef}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1f1d1a;--card:#2a2723;--ink:#f1ece4;--sub:#b3aba0;--line:#3a362f}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🛋 홈페이지 응접실</h1>
+<div class="sub" id="who">홈페이지를 바꾸고 싶을 때, 담당자에게 말만 걸면 돼요.</div>
+<div id="a2hs" style="display:none;background:#e6ddef;border-radius:10px;padding:8px 10px;font-size:13px;margin:8px 0">📱 휴대폰 홈 화면에 추가하면 앱처럼 바로 열려요 — 아이폰: 사파리 아래 <b>공유</b> → <b>홈 화면에 추가</b> · 안드로이드: 크롬 <b>⋮</b> → <b>홈 화면에 추가</b> <a href="#" onclick="this.parentNode.style.display='none';try{localStorage.setItem('st_a2hs','1')}catch(e){};return false">닫기</a></div>
+<div id="demo">🧪 아직 연결 전(시험 모드)이에요. 지금 보내는 요청은 이 기기에만 저장되고 담당자에게는 가지 않아요.</div>
+<canvas id="c" width="480" height="300"></canvas>
+<div class="btns">
+ <button class="b1" data-p="photo">📷 사진 바꾸기</button>
+ <button class="b2" data-p="text">✏️ 글 고치기</button>
+ <button class="b3" data-p="sched">📅 일정 추가</button>
+ <button class="b4" data-p="talk">💬 그냥 말하기</button>
+</div>
+<div class="panel" id="p-photo"><b>📷 사진 바꾸기</b>
+ <label>사진</label><input type="file" id="ph" accept="image/*">
+ <label>어디에 쓸까요?</label><select id="phWhere"><option>첫 화면(메인)</option><option>소개</option><option>작품</option><option>소식</option><option>기타</option></select>
+ <label>하고 싶은 말(선택)</label><textarea id="phMemo" placeholder="예) 지금 첫 화면 사진을 이걸로 바꿔 주세요"></textarea>
+ <button class="send" data-s="photo">보내기</button></div>
+<div class="panel" id="p-text"><b>✏️ 글 고치기</b>
+ <label>어느 페이지요?</label><select id="txWhere"><option>첫 화면(홈)</option><option>소개</option><option>작품</option><option>소식</option><option>연락</option></select>
+ <label>무엇을 어떻게 바꿀까요?</label><textarea id="txMemo" placeholder="예) 소개 첫 문장을 '…'로 바꿔 주세요"></textarea>
+ <button class="send" data-s="text">보내기</button></div>
+<div class="panel" id="p-sched"><b>📅 일정 추가</b>
+ <label>날짜</label><input type="date" id="scDate">
+ <label>무슨 일정이에요?</label><input type="text" id="scTitle" placeholder="예) 북토크">
+ <label>장소·메모(선택)</label><textarea id="scMemo" placeholder="예) 서울 ○○서점, 오후 7시"></textarea>
+ <button class="send" data-s="sched">보내기</button></div>
+<div class="panel" id="p-talk"><b>💬 그냥 말하기</b>
+ <label>담당자에게 하고 싶은 말</label><textarea id="tkMemo" placeholder="편하게 적어 주세요"></textarea>
+ <button class="send" data-s="talk">보내기</button></div>
+<div class="chat" id="chat"></div>
+<h1 style="font-size:16px;margin-top:16px">📋 내 요청</h1>
+<div id="reqs" class="sub">아직 요청이 없어요.</div>
+</div>
+<div id="gate" class="on"><div class="box" style="text-align:center"><img src="assets/cat.png" alt="" width="64" height="56" style="image-rendering:pixelated"><div style="font-weight:800;font-size:17px;margin:6px 0 2px">🔒 응접실 문이 잠겨 있어요</div><div class="sub">비밀번호를 입력해 주세요</div>
+ <input type="password" id="pin" inputmode="numeric" autocomplete="off" style="text-align:center;font-size:22px;letter-spacing:.3em;margin-top:10px"><div id="pinMsg" class="sub" style="color:#c0392b;min-height:18px;margin-top:4px"></div>
+ <button class="send" id="pinGo">들어가기</button><div class="sub" style="margin-top:8px"><a href="../">← 홈페이지로 돌아가기</a></div></div></div>
+<div id="pick"><div class="box"><b style="font-size:17px">반가워요! 응접실에 들어갈 내 캐릭터를 골라 주세요</b>
+ <div class="chars" id="chars"></div>
+ <label>뭐라고 불러 드릴까요?</label><input type="text" id="nick" placeholder="예) 작가님">
+ <button class="send" id="enter">🚪 들어가기</button></div></div>
+<script>
+// ─── 설정: 고객마다 비밀 링크 ?c=고객코드. endpoint는 구글 앱스 스크립트 주소(비어 있으면 시험 모드) ───
+const CONFIG={endpoint:"",staff:"은솔",staffSprite:"char_1_0_purple",
+ pinHash:"61b7f44c537daf446b7e7fa3b6435217af16d4d801d224573e577ee229439bc1"};   // 비밀번호 자체는 적지 않고 암호화한 값만(구글 쪽에서도 한 번 더 확인)
+let PIN=null;
+const CODE=new URLSearchParams(location.search).get("c")||"demo";
+const CHARS=["char_0_0","char_1_0","char_2_0","char_3_0","char_4_0","char_5_0","char_0_2_blonde","char_1_2_pink","char_3_2_blue","char_5_3_pink"];
+const ls={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let ME=ls.get("st_me_"+CODE,null),LOG=ls.get("st_log_"+CODE,[]),DEMO=!CONFIG.endpoint;
+if(DEMO)document.getElementById("demo").style.display="block";
+try{const sa=matchMedia("(display-mode: standalone)").matches||navigator.standalone;if(!sa&&!localStorage.getItem("st_a2hs")&&/iPhone|Android/i.test(navigator.userAgent))document.getElementById("a2hs").style.display="block"}catch(e){}
+// ─── 캐릭터 고르기 ───
+let pickI=0;const cg=document.getElementById("chars");
+cg.innerHTML=CHARS.map((c,i)=>`<div data-i="${i}" style="background-image:url('assets/${c}.png')" class="${i===0?"on":""}"></div>`).join("");
+cg.onclick=e=>{const d=e.target.closest("[data-i]");if(!d)return;pickI=+d.dataset.i;cg.querySelectorAll("div").forEach(x=>x.classList.toggle("on",x===d))};
+document.getElementById("enter").onclick=()=>{ME={sprite:CHARS[pickI],name:document.getElementById("nick").value.trim()||"손님"};ls.set("st_me_"+CODE,ME);document.getElementById("pick").classList.remove("on");start()};
+// ─── 그림 ───
+const cv=document.getElementById("c"),g=cv.getContext("2d"),W=240,H=150,K=2;g.imageSmoothingEnabled=false;
+const IMG={};const load=n=>new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.onerror=()=>r(i);i.src="assets/"+n+".png"});
+const px=(x,y,w,h,c)=>{g.fillStyle=c;g.fillRect(Math.round(x*K),Math.round(y*K),Math.ceil(w*K),Math.ceil(h*K))};
+const spr=(im,x,y)=>{if(im&&im.width)g.drawImage(im,Math.round(x*K),Math.round(y*K),im.width*K,im.height*K)};
+const txt=(s,x,y,size,c,bold)=>{g.font=(bold?"700 ":"")+size*K+"px -apple-system,'Apple SD Gothic Neo',sans-serif";g.fillStyle=c;g.textAlign="center";g.textBaseline="middle";g.fillText(s,x*K,y*K)};
+function rr(x,y,w,h,r,fill,stroke){g.beginPath();g.roundRect(x*K,y*K,w*K,h*K,r*K);g.fillStyle=fill;g.fill();if(stroke){g.strokeStyle=stroke;g.lineWidth=2;g.stroke()}}
+const guest={x:234,y:118,path:[],sit:false},STAFF={x:92,y:62};let bubble={who:"staff",t:"",until:0},doorOpen=0;
+function room(){
+ for(let y=0;y<H;y+=8)px(0,y,W,8,(y/8)%2?"#d2b086":"#dcbf96");   // 마루
+ px(0,0,W,30,"#efe6d6");px(0,27,W,3,"#cdbf a6".replace(" ",""));   // 벽
+ px(20,5,34,18,"#8ec5ee");px(20,5,34,2,"#fff");px(36,5,2,18,"#efe6d2");px(20,13,34,2,"#efe6d2");   // 창문
+ spr(IMG.SMALL_PAINTING,150,-4);spr(IMG.HANGING_PLANT,70,-2);
+ rr(84,3,72,12,4,"#7a5aa8","#fff");txt("🛋 홈페이지 응접실",120,9,6.5,"#fff",true);
+ px(60,40,120,80,"#c9b8e0");px(62,42,116,76,"#d9cbec");   // 러그
+ px(W-4,30,4,H-30,"#bfae90");   // 오른쪽 벽
+ const dy=86;px(W-4,dy,4,30,doorOpen>0?"#8c7a5c":"#a87a4e");if(doorOpen>0){px(W-18,dy,14,3,"#a87a4e")}   // 🚪 문
+ spr(IMG.LARGE_PLANT,4,90);spr(IMG.PLANT,206,30);
+ spr(IMG.SOFA_FRONT,76,44);spr(IMG.SOFA_FRONT,108,44);   // 담당자 소파(위)
+ spr(IMG.COFFEE_TABLE,104,70);spr(IMG.COFFEE,112,72);
+ spr(IMG.SOFA_BACK,92,104);spr(IMG.SOFA_BACK,124,104)}  // 손님 소파(아래)
+function person(im,x,y,row,fr){if(!im||!im.width)return;g.drawImage(im,fr*16,row*32,16,32,Math.round((x-8)*K),Math.round((y-30)*K),16*K,32*K)}
+function pbox(x,y,t){g.font="700 "+7*K+"px -apple-system,'Apple SD Gothic Neo',sans-serif";const lines=t.match(/.{1,16}/g)||[""],w=Math.min(150,Math.max(...lines.map(l=>g.measureText(l).width/K))+12),h=lines.length*9+6;
+ y=Math.max(h+3,y);const bx=Math.max(4,Math.min(W-w-4,x-w/2));rr(bx-1,y-h-1,w+2,h+2,4,"#2b3350");rr(bx,y-h,w,h,3,"#fff");lines.forEach((l,i)=>txt(l,bx+w/2,y-h+7+i*9,7,"#2b2622",true));return y-h}
+function frame(){g.clearRect(0,0,cv.width,cv.height);room();if(doorOpen>0)doorOpen--;
+ if(guest.path.length){const t=guest.path[0],dx=t[0]-guest.x,dy=t[1]-guest.y,d=Math.hypot(dx,dy);if(d<1.2){guest.path.shift();if(!guest.path.length){guest.sit=true;say("staff",`어서 오세요, ${ME.name}! 저는 홈페이지 담당 ${CONFIG.staff}이에요 😊 오늘은 뭘 바꿔 드릴까요?`)}}else{guest.x+=dx/d*1.2;guest.y+=dy/d*1.2;guest.dir=dx<0?"l":"r"}}
+ const tt=Date.now();person(IMG.staff,STAFF.x+24,STAFF.y,0,bubble.who==="staff"&&tt<bubble.until?3+(Math.floor(tt/220)%2):0);   // 담당자(마주 봄)
+ if(IMG.me){const walking=guest.path.length>0;if(walking){g.save();if(guest.dir==="l"){g.translate((guest.x)*K*2,0);g.scale(-1,1)}person(IMG.me,guest.x,guest.y,2,[0,1,2,1][Math.floor(tt/160)%4]);g.restore()}else person(IMG.me,guest.x,guest.y+3,1,0)}
+ txt(CONFIG.staff,STAFF.x+24,STAFF.y+8,6.5,"#5b3a8a",true);if(ME)txt(ME.name,guest.x,guest.y+10,6.5,"#2b2622",true);
+ if(tt<bubble.until&&bubble.t){const sx=bubble.who==="staff"?STAFF.x+24:guest.x,sy=bubble.who==="staff"?STAFF.y-32:guest.y-34;pbox(sx,sy,bubble.t)}
+ requestAnimationFrame(frame)}
+function say(who,t){bubble={who,t,until:Date.now()+Math.min(9000,2500+t.length*120)};addLog(who,t)}
+// ─── 대화·요청 ───
+function addLog(who,t){LOG.push({who,t,time:new Date().toTimeString().slice(0,5)});LOG=LOG.slice(-40);ls.set("st_log_"+CODE,LOG);drawLog()}
+function drawLog(){const el=document.getElementById("chat");el.innerHTML=LOG.map(m=>m.who==="me"?`<div class="m me"><span class="tm">${m.time}</span><div class="b">${esc(m.t)}</div></div>`:`<div class="m them"><div class="b"><b>${esc(CONFIG.staff)}</b><br>${esc(m.t)}</div><span class="tm">${m.time}</span></div>`).join("");el.scrollTop=el.scrollHeight}
+document.querySelectorAll(".btns button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("on",p.id==="p-"+b.dataset.p))});
+const readImg=f=>new Promise(r=>{if(!f)return r(null);const fr=new FileReader();fr.onload=()=>{const im=new Image();im.onload=()=>{const s=Math.min(1,1600/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*s;c.height=im.height*s;c.getContext("2d").drawImage(im,0,0,c.width,c.height);r(c.toDataURL("image/jpeg",.85))};im.src=fr.result};fr.readAsDataURL(f)});
+document.querySelectorAll(".send[data-s]").forEach(b=>b.onclick=async()=>{const k=b.dataset.s,v=id=>(document.getElementById(id).value||"").trim();let req;
+ if(k==="photo"){const img=await readImg(document.getElementById("ph").files[0]);if(!img)return alert("사진을 골라 주세요");req={type:"사진",page:v("phWhere"),text:v("phMemo"),image:img}}
+ if(k==="text"){if(!v("txMemo"))return alert("바꿀 내용을 적어 주세요");req={type:"글",page:v("txWhere"),text:v("txMemo")}}
+ if(k==="sched"){if(!v("scDate")||!v("scTitle"))return alert("날짜와 일정 이름을 적어 주세요");req={type:"일정",page:"소식",text:v("scTitle")+(v("scMemo")?" · "+v("scMemo"):""),date:v("scDate")}}
+ if(k==="talk"){if(!v("tkMemo"))return;req={type:"말",page:"",text:v("tkMemo")}}
+ addLog("me",(req.type==="사진"?"📷 사진 보냈어요 · ":req.type==="일정"?"📅 "+req.date+" · ":"")+(req.page?"["+req.page+"] ":"")+req.text);
+ bubble={who:"me",t:req.type==="사진"?"이 사진으로 부탁해요!":req.text.slice(0,40),until:Date.now()+3500};
+ b.textContent="보내는 중…";const ok=await post({action:"add",...req});b.textContent="보내기";
+ document.querySelectorAll(".panel").forEach(p=>p.classList.remove("on"));
+ setTimeout(()=>say("staff",ok?"받았어요! 고쳐서 미리보기로 보여 드릴게요 ✍️ 조금만 기다려 주세요.":"앗, 지금 연결이 안 됐어요. 잠시 뒤 다시 보내 주세요 🙏"),1600);loadReqs()});
+async function post(body){body.code=CODE;body.pin=PIN;if(DEMO){const R=ls.get("st_req_"+CODE,[]);if(body.action==="add")R.unshift({id:Date.now().toString(36),time:new Date().toISOString().slice(0,16).replace("T"," "),type:body.type,page:body.page,text:body.text,status:"접수"});if(body.action==="ok"||body.action==="again"){const r=R.find(x=>x.id===body.id);if(r)r.status=body.action==="ok"?"반영 대기":"다시 고치는 중"}ls.set("st_req_"+CODE,R);return true}
+ try{const r=await fetch(CONFIG.endpoint,{method:"POST",body:JSON.stringify(body)});const j=await r.json();return !!j.ok}catch(e){return false}}
+async function loadReqs(){let R=[];if(DEMO)R=ls.get("st_req_"+CODE,[]);else{try{R=(await (await fetch(CONFIG.endpoint+"?action=list&code="+encodeURIComponent(CODE)+"&pin="+encodeURIComponent(PIN||""))).json()).requests||[]}catch(e){}}
+ const C={"접수":"#9aa3ad","고치는 중":"#e0a030","미리보기":"#7a5aa8","다시 고치는 중":"#e0a030","반영 대기":"#3d85c6","반영 완료":"#2e9e5b"};
+ const el=document.getElementById("reqs");if(!R.length){el.innerHTML="아직 요청이 없어요.";return}
+ el.innerHTML=R.slice(0,20).map(r=>`<div class="req"><span class="chip" style="background:${C[r.status]||"#9aa3ad"}">${esc(r.status)}</span> <b>${esc(r.type)}</b> ${r.page?"· "+esc(r.page):""} <span class="sub">${esc(r.time||"")}</span><div>${esc(r.text||"")}</div>
+  ${r.reply?`<div class="sub" style="margin-top:4px">💬 ${esc(CONFIG.staff)}: ${esc(r.reply)}</div>`:""}
+  ${r.status==="미리보기"?`${r.preview?`<a href="${esc(r.preview)}" target="_blank" rel="noopener">👀 미리보기 보기</a>`:""}<div class="act"><button style="background:#2e9e5b;color:#fff" onclick="decide('${esc(r.id)}','ok')">👍 이대로 반영해 주세요</button><button style="background:#eee" onclick="decide('${esc(r.id)}','again')">✏️ 다시 고쳐 주세요</button></div>`:""}</div>`).join("")}
+window.decide=async(id,a)=>{let memo="";if(a==="again")memo=prompt("어떻게 다시 고칠까요?")||"";await post({action:a,id,text:memo});say("staff",a==="ok"?"좋아요! 홈페이지에 반영할게요 🎉":"알겠어요, 다시 고쳐서 보여 드릴게요 ✍️");loadReqs()};
+// ─── 시작 ───
+async function start(){IMG.me=await load(ME.sprite);document.getElementById("who").textContent=`${ME.name}, 반가워요! 담당자 ${CONFIG.staff}에게 말만 걸면 홈페이지를 바꿔 드려요.`;
+ doorOpen=60;guest.x=234;guest.y=100;guest.path=[[214,100],[150,118],[124,118]];drawLog();loadReqs();setInterval(loadReqs,30000)}
+// ─── 🔒 비밀번호 문 ───
+async function sha(t){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(t));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
+async function tryPin(v){if(await sha("choi-studio:"+v)!==CONFIG.pinHash)return false;PIN=v;try{localStorage.setItem("st_pin",v)}catch(e){}document.getElementById("gate").classList.remove("on");if(ME)start();else document.getElementById("pick").classList.add("on");return true}
+document.getElementById("pinGo").onclick=async()=>{const v=document.getElementById("pin").value.trim();if(!await tryPin(v)){document.getElementById("pinMsg").textContent="비밀번호가 달라요";document.getElementById("pin").value=""}};
+document.getElementById("pin").addEventListener("keydown",e=>{if(e.key==="Enter")document.getElementById("pinGo").click()});
+(async()=>{for(const n of ["SOFA_FRONT","SOFA_BACK","COFFEE_TABLE","COFFEE","LARGE_PLANT","PLANT","SMALL_PAINTING","HANGING_PLANT"])IMG[n]=await load(n);IMG.staff=await load(CONFIG.staffSprite);
+ requestAnimationFrame(frame);let sp=null;try{sp=localStorage.getItem("st_pin")}catch(e){}if(sp)tryPin(sp)})();   // 비밀번호를 맞혀야 캐릭터 고르기·응접실로
+</script>
+</body>
+</html>
