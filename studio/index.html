@@ -27,7 +27,8 @@ textarea{min-height:90px}
 .chat{background:#b2c7da;border-radius:14px;padding:10px;max-height:320px;overflow:auto;margin-top:10px}
 .m{display:flex;gap:6px;margin:6px 0;align-items:flex-end}.m.me{justify-content:flex-end}
 .b{max-width:80%;padding:8px 11px;border-radius:14px;white-space:pre-wrap;word-break:break-word;font-size:14px}
-.them .b{background:#fff;border-top-left-radius:4px}.me .b{background:#fee500;border-top-right-radius:4px}
+.them .b{background:#fff;color:#2b2622;border-top-left-radius:4px}.me .b{background:#fee500;color:#2b2622;border-top-right-radius:4px}
+#demo,#a2hs{color:#2b2622}#demo a,#a2hs a{color:#5b3a8a}.chat .tm{color:#334}
 .tm{font-size:10px;color:#445}
 .req{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0;font-size:14px}
 .chip{display:inline-block;border-radius:8px;padding:1px 8px;font-size:12px;font-weight:700;color:#fff}
@@ -44,6 +45,7 @@ a{color:#7a5aa8}@media (prefers-color-scheme:dark){a{color:#c9b3f0}select,input,
 </style>
 </head>
 <body>
+<button id="upd" title="최신으로 새로고침" style="position:fixed;top:max(10px,env(safe-area-inset-top));right:12px;z-index:8;width:40px;height:40px;border-radius:12px;border:2px solid #c9a227;background:#fff6d6;font-size:20px;box-shadow:0 2px 6px rgba(0,0,0,.2);cursor:pointer">🔄</button>
 <div class="wrap">
 <h1>🛋 홈페이지 응접실</h1>
 <div class="sub" id="who">홈페이지를 바꾸고 싶을 때, 담당자에게 말만 걸면 돼요.</div>
@@ -121,17 +123,29 @@ function room(){
  spr(IMG.LARGE_PLANT,4,90);spr(IMG.PLANT,206,30);
  spr(IMG.SOFA_FRONT,76,44);spr(IMG.SOFA_FRONT,108,44);   // 담당자 소파(위)
  spr(IMG.COFFEE_TABLE,104,70);spr(IMG.COFFEE,112,72);
- spr(IMG.SOFA_BACK,92,104);spr(IMG.SOFA_BACK,124,104)}  // 손님 소파(아래)
+ }
+function sofaFront(){spr(IMG.SOFA_BACK,92,104);spr(IMG.SOFA_BACK,124,104)}   // 손님 소파(등받이가 앉은 사람 허리 아래를 가림)
 function person(im,x,y,row,fr){if(!im||!im.width)return;g.drawImage(im,fr*16,row*32,16,32,Math.round((x-8)*K),Math.round((y-30)*K),16*K,32*K)}
 function pbox(x,y,t){g.font="700 "+7*K+"px -apple-system,'Apple SD Gothic Neo',sans-serif";const lines=t.match(/.{1,16}/g)||[""],w=Math.min(150,Math.max(...lines.map(l=>g.measureText(l).width/K))+12),h=lines.length*9+6;
  y=Math.max(h+3,y);const bx=Math.max(4,Math.min(W-w-4,x-w/2));rr(bx-1,y-h-1,w+2,h+2,4,"#2b3350");rr(bx,y-h,w,h,3,"#fff");lines.forEach((l,i)=>txt(l,bx+w/2,y-h+7+i*9,7,"#2b2622",true));return y-h}
 function frame(){g.clearRect(0,0,cv.width,cv.height);room();if(doorOpen>0)doorOpen--;
  if(guest.path.length){const t=guest.path[0],dx=t[0]-guest.x,dy=t[1]-guest.y,d=Math.hypot(dx,dy);if(d<1.2){guest.path.shift();if(!guest.path.length){guest.sit=true;say("staff",`어서 오세요, ${ME.name}! 저는 홈페이지 담당 ${CONFIG.staff}이에요 😊 오늘은 뭘 바꿔 드릴까요?`)}}else{guest.x+=dx/d*1.2;guest.y+=dy/d*1.2;guest.dir=dx<0?"l":"r"}}
  const tt=Date.now();person(IMG.staff,STAFF.x+24,STAFF.y,0,bubble.who==="staff"&&tt<bubble.until?3+(Math.floor(tt/220)%2):0);   // 담당자(마주 봄)
- if(IMG.me){const walking=guest.path.length>0;if(walking){g.save();if(guest.dir==="l"){g.translate((guest.x)*K*2,0);g.scale(-1,1)}person(IMG.me,guest.x,guest.y,2,[0,1,2,1][Math.floor(tt/160)%4]);g.restore()}else person(IMG.me,guest.x,guest.y+3,1,0)}
+ if(IMG.me){const walking=guest.path.length>0;if(walking){g.save();if(guest.dir==="l"){g.translate((guest.x)*K*2,0);g.scale(-1,1)}person(IMG.me,guest.x,guest.y,2,[0,1,2,1][Math.floor(tt/160)%4]);g.restore()}else person(IMG.me,guest.x,guest.y+2,1,0)}
+ sofaFront();cats(tt);
  txt(CONFIG.staff,STAFF.x+24,STAFF.y+8,6.5,"#5b3a8a",true);if(ME)txt(ME.name,guest.x,guest.y+10,6.5,"#2b2622",true);
  if(tt<bubble.until&&bubble.t){const sx=bubble.who==="staff"?STAFF.x+24:guest.x,sy=bubble.who==="staff"?STAFF.y-32:guest.y-34;pbox(sx,sy,bubble.t)}
  requestAnimationFrame(frame)}
+const CATS=[{n:"애옹이",c:"#8f8f8f",st:"#4f4f4f",w:"#e9e9e9",x:40,y:132},{n:"뽀뽀",c:"#e8a04a",st:"#c0702a",w:"#fff3dd",x:190,y:70},{n:"미옹이",c:"#9b7653",st:"#5b4128",w:"#e8dccb",x:150,y:136}].map(k=>({...k,tx:k.x,ty:k.y,act:"walk",wait:Math.random()*4,dir:1}));
+const CSPOT=[[40,132],[70,128],[150,136],[200,128],[190,70],[30,60],[128,96],[60,90],[210,100],[100,128]];
+function cats(tt){CATS.forEach(k=>{const dx=k.tx-k.x,dy=k.ty-k.y,d=Math.hypot(dx,dy);   // 🐈 돌아다니다 식빵·낮잠
+ if(d>0.6){k.x+=dx/d*.45;k.y+=dy/d*.45;k.dir=dx>0?1:-1;k.mv=true}else{k.mv=false;k.wait-=1/60;if(k.wait<=0){const r=Math.random();if(r<.5){const s=CSPOT[Math.random()*CSPOT.length|0];k.tx=s[0];k.ty=s[1];k.act="walk"}else{k.act=r<.75?"loaf":"sleep";k.wait=r<.75?6+Math.random()*8:12+Math.random()*16}if(k.act==="walk")k.wait=1}}
+ const x=k.x,y=k.y,ph=Math.floor(tt/150)%2;g.save();if(k.dir<0){g.translate(x*K*2,0);g.scale(-1,1)}
+ g.fillStyle="rgba(20,20,40,.18)";g.beginPath();g.ellipse(x*K,(y+1)*K,6*K,1.6*K,0,0,7);g.fill();
+ if(!k.mv&&k.act==="sleep"){px(x-6,y-5,12,5,k.c);px(x-4,y-5,2,4,k.st);px(x,y-5,2,4,k.st);px(x+3,y-4,4,4,k.c);px(x+4,y-6,1.5,2,k.c);px(x+6,y-6,1.5,2,k.c);px(x-7,y-2,6,2,k.st)}
+ else if(!k.mv&&k.act==="loaf"){px(x-5,y-6,9,6,k.c);px(x-3,y-6,1.5,5,k.st);px(x,y-6,1.5,5,k.st);px(x+2,y-10,6,6,k.c);px(x+2,y-12,1.6,2.4,k.c);px(x+6.4,y-12,1.6,2.4,k.c);px(x+3,y-8,1.2,1.2,"#2b2b2b");px(x+6,y-8,1.2,1.2,"#2b2b2b");px(x+4,y-6,2,1.5,k.w)}
+ else{const a=k.mv?(ph?1:-1):0;px(x-6,y-7,10,5,k.c);px(x-4,y-7,1.5,4,k.st);px(x-1,y-7,1.5,4,k.st);px(x+3,y-10,6,6,k.c);px(x+3,y-12,1.6,2.4,k.c);px(x+7.4,y-12,1.6,2.4,k.c);px(x+4,y-8,1.2,1.2,"#2b2b2b");px(x+7,y-8,1.2,1.2,"#2b2b2b");px(x+5,y-6,2,1.2,k.w);px(x-5+a,y-2,1.6,3,k.c);px(x-2-a,y-2,1.6,3,k.c);px(x+1+a,y-2,1.6,3,k.c);px(x+3-a,y-2,1.6,3,k.c);px(x-9,y-10+ph,1.6,5,k.c)}
+ g.restore();txt(k.n,x,y+5,5.5,"#5a4a3a",true);if(!k.mv&&k.act==="sleep")txt("z",x+7,y-9+Math.sin(tt/600),6,"#5b4a7a",true)})}
 function say(who,t){bubble={who,t,until:Date.now()+Math.min(9000,2500+t.length*120)};addLog(who,t)}
 // ─── 대화·요청 ───
 function addLog(who,t){LOG.push({who,t,time:new Date().toTimeString().slice(0,5)});LOG=LOG.slice(-40);ls.set("st_log_"+CODE,LOG);drawLog()}
@@ -159,7 +173,8 @@ async function loadReqs(){let R=[];if(DEMO)R=ls.get("st_req_"+CODE,[]);else{try{
 window.decide=async(id,a)=>{let memo="";if(a==="again")memo=prompt("어떻게 다시 고칠까요?")||"";await post({action:a,id,text:memo});say("staff",a==="ok"?"좋아요! 홈페이지에 반영할게요 🎉":"알겠어요, 다시 고쳐서 보여 드릴게요 ✍️");loadReqs()};
 // ─── 시작 ───
 async function start(){IMG.me=await load(ME.sprite);document.getElementById("who").textContent=`${ME.name}, 반가워요! 담당자 ${CONFIG.staff}에게 말만 걸면 홈페이지를 바꿔 드려요.`;
- doorOpen=60;guest.x=234;guest.y=100;guest.path=[[214,100],[150,118],[124,118]];drawLog();loadReqs();setInterval(loadReqs,30000)}
+ doorOpen=60;guest.x=234;guest.y=100;guest.path=[[214,100],[160,98],[124,98],[124,114]];drawLog();loadReqs();setInterval(loadReqs,30000)}
+document.getElementById("upd").onclick=async()=>{document.getElementById("upd").textContent="⏳";try{if(window.caches)for(const k of await caches.keys())await caches.delete(k)}catch(e){}const u=new URL(location.href);u.searchParams.set("v",Date.now());location.replace(u.toString())};   // 🔄 최신 버전으로
 // ─── 🔒 비밀번호 문 ───
 async function sha(t){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(t));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
 async function tryPin(v){if(await sha("choi-studio:"+v)!==CONFIG.pinHash)return false;PIN=v;try{localStorage.setItem("st_pin",v)}catch(e){}document.getElementById("gate").classList.remove("on");if(ME)start();else document.getElementById("pick").classList.add("on");return true}
