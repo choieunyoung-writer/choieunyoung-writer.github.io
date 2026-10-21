@@ -2,14 +2,16 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
 <title>홈페이지 응접실</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="assets/icon-180.png"><link rel="icon" href="assets/icon-192.png">
+<meta name="theme-color" content="#7a5aa8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="응접실"><meta name="apple-mobile-web-app-status-bar-style" content="default">
 <style>
 :root{--bg:#f4efe6;--card:#fffdf8;--ink:#2b2622;--sub:#7a6f63;--line:#e3d9c8;--acc:#7a5aa8}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
-.wrap{max-width:560px;margin:0 auto;padding:12px 16px 40px}
+.wrap{max-width:560px;margin:0 auto;padding:max(12px,env(safe-area-inset-top)) 16px max(40px,env(safe-area-inset-bottom))}
 h1{font-size:18px;margin:4px 0 2px}.sub{color:var(--sub);font-size:12.5px}
 #demo{display:none;background:#fff3c4;border:1px solid #f0d878;border-radius:10px;padding:8px 10px;font-size:13px;margin:8px 0}
 canvas{width:100%;height:auto;display:block;border-radius:14px;image-rendering:pixelated;box-shadow:0 4px 14px rgba(0,0,0,.12);margin-top:8px;background:#d8b98f}
@@ -44,6 +46,7 @@ textarea{min-height:90px}
 <div class="wrap">
 <h1>🛋 홈페이지 응접실</h1>
 <div class="sub" id="who">홈페이지를 바꾸고 싶을 때, 담당자에게 말만 걸면 돼요.</div>
+<div id="a2hs" style="display:none;background:#e6ddef;border-radius:10px;padding:8px 10px;font-size:13px;margin:8px 0">📱 휴대폰 홈 화면에 추가하면 앱처럼 바로 열려요 — 아이폰: 사파리 아래 <b>공유</b> → <b>홈 화면에 추가</b> · 안드로이드: 크롬 <b>⋮</b> → <b>홈 화면에 추가</b> <a href="#" onclick="this.parentNode.style.display='none';try{localStorage.setItem('st_a2hs','1')}catch(e){};return false">닫기</a></div>
 <div id="demo">🧪 아직 연결 전(시험 모드)이에요. 지금 보내는 요청은 이 기기에만 저장되고 담당자에게는 가지 않아요.</div>
 <canvas id="c" width="480" height="300"></canvas>
 <div class="btns">
@@ -91,6 +94,7 @@ const ls={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){re
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let ME=ls.get("st_me_"+CODE,null),LOG=ls.get("st_log_"+CODE,[]),DEMO=!CONFIG.endpoint;
 if(DEMO)document.getElementById("demo").style.display="block";
+try{const sa=matchMedia("(display-mode: standalone)").matches||navigator.standalone;if(!sa&&!localStorage.getItem("st_a2hs")&&/iPhone|Android/i.test(navigator.userAgent))document.getElementById("a2hs").style.display="block"}catch(e){}
 // ─── 캐릭터 고르기 ───
 let pickI=0;const cg=document.getElementById("chars");
 cg.innerHTML=CHARS.map((c,i)=>`<div data-i="${i}" style="background-image:url('assets/${c}.png')" class="${i===0?"on":""}"></div>`).join("");
@@ -157,11 +161,11 @@ async function start(){IMG.me=await load(ME.sprite);document.getElementById("who
  doorOpen=60;guest.x=234;guest.y=100;guest.path=[[214,100],[150,118],[124,118]];drawLog();loadReqs();setInterval(loadReqs,30000)}
 // ─── 🔒 비밀번호 문 ───
 async function sha(t){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(t));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
-async function tryPin(v){if(await sha("choi-studio:"+v)!==CONFIG.pinHash)return false;PIN=v;try{sessionStorage.setItem("st_pin",v)}catch(e){}document.getElementById("gate").classList.remove("on");if(ME)start();else document.getElementById("pick").classList.add("on");return true}
+async function tryPin(v){if(await sha("choi-studio:"+v)!==CONFIG.pinHash)return false;PIN=v;try{localStorage.setItem("st_pin",v)}catch(e){}document.getElementById("gate").classList.remove("on");if(ME)start();else document.getElementById("pick").classList.add("on");return true}
 document.getElementById("pinGo").onclick=async()=>{const v=document.getElementById("pin").value.trim();if(!await tryPin(v)){document.getElementById("pinMsg").textContent="비밀번호가 달라요";document.getElementById("pin").value=""}};
 document.getElementById("pin").addEventListener("keydown",e=>{if(e.key==="Enter")document.getElementById("pinGo").click()});
 (async()=>{for(const n of ["SOFA_FRONT","SOFA_BACK","COFFEE_TABLE","COFFEE","LARGE_PLANT","PLANT","SMALL_PAINTING","HANGING_PLANT"])IMG[n]=await load(n);IMG.staff=await load(CONFIG.staffSprite);
- requestAnimationFrame(frame);let sp=null;try{sp=sessionStorage.getItem("st_pin")}catch(e){}if(sp)tryPin(sp)})();   // 비밀번호를 맞혀야 캐릭터 고르기·응접실로
+ requestAnimationFrame(frame);let sp=null;try{sp=localStorage.getItem("st_pin")}catch(e){}if(sp)tryPin(sp)})();   // 비밀번호를 맞혀야 캐릭터 고르기·응접실로
 </script>
 </body>
 </html>
