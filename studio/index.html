@@ -35,7 +35,8 @@ textarea{min-height:90px}
 .rqh{font-weight:800;font-size:14px;margin:6px 0 4px}.rqh b{color:var(--acc)}
 table.rq{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:13px}
 table.rq th{background:#efe6d6;text-align:left;padding:6px 8px;font-size:12px;color:#5a4a3a;white-space:nowrap}table.rq td{padding:7px 8px;border-top:1px solid var(--line);vertical-align:top;word-break:break-word}
-table.rq td.td-d{white-space:nowrap;color:var(--sub);font-size:12px}table.rq .act{display:flex;gap:4px;margin-top:6px}table.rq .act button{flex:1;border:0;border-radius:8px;padding:7px 4px;font:700 13px -apple-system,sans-serif;cursor:pointer}
+table.rq td.td-d{white-space:nowrap;color:var(--sub);font-size:12px}table.rq .ans{display:flex;gap:4px;margin-top:6px}table.rq .ans input{flex:1;min-width:0;border:1.5px solid #c9b38a;border-radius:8px;padding:7px 8px;font:14px -apple-system,sans-serif;background:#fff}table.rq .ans button{border:0;border-radius:8px;padding:7px 10px;background:#fee500;font:700 13px -apple-system,sans-serif}
+table.rq .act{display:flex;gap:4px;margin-top:6px}table.rq .act button{flex:1;border:0;border-radius:8px;padding:7px 4px;font:700 13px -apple-system,sans-serif;cursor:pointer}
 .req{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0;font-size:14px}
 .chip{display:inline-block;border-radius:8px;padding:1px 8px;font-size:12px;font-weight:700;color:#fff}
 .req .act{display:flex;gap:6px;margin-top:8px}.req .act button{flex:1;border:0;border-radius:10px;padding:10px;font:700 14px -apple-system,sans-serif;cursor:pointer}
@@ -50,8 +51,8 @@ a{color:#5b3a8a}
 </style>
 </head>
 <body>
-<a id="homeBtn" href="../" target="_blank" rel="noopener" title="홈페이지 보기" style="position:fixed;top:max(10px,env(safe-area-inset-top));right:60px;z-index:8;width:40px;height:40px;border-radius:12px;border:2px solid #7a5aa8;background:#f1ebf8;font-size:20px;box-shadow:0 2px 6px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;text-decoration:none">🏠</a>
-<button id="upd" title="최신으로 새로고침" style="position:fixed;top:max(10px,env(safe-area-inset-top));right:12px;z-index:8;width:40px;height:40px;border-radius:12px;border:2px solid #c9a227;background:#fff6d6;font-size:20px;box-shadow:0 2px 6px rgba(0,0,0,.2);cursor:pointer">🔄</button>
+<a id="homeBtn" href="../" target="_blank" rel="noopener" title="홈페이지 보기" style="position:absolute;top:max(10px,env(safe-area-inset-top));right:60px;z-index:8;width:40px;height:40px;border-radius:12px;border:2px solid #7a5aa8;background:#f1ebf8;font-size:20px;box-shadow:0 2px 6px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;text-decoration:none">🏠</a>
+<button id="upd" title="최신으로 새로고침" style="position:absolute;top:max(10px,env(safe-area-inset-top));right:12px;z-index:8;width:40px;height:40px;border-radius:12px;border:2px solid #c9a227;background:#fff6d6;font-size:20px;box-shadow:0 2px 6px rgba(0,0,0,.2);cursor:pointer">🔄</button>
 <div class="wrap">
 <h1>🛋 홈페이지 응접실</h1>
 <div class="sub" id="who">홈페이지를 바꾸고 싶을 때, 담당자에게 말만 걸면 돼요.</div>
@@ -91,7 +92,7 @@ a{color:#5b3a8a}
  <button class="send" id="enter">🚪 들어가기</button></div></div>
 <script>
 // ─── 설정: 고객마다 비밀 링크 ?c=고객코드. endpoint는 구글 앱스 스크립트 주소(비어 있으면 시험 모드) ───
-const VER="24";   // 고칠 때마다 올리고 version.txt도 같은 숫자로
+const VER="25";   // 고칠 때마다 올리고 version.txt도 같은 숫자로
 fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(v=>{v=v.trim();if(v&&v!==VER&&!sessionStorage.getItem("st_rel_"+v)){sessionStorage.setItem("st_rel_"+v,"1");const u=new URL(location.href);u.searchParams.set("v",v);location.replace(u.toString())}}).catch(()=>{});
 const CONFIG={endpoint:"https://script.google.com/macros/s/AKfycby0aQtaCvyrGvkRJw3Cl_RHH-iIGaj_t_jB6mL2txG-KMyMXH61Ja7T0QP2KtI1GK0x/exec",staff:"은솔",staffSprite:"char_1_0_purple",
  pinHash:"61b7f44c537daf446b7e7fa3b6435217af16d4d801d224573e577ee229439bc1"};   // 비밀번호 자체는 적지 않고 암호화한 값만(구글 쪽에서도 한 번 더 확인)
@@ -221,9 +222,10 @@ async function loadReqs(){let R=[];if(DEMO)R=ls.get("st_req_"+CODE,[]);else{try{
  const C={"접수":"#9aa3ad","고치는 중":"#e0a030","미리보기":"#7a5aa8","다시 고치는 중":"#e0a030","반영 대기":"#3d85c6","반영 완료":"#2e9e5b"};
  const el=document.getElementById("reqs");if(!R.length){el.innerHTML="아직 요청이 없어요.";return}
  const done=R.filter(r=>r.status==="반영 완료"),doing=R.filter(r=>r.status!=="반영 완료"),ico={"사진":"📷","글":"✏️","일정":"📅","말":"💬"};   // 📋 진행 중 | ✅ 완료 표
- const row=r=>`<tr><td class="td-d">${esc(String(r.time||"").slice(5,16).replace("-","/"))}</td><td>${ico[r.type]||""} ${esc(r.type)}${r.page?`<div class="sub">${esc(r.page)}</div>`:""}</td><td>${esc(r.text||"")}${r.reply?`<div class="sub">💬 ${esc(CONFIG.staff)}: ${esc(r.reply)}</div>`:""}${r.status==="미리보기"?`${r.preview?`<div><a href="${esc(r.preview)}" target="_blank" rel="noopener">👀 미리보기 보기</a></div>`:""}<div class="act"><button style="background:#2e9e5b;color:#fff" onclick="decide('${esc(r.id)}','ok')">👍 반영</button><button style="background:#eee" onclick="decide('${esc(r.id)}','again')">✏️ 다시</button></div>`:""}</td><td><span class="chip" style="background:${C[r.status]||"#9aa3ad"}">${esc(r.status)}</span></td></tr>`;
+ const row=r=>`<tr><td class="td-d">${esc(String(r.time||"").slice(5,16).replace("-","/"))}</td><td>${ico[r.type]||""} ${esc(r.type)}${r.page?`<div class="sub">${esc(r.page)}</div>`:""}</td><td><div style="white-space:pre-wrap">${esc(r.text||"").replace(/\n↪ /g,"\n↪ 내 답: ")}</div>${r.reply?`<div class="sub" style="white-space:pre-wrap">💬 ${esc(CONFIG.staff)}: ${esc(r.reply)}</div>`:""}${r.reply&&r.status!=="반영 완료"&&r.status!=="미리보기"?`<div class="ans"><input id="ans_${esc(r.id)}" placeholder="${esc(CONFIG.staff)}에게 답하기 (예: 2번)" onkeydown="if(event.key==='Enter'&&!event.isComposing)answer('${esc(r.id)}')"><button onclick="answer('${esc(r.id)}')">보내기</button></div>`:""}${r.status==="미리보기"?`${r.preview?`<div><a href="${esc(r.preview)}" target="_blank" rel="noopener">👀 미리보기 보기</a></div>`:""}<div class="act"><button style="background:#2e9e5b;color:#fff" onclick="decide('${esc(r.id)}','ok')">👍 반영</button><button style="background:#eee" onclick="decide('${esc(r.id)}','again')">✏️ 다시</button></div>`:""}</td><td><span class="chip" style="background:${C[r.status]||"#9aa3ad"}">${esc(r.status)}</span></td></tr>`;
  const tbl=(L,empty)=>L.length?`<table class="rq"><thead><tr><th>날짜</th><th>종류</th><th>내용</th><th>상태</th></tr></thead><tbody>${L.slice(0,30).map(row).join("")}</tbody></table>`:`<div class="sub" style="padding:8px">${empty}</div>`;
  el.innerHTML=`<div class="rqh">🛠 진행 중 <b>${doing.length}</b></div>${tbl(doing,"진행 중인 요청이 없어요.")}<div class="rqh" style="margin-top:12px">✅ 완료 <b>${done.length}</b></div>${tbl(done,"아직 완료된 요청이 없어요.")}`}
+window.answer=async id=>{const el=document.getElementById("ans_"+id),t=(el&&el.value||"").trim();if(!t)return;el.disabled=true;const ok=await post({action:"answer",id,text:t});say("staff",ok?"답 잘 받았어요 😊 바로 이어서 고칠게요.":"앗, 보내지 못했어요. 잠시 뒤 다시 해 주세요.");if(DEMO){const R=ls.get("st_req_"+CODE,[]),r=R.find(x=>x.id===id);if(r){r.text+="\n↪ "+t;r.status="접수";ls.set("st_req_"+CODE,R)}}loadReqs()};   // 💬 은솔 질문에 답하기
 window.decide=async(id,a)=>{let memo="";if(a==="again")memo=prompt("어떻게 다시 고칠까요?")||"";await post({action:a,id,text:memo});say("staff",a==="ok"?"좋아요! 홈페이지에 반영할게요 🎉":"알겠어요, 다시 고쳐서 보여 드릴게요 ✍️");loadReqs()};
 // ─── 시작 ───
 async function start(){IMG.me=await load(ME.sprite);document.getElementById("who").textContent=`${ME.name}, 반가워요! 담당자 ${CONFIG.staff}에게 말만 걸면 홈페이지를 바꿔 드려요.`;
