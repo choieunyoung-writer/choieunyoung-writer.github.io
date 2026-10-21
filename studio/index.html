@@ -86,7 +86,7 @@ a{color:#5b3a8a}
  <button class="send" id="enter">🚪 들어가기</button></div></div>
 <script>
 // ─── 설정: 고객마다 비밀 링크 ?c=고객코드. endpoint는 구글 앱스 스크립트 주소(비어 있으면 시험 모드) ───
-const VER="16";   // 고칠 때마다 올리고 version.txt도 같은 숫자로
+const VER="18";   // 고칠 때마다 올리고 version.txt도 같은 숫자로
 fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(v=>{v=v.trim();if(v&&v!==VER&&!sessionStorage.getItem("st_rel_"+v)){sessionStorage.setItem("st_rel_"+v,"1");const u=new URL(location.href);u.searchParams.set("v",v);location.replace(u.toString())}}).catch(()=>{});
 const CONFIG={endpoint:"",staff:"은솔",staffSprite:"char_1_0_purple",
  pinHash:"61b7f44c537daf446b7e7fa3b6435217af16d4d801d224573e577ee229439bc1"};   // 비밀번호 자체는 적지 않고 암호화한 값만(구글 쪽에서도 한 번 더 확인)
@@ -122,6 +122,14 @@ function room(){
  px(16,6,34,20,"#8a6a48");px(17,7,32,18,"#8ec5ee");px(17,7,32,3,"#cfe9fa");px(32,7,2,18,"#efe6d2");px(17,15,32,2,"#efe6d2");px(15,26,36,2,"#c9b08a");   // 창문 + 창틀
  g.fillStyle="rgba(255,248,215,.16)";g.beginPath();g.moveTo(17*K,26*K);g.lineTo(49*K,26*K);g.lineTo(96*K,124*K);g.lineTo(44*K,124*K);g.closePath();g.fill();   // 햇빛 줄기
  spr(IMG.SMALL_PAINTING,58,-4);spr(IMG.HANGING_PLANT,74,-2);
+ {const t=Date.now(),sx=18,sy=44,fl=Math.sin(t/90)*0.5+Math.sin(t/37)*0.5;   // 🔥 장작 난로(야옹이들이 좋아함, 2026-10-21 고운대표)
+  {const gr=g.createRadialGradient((sx+12)*K,(sy+20)*K,2*K,(sx+12)*K,(sy+20)*K,(34+fl*2)*K);gr.addColorStop(0,"rgba(255,170,80,.28)");gr.addColorStop(1,"rgba(255,170,80,0)");g.fillStyle=gr;g.fillRect((sx-24)*K,(sy-14)*K,72*K,70*K)}
+  px(sx+9,0,5,sy-2,"#2f2f33");px(sx+10,0,1.5,sy-2,"#4a4a50");px(sx+7,sy-4,9,3,"#2f2f33");   // 연통
+  shadow(sx+12,sy+26,15,3,.25);px(sx,sy,24,24,"#2b2b30");px(sx+1,sy+1,22,3,"#45454c");px(sx-1,sy-1,26,3,"#3a3a40");   // 무쇠 몸통
+  px(sx+4,sy+7,16,12,"#1a1a1e");px(sx+5,sy+8,14,10,"#3a1a0c");   // 불 창
+  [[7,15,"#e8540c"],[10,13,"#f59a2a"],[13,14,"#e8540c"],[15,15,"#f59a2a"]].forEach(([fx,fy,c],i)=>{const h=3+((Math.sin(t/(70+i*13))+1)*2.2);px(sx+fx,sy+fy-h+3,2.6,h,c)});px(sx+8,sy+16,9,2,"#6b3a1e");px(sx+7,sy+17,11,1.5,"#ffd27a");   // 장작불
+  px(sx+2,sy+24,3,3,"#1d1d22");px(sx+19,sy+24,3,3,"#1d1d22");
+  [[28,62],[31,60],[34,62]].forEach(([lx,ly])=>{px(sx+lx-4,ly,9,3,"#8a5a32");px(sx+lx-4,ly,2,3,"#c9944a");px(sx+lx+4,ly,1.5,3,"#c9944a")})}   // 장작더미
  rr(84,3,72,12,4,"#7a5aa8","#fff");txt("🛋 홈페이지 응접실",120,9,6.5,"#fff",true);
  shadow(176,37,17,2.5,.18);spr(IMG.DOUBLE_BOOKSHELF,160,5);   // 📚 큰 책장
  const cx0=196;px(cx0,24,34,14,"#8a6a48");px(cx0,22,34,3,"#c9a27a");px(cx0+2,38,2,2,"#5a4330");px(cx0+30,38,2,2,"#5a4330");   // 🍵 찻상(작은 장)
@@ -132,8 +140,8 @@ function room(){
  const dy=86;px(W-10,dy-4,10,34,"#6e5238");px(W-9,dy-3,8,32,doorOpen>0?"#3a2c20":"#a87a4e");if(doorOpen>0)px(W-22,dy-3,13,3,"#a87a4e");else px(W-8,dy+12,1.5,3,"#f2c94c");   // 🚪 문(오른쪽 벽)
  shadow(20,138,16,4);spr(IMG.LARGE_PLANT,4,90);shadow(212,60,8,2.5);spr(IMG.PLANT,204,30+0);
  shadow(108,61,34,4);spr(IMG.SOFA_FRONT,76,44);spr(IMG.SOFA_FRONT,108,44);   // 담당자 소파(위)
- shadow(120,102,18,4);spr(IMG.COFFEE_TABLE,104,70);if(COF.placed){const fx=118,fy=78;g.beginPath();g.ellipse(fx*K,fy*K,5*K,2.2*K,0,0,7);g.fillStyle="#f7f3ec";g.fill();[[-2,-1,"#e5484d"],[0,-2,"#e5484d"],[2,-1,"#7cbf5a"],[-1,0,"#9b59b6"],[1,0,"#9b59b6"]].forEach(([dx,dy,c])=>px(fx+dx-0.8,fy+dy-0.8,1.8,1.8,c))}   // 🍓 비건 다과(과일 접시)
- if(COF.placed)[[127,80],[111,88]].forEach(([cx,cy],i)=>{px(cx-4,cy-1,8,1.5,"#d8cfc0");px(cx-3,cy-5,6,4,"#f7f3ec");px(cx-2.5,cy-4.6,5,1.2,"#c9a86a");px(cx+3,cy-4,1.5,2,"#f7f3ec");[0,1].forEach(k=>px(cx-2+k*3+Math.sin(Date.now()/250+k+i)*1,cy-11-((Date.now()/150+k*7+i*3)%5),1,2,"rgba(255,255,255,.75)"))});   // 🍵 은솔 잔(위)·작가님 잔(앞) — 탁자 안쪽에 두 잔(커피 대신 차, 2026-10-21 고운대표)
+ shadow(120,102,18,4);spr(IMG.COFFEE_TABLE,104,70);if(COF.placed&&TODAY){const fx=118,fy=78;g.beginPath();g.ellipse(fx*K,fy*K,5*K,2.2*K,0,0,7);g.fillStyle="#f7f3ec";g.fill();TODAY.snack[1].forEach(([c,dx,dy])=>px(fx+dx-0.9,fy+dy-0.9,1.9,1.9,c))}   // 🍓 그날의 비건 다과
+ if(COF.placed)[[127,80],[111,88]].forEach(([cx,cy],i)=>{px(cx-4,cy-1,8,1.5,"#d8cfc0");px(cx-3,cy-5,6,4,"#f7f3ec");px(cx-2.5,cy-4.6,5,1.2,TODAY?TODAY.tea[1]:"#c9a86a");px(cx+3,cy-4,1.5,2,"#f7f3ec");[0,1].forEach(k=>px(cx-2+k*3+Math.sin(Date.now()/250+k+i)*1,cy-11-((Date.now()/150+k*7+i*3)%5),1,2,"rgba(255,255,255,.75)"))});   // 🍵 은솔 잔(위)·작가님 잔(앞) — 탁자 안쪽에 두 잔(커피 대신 차, 2026-10-21 고운대표)
  shadow(124,121,34,4)}
 function sofaFront(){spr(IMG.SOFA_BACK,92,104);spr(IMG.SOFA_BACK,124,104);
  {const gr=g.createRadialGradient(120*K,60*K,4*K,120*K,60*K,130*K);gr.addColorStop(0,"rgba(255,240,200,.10)");gr.addColorStop(1,"rgba(40,25,15,.14)");g.fillStyle=gr;g.fillRect(0,0,W*K,H*K)}}   // 천장 조명(가운데 밝고 가장자리 어둡게)   // 손님 소파(등받이가 앉은 사람 허리 아래를 가림)
@@ -143,7 +151,7 @@ function pbox(x,y,t){g.font="700 "+7*K+"px -apple-system,'Apple SD Gothic Neo',s
 function frame(){g.clearRect(0,0,cv.width,cv.height);room();if(doorOpen>0)doorOpen--;
  if(guest.path.length){const t=guest.path[0],dx=t[0]-guest.x,dy=t[1]-guest.y,d=Math.hypot(dx,dy);if(d<1.2){guest.path.shift();if(!guest.path.length){guest.sit=true;setTimeout(serveCoffee,2600);say("staff",`어서 오세요, ${ME.name}! 저는 홈페이지 담당 ${CONFIG.staff}이에요 😊 오늘은 뭘 바꿔 드릴까요?`)}}else{guest.x+=dx/d*1.2;guest.y+=dy/d*1.2;guest.dir=dx<0?"l":"r"}}
  const tt=Date.now();stepStaff();
- if(st.path.length){const fr=[0,1,2,1][Math.floor(tt/160)%4],row=st.dir==="u"?1:st.dir==="d"?0:2;shadow(st.x,st.y+1,6,2);g.save();if(st.dir==="l"){g.translate(st.x*K*2,0);g.scale(-1,1)}person(IMG.staff,st.x,st.y,row,fr);g.restore();if(st.carry){px(st.x-6,st.y-17,12,1.5,"#b08a5a");[-3,3].forEach(o=>{px(st.x+o-2,st.y-20,4,3,"#f7f3ec");px(st.x+o-1.5,st.y-19.6,3,1,"#c9a86a")})}}   // 쟁반에 찻잔 두 개
+ if(st.path.length){const fr=[0,1,2,1][Math.floor(tt/160)%4],row=st.dir==="u"?1:st.dir==="d"?0:2;shadow(st.x,st.y+1,6,2);g.save();if(st.dir==="l"){g.translate(st.x*K*2,0);g.scale(-1,1)}person(IMG.staff,st.x,st.y,row,fr);g.restore();if(st.carry){px(st.x-6,st.y-17,12,1.5,"#b08a5a");[-3,3].forEach(o=>{px(st.x+o-2,st.y-20,4,3,"#f7f3ec");px(st.x+o-1.5,st.y-19.6,3,1,TODAY?TODAY.tea[1]:"#c9a86a")})}}   // 쟁반에 찻잔 두 개
  else person(IMG.staff,st.x,st.y,0,COF.brew?0:bubble.who==="staff"&&tt<bubble.until?3+(Math.floor(tt/220)%2):0);   // 담당자(앉으면 마주 봄)
  if(IMG.me){const walking=guest.path.length>0;if(walking)shadow(guest.x,guest.y+1,6,2);if(walking){g.save();if(guest.dir==="l"){g.translate((guest.x)*K*2,0);g.scale(-1,1)}person(IMG.me,guest.x,guest.y,2,[0,1,2,1][Math.floor(tt/160)%4]);g.restore()}else person(IMG.me,guest.x,guest.y+2,1,0)}
  sofaFront();cats(tt);
@@ -151,20 +159,30 @@ function frame(){g.clearRect(0,0,cv.width,cv.height);room();if(doorOpen>0)doorOp
  if(tt<bubble.until&&bubble.t){const sx=bubble.who==="staff"?st.x:guest.x,sy=bubble.who==="staff"?st.y-32:guest.y-34;pbox(sx,sy,bubble.t)}
  requestAnimationFrame(frame)}
 const CATS=[{n:"애옹이",c:"#8f8f8f",st:"#4f4f4f",w:"#e9e9e9",x:48,y:132},{n:"뽀뽀",c:"#e8a04a",st:"#c0702a",w:"#fff3dd",x:176,y:60},{n:"미옹이",c:"#9b7653",st:"#5b4128",w:"#e8dccb",x:150,y:144},{n:"미오",c:"#8f6f4e",st:"#3a2e22",w:"#f5f1ea",bib:1,p:"#d99a55",x:204,y:96},{n:"포터",c:"#a8a092",st:"#4f473c",w:"#fbfbf8",bib:1,x:66,y:144}]   /* 2026-10-21 사진 반영: 미오=섞인 털(갈색 줄무늬+주황 얼룩+하얀 가슴·발), 포터=고등어 코숏+하얀 가슴·발 */.map(k=>({...k,tx:k.x,ty:k.y,act:"walk",wait:Math.random()*4,dir:1}));
+const WARM=[[26,76],[38,78],[16,80]];   // 난로 앞
 const CSPOT=[[48,132],[48,60],[176,60],[176,132],[200,140],[110,144],[66,144],[204,96],[30,62],[150,144],[82,50],[134,50],[100,112],[148,112]];   // 통로·창가 + 소파 위(앞에서 폴짝)
 const COLX=[48,176];   // 가구 없는 세로 통로
 function catRoute(k,to){const c=COLX.reduce((a,b)=>Math.abs(b-k.x)<Math.abs(a-k.x)?b:a),onSofa=to[1]<56||(to[1]>104&&to[1]<121&&to[0]>88&&to[0]<160),fy=onSofa?(to[1]<56?66:128):to[1];
  return[[c,k.y],[c,fy],[to[0],fy],to]}   // 지금 줄 → 통로 → 목표 줄 → (소파면 앞에서 올라감)
 function cats(tt){CATS.forEach(k=>{const dx=k.tx-k.x,dy=k.ty-k.y,d=Math.hypot(dx,dy);   // 🐈 돌아다니다 식빵·낮잠
- if(d>0.6){k.x+=dx/d*.45;k.y+=dy/d*.45;if(Math.abs(dx)>.3)k.dir=dx>0?1:-1;k.mv=true}else if(k.route&&k.route.length){const n=k.route.shift();k.tx=n[0];k.ty=n[1]}else{k.mv=false;k.wait-=1/60;if(k.wait<=0){const r=Math.random();if(r<.5){const s=CSPOT[Math.random()*CSPOT.length|0];k.route=catRoute(k,s);const n=k.route.shift();k.tx=n[0];k.ty=n[1];k.act="walk"}else{k.act=r<.75?"loaf":"sleep";k.wait=r<.75?6+Math.random()*8:12+Math.random()*16}if(k.act==="walk")k.wait=1}}
+ if(d>0.6){k.x+=dx/d*.45;k.y+=dy/d*.45;if(Math.abs(dx)>.3)k.dir=dx>0?1:-1;k.mv=true}else if(k.route&&k.route.length){const n=k.route.shift();k.tx=n[0];k.ty=n[1]}else{k.mv=false;k.wait-=1/60;if(k.wait<=0){const r=Math.random();if(r<.5){const s=CSPOT[Math.random()*CSPOT.length|0];k.route=catRoute(k,s);const n=k.route.shift();k.tx=n[0];k.ty=n[1];k.act="walk"}else if(r<.75&&Math.random()<.5){const w=WARM[Math.random()*WARM.length|0];k.route=catRoute(k,w);const n=k.route.shift();k.tx=n[0];k.ty=n[1];k.act="walk";k.warm=true}   // 따뜻한 난로 앞으로
+   else{k.act=k.warm||r>=.75?"sleep":"loaf";k.warm=false;k.wait=k.act==="sleep"?14+Math.random()*20:6+Math.random()*8}if(k.act==="walk")k.wait=1}}
  const x=k.x,y=k.y,ph=Math.floor(tt/150)%2;g.save();if(k.dir<0){g.translate(x*K*2,0);g.scale(-1,1)}
  g.fillStyle="rgba(20,20,40,.18)";g.beginPath();g.ellipse(x*K,(y+1)*K,6*K,1.6*K,0,0,7);g.fill();
  if(!k.mv&&k.act==="sleep"){px(x-6,y-5,12,5,k.c);px(x-4,y-5,2,4,k.st);px(x,y-5,2,4,k.st);px(x+3,y-4,4,4,k.c);px(x+4,y-6,1.5,2,k.c);px(x+6,y-6,1.5,2,k.c);px(x-7,y-2,6,2,k.st)}
  else if(!k.mv&&k.act==="loaf"){px(x-5,y-6,9,6,k.c);px(x-3,y-6,1.5,5,k.st);px(x,y-6,1.5,5,k.st);px(x+2,y-10,6,6,k.c);px(x+2,y-12,1.6,2.4,k.c);px(x+6.4,y-12,1.6,2.4,k.c);px(x+3,y-8,1.2,1.2,"#2b2b2b");px(x+6,y-8,1.2,1.2,"#2b2b2b");px(x+4,y-6,2,1.5,k.w);if(k.bib){px(x+2,y-5,6,4,k.w);px(x+2,y-1,2,1,k.w);px(x+6,y-1,2,1,k.w)}if(k.p){px(x-4,y-6,3,3,k.p);px(x+5,y-10,3,2,k.p)}}
  else{const a=k.mv?(ph?1:-1):0;px(x-6,y-7,10,5,k.c);px(x-4,y-7,1.5,4,k.st);px(x-1,y-7,1.5,4,k.st);px(x+3,y-10,6,6,k.c);px(x+3,y-12,1.6,2.4,k.c);px(x+7.4,y-12,1.6,2.4,k.c);px(x+4,y-8,1.2,1.2,"#2b2b2b");px(x+7,y-8,1.2,1.2,"#2b2b2b");px(x+5,y-6,2,1.2,k.w);const pw=k.bib?k.w:k.c;px(x-5+a,y-2,1.6,3,pw);px(x-2-a,y-2,1.6,3,pw);px(x+1+a,y-2,1.6,3,pw);px(x+3-a,y-2,1.6,3,pw);px(x-9,y-10+ph,1.6,5,k.c);if(k.bib)px(x+2,y-5,5,3,k.w);if(k.p){px(x-4,y-7,4,3,k.p);px(x+5,y-10,3,3,k.p)}}
  g.restore();txt(k.n,x,y+5,5.5,"#5a4a3a",true);if(!k.mv&&k.act==="sleep")txt("z",x+7,y-9+Math.sin(tt/600),6,"#5b4a7a",true)})}
-function serveCoffee(){if(COF.placed||COF.step)return;COF.step=1;say("staff","먼저 따뜻한 차 한 잔 드릴게요 🍵 우유 없이 내려 드릴게요.");st.path=[[116,66],[176,66],[176,44],[204,44]];   // 커피 코너로
- st.after=()=>{COF.brew=true;setTimeout(()=>{COF.brew=false;st.carry=true;st.path=[[176,44],[176,66],[100,66]];st.after=()=>{st.carry=false;COF.placed=true;say("staff","따뜻할 때 드세요 🍵 과일도 조금 곁들였어요 🍓 오늘은 뭘 바꿔 드릴까요?");st.path=[[116,66],[116,62]];st.after=()=>{COF.step=0}}},2200)}}
+// 🍵 올 때마다 다른 차·다과(모두 비건, 지난번과 같은 차는 연달아 안 나옴) — 2026-10-21 고운대표
+const TEAS=[["캐모마일","#e8c96a","꽃향이 은은해요"],["루이보스","#b5562e","고소하고 달큰해요"],["보리차","#c9944a","구수해요"],["유자차","#f0b43c","새콤달콤해요"],["대추차","#8a4a2a","몸이 따뜻해져요"],["페퍼민트","#9cc98a","머리가 맑아져요"],["녹차","#a8c46a","향이 은은해요"],["생강차","#d9a441","목이 편해져요"],["히비스커스","#c0304a","새콤해요"]];
+const SNACKS=[["딸기·포도",[["#e5484d",-2,-1],["#e5484d",0,-2],["#7cbf5a",2,-1],["#9b59b6",-1,0],["#9b59b6",1,0]]],["귤",[["#f39c2a",-1,-1],["#f39c2a",1.5,-0.5],["#7cbf5a",-1,-2.2]]],["사과 조각",[["#f4e3b0",-2,-1],["#f4e3b0",0,-1],["#f4e3b0",2,-1],["#c0392b",-2,-2],["#c0392b",2,-2]]],["견과",[["#a67c52",-2,-1],["#8a5a32",0,-1.5],["#c49a6c",2,-1],["#a67c52",-1,0],["#8a5a32",1,0]]],["비건 쿠키",[["#c9944a",-1.5,-1],["#c9944a",1.5,-1],["#6b4226",-1.5,-1.4],["#6b4226",1.5,-0.6]]],["곶감",[["#d9772e",-1.5,-1],["#d9772e",1.5,-1],["#5a7a3a",-1.5,-2.2]]],["백설기",[["#ffffff",-1.5,-1],["#ffffff",1,-1],["#f0e6d2",-0.3,0]]],["바나나",[["#f1d24a",-2,-1],["#f1d24a",0,-1.4],["#f1d24a",2,-1]]]];
+let TODAY=null;
+function pickTreat(){let last=-1;try{last=+localStorage.getItem("st_tea")}catch(e){}let t=Math.floor(Math.random()*TEAS.length);if(t===last)t=(t+1)%TEAS.length;try{localStorage.setItem("st_tea",t)}catch(e){}
+ TODAY={tea:TEAS[t],snack:SNACKS[Math.floor(Math.random()*SNACKS.length)]};return TODAY}
+const SAY1=["먼저 따뜻한 차 한 잔 드릴게요 🍵","오늘은 차를 골라 봤어요, 잠깐만요 🍵","오시느라 고생하셨어요, 차부터 내올게요 🍵"],SAY2=["따뜻할 때 드세요 😊","식기 전에 드셔 보세요 😊","천천히 드세요 😊"];
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+function serveCoffee(){if(COF.placed||COF.step)return;COF.step=1;pickTreat();say("staff",pick(SAY1));st.path=[[116,66],[176,66],[176,44],[204,44]];   // 커피 코너로
+ st.after=()=>{COF.brew=true;setTimeout(()=>{COF.brew=false;st.carry=true;st.path=[[176,44],[176,66],[100,66]];st.after=()=>{st.carry=false;COF.placed=true;say("staff",`오늘은 ${TODAY.tea[0]}예요, ${TODAY.tea[2]}. ${TODAY.snack[0]}도 조금 곁들였어요. ${pick(SAY2)} 오늘은 뭘 바꿔 드릴까요?`);st.path=[[116,66],[116,62]];st.after=()=>{COF.step=0}}},2200)}}
 function stepStaff(){if(!st.path.length)return;const t=st.path[0],dx=t[0]-st.x,dy=t[1]-st.y,d=Math.hypot(dx,dy);if(d<1){st.x=t[0];st.y=t[1];st.path.shift();if(!st.path.length&&st.after){const f=st.after;st.after=null;f()}}else{st.x+=dx/d*1;st.y+=dy/d*1;st.dir=Math.abs(dx)>Math.abs(dy)?(dx<0?"l":"r"):(dy<0?"u":"d")}}
 function say(who,t){bubble={who,t,until:Date.now()+Math.min(9000,2500+t.length*120)};addLog(who,t)}
 // ─── 대화·요청 ───
