@@ -46,6 +46,7 @@ a{color:#5b3a8a}
 </style>
 </head>
 <body>
+<a id="homeBtn" href="../" target="_blank" rel="noopener" title="홈페이지 보기" style="position:fixed;top:max(10px,env(safe-area-inset-top));right:60px;z-index:8;width:40px;height:40px;border-radius:12px;border:2px solid #7a5aa8;background:#f1ebf8;font-size:20px;box-shadow:0 2px 6px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;text-decoration:none">🏠</a>
 <button id="upd" title="최신으로 새로고침" style="position:fixed;top:max(10px,env(safe-area-inset-top));right:12px;z-index:8;width:40px;height:40px;border-radius:12px;border:2px solid #c9a227;background:#fff6d6;font-size:20px;box-shadow:0 2px 6px rgba(0,0,0,.2);cursor:pointer">🔄</button>
 <div class="wrap">
 <h1>🛋 홈페이지 응접실</h1>
@@ -86,7 +87,7 @@ a{color:#5b3a8a}
  <button class="send" id="enter">🚪 들어가기</button></div></div>
 <script>
 // ─── 설정: 고객마다 비밀 링크 ?c=고객코드. endpoint는 구글 앱스 스크립트 주소(비어 있으면 시험 모드) ───
-const VER="19";   // 고칠 때마다 올리고 version.txt도 같은 숫자로
+const VER="20";   // 고칠 때마다 올리고 version.txt도 같은 숫자로
 fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(v=>{v=v.trim();if(v&&v!==VER&&!sessionStorage.getItem("st_rel_"+v)){sessionStorage.setItem("st_rel_"+v,"1");const u=new URL(location.href);u.searchParams.set("v",v);location.replace(u.toString())}}).catch(()=>{});
 const CONFIG={endpoint:"",staff:"은솔",staffSprite:"char_1_0_purple",
  pinHash:"61b7f44c537daf446b7e7fa3b6435217af16d4d801d224573e577ee229439bc1"};   // 비밀번호 자체는 적지 않고 암호화한 값만(구글 쪽에서도 한 번 더 확인)
