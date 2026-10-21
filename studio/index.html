@@ -86,7 +86,7 @@ a{color:#5b3a8a}
  <button class="send" id="enter">🚪 들어가기</button></div></div>
 <script>
 // ─── 설정: 고객마다 비밀 링크 ?c=고객코드. endpoint는 구글 앱스 스크립트 주소(비어 있으면 시험 모드) ───
-const VER="13";   // 고칠 때마다 올리고 version.txt도 같은 숫자로
+const VER="14";   // 고칠 때마다 올리고 version.txt도 같은 숫자로
 fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(v=>{v=v.trim();if(v&&v!==VER&&!sessionStorage.getItem("st_rel_"+v)){sessionStorage.setItem("st_rel_"+v,"1");const u=new URL(location.href);u.searchParams.set("v",v);location.replace(u.toString())}}).catch(()=>{});
 const CONFIG={endpoint:"",staff:"은솔",staffSprite:"char_1_0_purple",
  pinHash:"61b7f44c537daf446b7e7fa3b6435217af16d4d801d224573e577ee229439bc1"};   // 비밀번호 자체는 적지 않고 암호화한 값만(구글 쪽에서도 한 번 더 확인)
@@ -131,7 +131,7 @@ function room(){
  const dy=86;px(W-10,dy-4,10,34,"#6e5238");px(W-9,dy-3,8,32,doorOpen>0?"#3a2c20":"#a87a4e");if(doorOpen>0)px(W-22,dy-3,13,3,"#a87a4e");else px(W-8,dy+12,1.5,3,"#f2c94c");   // 🚪 문(오른쪽 벽)
  shadow(20,138,16,4);spr(IMG.LARGE_PLANT,4,90);shadow(212,60,8,2.5);spr(IMG.PLANT,204,30+0);
  shadow(108,61,34,4);spr(IMG.SOFA_FRONT,76,44);spr(IMG.SOFA_FRONT,108,44);   // 담당자 소파(위)
- shadow(120,102,18,4);spr(IMG.COFFEE_TABLE,104,70);if(COF.placed){spr(IMG.COFFEE,COF.cx-8,COF.cy-8);[0,1].forEach(k=>px(COF.cx-2+k*3+Math.sin(Date.now()/250+k)*1,COF.cy-11-((Date.now()/150+k*7)%5),1,2,"rgba(255,255,255,.75)"))}   // ☕ 작가님 커피
+ shadow(120,102,18,4);spr(IMG.COFFEE_TABLE,104,70);if(COF.placed)[[127,80],[111,88]].forEach(([cx,cy],i)=>{spr(IMG.COFFEE,cx-8,cy-8);[0,1].forEach(k=>px(cx-2+k*3+Math.sin(Date.now()/250+k+i)*1,cy-11-((Date.now()/150+k*7+i*3)%5),1,2,"rgba(255,255,255,.75)"))});   // ☕ 은솔 잔(위)·작가님 잔(앞) — 탁자 안쪽에 두 잔
  shadow(124,121,34,4)}
 function sofaFront(){spr(IMG.SOFA_BACK,92,104);spr(IMG.SOFA_BACK,124,104);
  {const gr=g.createRadialGradient(120*K,60*K,4*K,120*K,60*K,130*K);gr.addColorStop(0,"rgba(255,240,200,.10)");gr.addColorStop(1,"rgba(40,25,15,.14)");g.fillStyle=gr;g.fillRect(0,0,W*K,H*K)}}   // 천장 조명(가운데 밝고 가장자리 어둡게)   // 손님 소파(등받이가 앉은 사람 허리 아래를 가림)
