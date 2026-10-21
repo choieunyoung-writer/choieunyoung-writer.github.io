@@ -32,6 +32,7 @@ textarea{min-height:90px}
 .tm{font-size:10px;color:#445}
 .chat{border-bottom-left-radius:0;border-bottom-right-radius:0;margin-bottom:0}.say{display:flex;gap:6px;background:#fff;border:1px solid var(--line);border-top:0;border-radius:0 0 14px 14px;padding:8px}
 .say textarea{flex:1;min-height:42px;max-height:120px;resize:none;border-radius:10px}.say .send{width:auto;margin:0;padding:0 16px;background:#fee500;color:#3c1e1e}   /* 카톡처럼 대화창 아래 입력칸 */
+.rqd summary{cursor:pointer;list-style:none}.rqd summary::-webkit-details-marker{display:none}.rqd summary::before{content:'▸ ';color:#9a8a7a}.rqd[open] summary::before{content:'▾ '}
 .rqh{font-weight:800;font-size:14px;margin:6px 0 4px}.rqh b{color:var(--acc)}
 table.rq{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:13px}
 table.rq th{background:#efe6d6;text-align:left;padding:6px 8px;font-size:12px;color:#5a4a3a;white-space:nowrap}table.rq td{padding:7px 8px;border-top:1px solid var(--line);vertical-align:top;word-break:break-word}
@@ -92,7 +93,7 @@ a{color:#5b3a8a}
  <button class="send" id="enter">🚪 들어가기</button></div></div>
 <script>
 // ─── 설정: 고객마다 비밀 링크 ?c=고객코드. endpoint는 구글 앱스 스크립트 주소(비어 있으면 시험 모드) ───
-const VER="25";   // 고칠 때마다 올리고 version.txt도 같은 숫자로
+const VER="26";   // 고칠 때마다 올리고 version.txt도 같은 숫자로
 fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(v=>{v=v.trim();if(v&&v!==VER&&!sessionStorage.getItem("st_rel_"+v)){sessionStorage.setItem("st_rel_"+v,"1");const u=new URL(location.href);u.searchParams.set("v",v);location.replace(u.toString())}}).catch(()=>{});
 const CONFIG={endpoint:"https://script.google.com/macros/s/AKfycby0aQtaCvyrGvkRJw3Cl_RHH-iIGaj_t_jB6mL2txG-KMyMXH61Ja7T0QP2KtI1GK0x/exec",staff:"은솔",staffSprite:"char_1_0_purple",
  pinHash:"61b7f44c537daf446b7e7fa3b6435217af16d4d801d224573e577ee229439bc1"};   // 비밀번호 자체는 적지 않고 암호화한 값만(구글 쪽에서도 한 번 더 확인)
@@ -218,13 +219,14 @@ document.querySelectorAll(".send[data-s]").forEach(b=>b.onclick=async()=>{const 
  setTimeout(()=>say("staff",!ok?"앗, 지금 연결이 안 됐어요. 잠시 뒤 다시 보내 주세요 🙏":req.type==="말"?"네, 잘 들었어요 😊 답이 필요하면 여기로 남겨 드릴게요.":"받았어요! 고쳐서 미리보기로 보여 드릴게요 ✍️ 조금만 기다려 주세요."),1600);loadReqs()});
 async function post(body){body.code=CODE;body.pin=PIN;if(DEMO){const R=ls.get("st_req_"+CODE,[]);if(body.action==="add")R.unshift({id:Date.now().toString(36),time:(d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")} ${d.toTimeString().slice(0,5)}`)(new Date()),type:body.type,page:body.page,text:body.text,status:"접수"});if(body.action==="ok"||body.action==="again"){const r=R.find(x=>x.id===body.id);if(r)r.status=body.action==="ok"?"반영 대기":"다시 고치는 중"}ls.set("st_req_"+CODE,R);return true}
  try{const r=await fetch(CONFIG.endpoint,{method:"POST",body:JSON.stringify(body)});const j=await r.json();return !!j.ok}catch(e){return false}}
+let OPEN_DONE=false;
 async function loadReqs(){let R=[];if(DEMO)R=ls.get("st_req_"+CODE,[]);else{try{R=(await (await fetch(CONFIG.endpoint+"?action=list&code="+encodeURIComponent(CODE)+"&pin="+encodeURIComponent(PIN||""))).json()).requests||[]}catch(e){}}
  const C={"접수":"#9aa3ad","고치는 중":"#e0a030","미리보기":"#7a5aa8","다시 고치는 중":"#e0a030","반영 대기":"#3d85c6","반영 완료":"#2e9e5b"};
  const el=document.getElementById("reqs");if(!R.length){el.innerHTML="아직 요청이 없어요.";return}
  const done=R.filter(r=>r.status==="반영 완료"),doing=R.filter(r=>r.status!=="반영 완료"),ico={"사진":"📷","글":"✏️","일정":"📅","말":"💬"};   // 📋 진행 중 | ✅ 완료 표
  const row=r=>`<tr><td class="td-d">${esc(String(r.time||"").slice(5,16).replace("-","/"))}</td><td>${ico[r.type]||""} ${esc(r.type)}${r.page?`<div class="sub">${esc(r.page)}</div>`:""}</td><td><div style="white-space:pre-wrap">${esc(r.text||"").replace(/\n↪ /g,"\n↪ 내 답: ")}</div>${r.reply?`<div class="sub" style="white-space:pre-wrap">💬 ${esc(CONFIG.staff)}: ${esc(r.reply)}</div>`:""}${r.reply&&r.status!=="반영 완료"&&r.status!=="미리보기"?`<div class="ans"><input id="ans_${esc(r.id)}" placeholder="${esc(CONFIG.staff)}에게 답하기 (예: 2번)" onkeydown="if(event.key==='Enter'&&!event.isComposing)answer('${esc(r.id)}')"><button onclick="answer('${esc(r.id)}')">보내기</button></div>`:""}${r.status==="미리보기"?`${r.preview?`<div><a href="${esc(r.preview)}" target="_blank" rel="noopener">👀 미리보기 보기</a></div>`:""}<div class="act"><button style="background:#2e9e5b;color:#fff" onclick="decide('${esc(r.id)}','ok')">👍 반영</button><button style="background:#eee" onclick="decide('${esc(r.id)}','again')">✏️ 다시</button></div>`:""}</td><td><span class="chip" style="background:${C[r.status]||"#9aa3ad"}">${esc(r.status)}</span></td></tr>`;
  const tbl=(L,empty)=>L.length?`<table class="rq"><thead><tr><th>날짜</th><th>종류</th><th>내용</th><th>상태</th></tr></thead><tbody>${L.slice(0,30).map(row).join("")}</tbody></table>`:`<div class="sub" style="padding:8px">${empty}</div>`;
- el.innerHTML=`<div class="rqh">🛠 진행 중 <b>${doing.length}</b></div>${tbl(doing,"진행 중인 요청이 없어요.")}<div class="rqh" style="margin-top:12px">✅ 완료 <b>${done.length}</b></div>${tbl(done,"아직 완료된 요청이 없어요.")}`}
+ el.innerHTML=`<div class="rqh">🛠 진행 중 <b>${doing.length}</b></div>${tbl(doing,"진행 중인 요청이 없어요.")}<details class="rqd" style="margin-top:12px"${OPEN_DONE?" open":""} ontoggle="OPEN_DONE=this.open"><summary class="rqh">✅ 완료 <b>${done.length}</b> <span class="sub">(눌러서 펼치기)</span></summary>${tbl(done,"아직 완료된 요청이 없어요.")}</details>`}   /* 완료는 접어 둠 */
 window.answer=async id=>{const el=document.getElementById("ans_"+id),t=(el&&el.value||"").trim();if(!t)return;el.disabled=true;const ok=await post({action:"answer",id,text:t});say("staff",ok?"답 잘 받았어요 😊 바로 이어서 고칠게요.":"앗, 보내지 못했어요. 잠시 뒤 다시 해 주세요.");if(DEMO){const R=ls.get("st_req_"+CODE,[]),r=R.find(x=>x.id===id);if(r){r.text+="\n↪ "+t;r.status="접수";ls.set("st_req_"+CODE,R)}}loadReqs()};   // 💬 은솔 질문에 답하기
 window.decide=async(id,a)=>{let memo="";if(a==="again")memo=prompt("어떻게 다시 고칠까요?")||"";await post({action:a,id,text:memo});say("staff",a==="ok"?"좋아요! 홈페이지에 반영할게요 🎉":"알겠어요, 다시 고쳐서 보여 드릴게요 ✍️");loadReqs()};
 // ─── 시작 ───
