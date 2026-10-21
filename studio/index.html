@@ -91,7 +91,7 @@ a{color:#5b3a8a}
  <button class="send" id="enter">🚪 들어가기</button></div></div>
 <script>
 // ─── 설정: 고객마다 비밀 링크 ?c=고객코드. endpoint는 구글 앱스 스크립트 주소(비어 있으면 시험 모드) ───
-const VER="21";   // 고칠 때마다 올리고 version.txt도 같은 숫자로
+const VER="22";   // 고칠 때마다 올리고 version.txt도 같은 숫자로
 fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(v=>{v=v.trim();if(v&&v!==VER&&!sessionStorage.getItem("st_rel_"+v)){sessionStorage.setItem("st_rel_"+v,"1");const u=new URL(location.href);u.searchParams.set("v",v);location.replace(u.toString())}}).catch(()=>{});
 const CONFIG={endpoint:"",staff:"은솔",staffSprite:"char_1_0_purple",
  pinHash:"61b7f44c537daf446b7e7fa3b6435217af16d4d801d224573e577ee229439bc1"};   // 비밀번호 자체는 적지 않고 암호화한 값만(구글 쪽에서도 한 번 더 확인)
@@ -163,12 +163,12 @@ function frame(){g.clearRect(0,0,cv.width,cv.height);room();if(doorOpen>0)doorOp
  txt(CONFIG.staff,st.x,st.y+8,6.5,"#5b3a8a",true);if(ME)txt(ME.name,guest.x,guest.y+10,6.5,"#2b2622",true);
  if(tt<bubble.until&&bubble.t){const sx=bubble.who==="staff"?st.x:guest.x,sy=bubble.who==="staff"?st.y-32:guest.y-34;pbox(sx,sy,bubble.t)}
  requestAnimationFrame(frame)}
-const CATS=[{n:"애옹이",c:"#8f8f8f",st:"#4f4f4f",w:"#e9e9e9",x:48,y:132},{n:"뽀뽀",c:"#e8a04a",st:"#c0702a",w:"#fff3dd",x:176,y:60},{n:"미옹이",c:"#9b7653",st:"#5b4128",w:"#e8dccb",x:150,y:144},{n:"미오",c:"#8f6f4e",st:"#3a2e22",w:"#f5f1ea",bib:1,p:"#d99a55",x:204,y:96},{n:"포터",c:"#a8a092",st:"#4f473c",w:"#fbfbf8",bib:1,x:66,y:144}]   /* 2026-10-21 사진 반영: 미오=섞인 털(갈색 줄무늬+주황 얼룩+하얀 가슴·발), 포터=고등어 코숏+하얀 가슴·발 */.map(k=>({...k,tx:k.x,ty:k.y,act:"walk",wait:Math.random()*4,dir:1}));
-const WARM=[[26,76],[38,78],[16,80]];   // 난로 앞
-const CSPOT=[[48,132],[48,60],[176,60],[176,132],[200,140],[110,144],[66,144],[204,96],[150,144],[82,50],[134,50],[100,112],[148,112]];   // 통로·창가 + 소파 위(앞에서 폴짝)
-const COLX=[48,176];   // 가구 없는 세로 통로
-const STOVE=[14,40,46,72];   // 🔥 난로 자리(x1,y1,x2,y2) — 고양이가 못 들어감
-function catRoute(k,to){if(to[0]<STOVE[2]&&to[1]>STOVE[1]&&to[1]<STOVE[3])to=[to[0],STOVE[3]+4];const c=COLX.reduce((a,b)=>Math.abs(b-k.x)<Math.abs(a-k.x)?b:a),onSofa=to[1]<56||(to[1]>104&&to[1]<121&&to[0]>88&&to[0]<160),fy=onSofa?(to[1]<56?66:128):to[1];
+const CATS=[{n:"애옹이",c:"#8f8f8f",st:"#4f4f4f",w:"#e9e9e9",x:62,y:132},{n:"뽀뽀",c:"#e8a04a",st:"#c0702a",w:"#fff3dd",x:176,y:60},{n:"미옹이",c:"#9b7653",st:"#5b4128",w:"#e8dccb",x:150,y:144},{n:"미오",c:"#8f6f4e",st:"#3a2e22",w:"#f5f1ea",bib:1,p:"#d99a55",x:204,y:96},{n:"포터",c:"#a8a092",st:"#4f473c",w:"#fbfbf8",bib:1,x:66,y:144}]   /* 2026-10-21 사진 반영: 미오=섞인 털(갈색 줄무늬+주황 얼룩+하얀 가슴·발), 포터=고등어 코숏+하얀 가슴·발 */.map(k=>({...k,tx:k.x,ty:k.y,act:"walk",wait:Math.random()*4,dir:1}));
+const WARM=[[24,88],[38,88],[14,90]];   // 난로 앞(난로 그림과 안 겹치게 충분히 아래)   // 난로 앞
+const CSPOT=[[62,132],[62,60],[176,60],[176,132],[200,140],[110,144],[66,144],[204,96],[150,144],[82,50],[134,50],[100,112],[148,112]];   // 통로·창가 + 소파 위(앞에서 폴짝)
+const COLX=[62,176];   // 가구 없는 세로 통로
+const STOVE=[10,38,50,84];   // 🔥 난로 자리(x1,y1,x2,y2) — 고양이가 못 들어감
+function catRoute(k,to){if(to[0]<STOVE[2]&&to[1]>STOVE[1]&&to[1]<STOVE[3])to=[to[0],STOVE[3]+4];if(k.x<STOVE[2]&&k.y>STOVE[1]&&k.y<STOVE[3]){k.y=STOVE[3]+4}const c=COLX.reduce((a,b)=>Math.abs(b-k.x)<Math.abs(a-k.x)?b:a),onSofa=to[1]<56||(to[1]>104&&to[1]<121&&to[0]>88&&to[0]<160),fy=onSofa?(to[1]<56?66:128):to[1];
  return[[c,k.y],[c,fy],[to[0],fy],to]}   // 지금 줄 → 통로 → 목표 줄 → (소파면 앞에서 올라감)
 function cats(tt){CATS.forEach(k=>{const dx=k.tx-k.x,dy=k.ty-k.y,d=Math.hypot(dx,dy);   // 🐈 돌아다니다 식빵·낮잠
  if(d>0.6){k.x+=dx/d*.45;k.y+=dy/d*.45;if(Math.abs(dx)>.3)k.dir=dx>0?1:-1;k.mv=true}else if(k.route&&k.route.length){const n=k.route.shift();k.tx=n[0];k.ty=n[1]}else{k.mv=false;k.wait-=1/60;if(k.wait<=0){const r=Math.random();if(r<.5){const s=CSPOT[Math.random()*CSPOT.length|0];k.route=catRoute(k,s);const n=k.route.shift();k.tx=n[0];k.ty=n[1];k.act="walk"}else if(r<.75&&Math.random()<.5){const w=WARM[Math.random()*WARM.length|0];k.route=catRoute(k,w);const n=k.route.shift();k.tx=n[0];k.ty=n[1];k.act="walk";k.warm=true}   // 따뜻한 난로 앞으로
