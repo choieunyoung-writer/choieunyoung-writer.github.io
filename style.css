@@ -519,3 +519,6 @@ html[lang="en"] .spread-title{font-size:clamp(2.2rem,1.6rem + 2.2vw,3.3rem);whit
 .book-excerpt footer{margin:8px 0 0;padding:0;background:none;border:0;text-align:left;letter-spacing:0;font-size:.82rem;color:var(--soft)}
 .book-harmless.ko-ed .cover{background:#F5D850 url(images/cover-harmless.jpg) center/cover no-repeat;aspect-ratio:400/579}
 .book-harmless.ko-ed .cover > span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* 🐈 응접실 문(작가님 전용 — 흐리게, 2026-10-21 고운대표) */
+.footnav .catdoor{opacity:.28;display:inline-flex;align-items:center;vertical-align:middle;transition:opacity .2s}.footnav .catdoor:hover,.footnav .catdoor:focus{opacity:.65}.footnav .catdoor img{image-rendering:pixelated;width:16px;height:14px}
