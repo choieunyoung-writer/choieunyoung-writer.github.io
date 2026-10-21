@@ -15,7 +15,7 @@ html{color-scheme:light}body{margin:0;background:var(--bg);color:var(--ink);font
 h1{font-size:18px;margin:4px 0 2px}.sub{color:var(--sub);font-size:12.5px}
 #demo{display:none;background:#fff3c4;border:1px solid #f0d878;border-radius:10px;padding:8px 10px;font-size:13px;margin:8px 0}
 canvas{width:100%;height:auto;display:block;border-radius:14px;image-rendering:pixelated;box-shadow:0 4px 14px rgba(0,0,0,.12);margin-top:8px;background:#d8b98f}
-.btns{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:12px 0}
+.btns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
 .btns button{border:0;border-radius:14px;padding:14px 8px;font:800 16px -apple-system,"Apple SD Gothic Neo",sans-serif;color:#fff;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.15)}
 .b1{background:#e07a5f}.b2{background:#3d85c6}.b3{background:#2e9e5b}.b4{background:#7a5aa8}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0;display:none}
@@ -30,6 +30,8 @@ textarea{min-height:90px}
 .them .b{background:#fff;color:#2b2622;border-top-left-radius:4px}.me .b{background:#fee500;color:#2b2622;border-top-right-radius:4px}
 #demo,#a2hs{color:#2b2622}#demo a,#a2hs a{color:#5b3a8a}.chat .tm{color:#334}
 .tm{font-size:10px;color:#445}
+.chat{border-bottom-left-radius:0;border-bottom-right-radius:0;margin-bottom:0}.say{display:flex;gap:6px;background:#fff;border:1px solid var(--line);border-top:0;border-radius:0 0 14px 14px;padding:8px}
+.say textarea{flex:1;min-height:42px;max-height:120px;resize:none;border-radius:10px}.say .send{width:auto;margin:0;padding:0 16px;background:#fee500;color:#3c1e1e}   /* 카톡처럼 대화창 아래 입력칸 */
 .req{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0;font-size:14px}
 .chip{display:inline-block;border-radius:8px;padding:1px 8px;font-size:12px;font-weight:700;color:#fff}
 .req .act{display:flex;gap:6px;margin-top:8px}.req .act button{flex:1;border:0;border-radius:10px;padding:10px;font:700 14px -apple-system,sans-serif;cursor:pointer}
@@ -55,7 +57,6 @@ a{color:#5b3a8a}
  <button class="b1" data-p="photo">📷 사진 바꾸기</button>
  <button class="b2" data-p="text">✏️ 글 고치기</button>
  <button class="b3" data-p="sched">📅 일정 추가</button>
- <button class="b4" data-p="talk">💬 그냥 말하기</button>
 </div>
 <div class="panel" id="p-photo"><b>📷 사진 바꾸기</b>
  <label>사진</label><input type="file" id="ph" accept="image/*">
@@ -71,10 +72,8 @@ a{color:#5b3a8a}
  <label>무슨 일정이에요?</label><input type="text" id="scTitle" placeholder="예) 북토크">
  <label>장소·메모(선택)</label><textarea id="scMemo" placeholder="예) 서울 ○○서점, 오후 7시"></textarea>
  <button class="send" data-s="sched">보내기</button></div>
-<div class="panel" id="p-talk"><b>💬 그냥 말하기</b>
- <label>담당자에게 하고 싶은 말</label><textarea id="tkMemo" placeholder="편하게 적어 주세요"></textarea>
- <button class="send" data-s="talk">보내기</button></div>
 <div class="chat" id="chat"></div>
+<div class="say"><textarea id="tkMemo" rows="1" placeholder="은솔에게 편하게 말 걸어 보세요"></textarea><button class="send" data-s="talk">전송</button></div>
 <h1 style="font-size:16px;margin-top:16px">📋 내 요청</h1>
 <div id="reqs" class="sub">아직 요청이 없어요.</div>
 </div>
@@ -87,7 +86,7 @@ a{color:#5b3a8a}
  <button class="send" id="enter">🚪 들어가기</button></div></div>
 <script>
 // ─── 설정: 고객마다 비밀 링크 ?c=고객코드. endpoint는 구글 앱스 스크립트 주소(비어 있으면 시험 모드) ───
-const VER="6";   // 고칠 때마다 올리고 version.txt도 같은 숫자로
+const VER="8";   // 고칠 때마다 올리고 version.txt도 같은 숫자로
 fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(v=>{v=v.trim();if(v&&v!==VER&&!sessionStorage.getItem("st_rel_"+v)){sessionStorage.setItem("st_rel_"+v,"1");const u=new URL(location.href);u.searchParams.set("v",v);location.replace(u.toString())}}).catch(()=>{});
 const CONFIG={endpoint:"",staff:"은솔",staffSprite:"char_1_0_purple",
  pinHash:"61b7f44c537daf446b7e7fa3b6435217af16d4d801d224573e577ee229439bc1"};   // 비밀번호 자체는 적지 않고 암호화한 값만(구글 쪽에서도 한 번 더 확인)
@@ -157,13 +156,13 @@ document.querySelectorAll(".send[data-s]").forEach(b=>b.onclick=async()=>{const 
  if(k==="photo"){const img=await readImg(document.getElementById("ph").files[0]);if(!img)return alert("사진을 골라 주세요");req={type:"사진",page:v("phWhere"),text:v("phMemo"),image:img}}
  if(k==="text"){if(!v("txMemo"))return alert("바꿀 내용을 적어 주세요");req={type:"글",page:v("txWhere"),text:v("txMemo")}}
  if(k==="sched"){if(!v("scDate")||!v("scTitle"))return alert("날짜와 일정 이름을 적어 주세요");req={type:"일정",page:"소식",text:v("scTitle")+(v("scMemo")?" · "+v("scMemo"):""),date:v("scDate")}}
- if(k==="talk"){if(!v("tkMemo"))return;req={type:"말",page:"",text:v("tkMemo")}}
+ if(k==="talk"){if(!v("tkMemo"))return;req={type:"말",page:"",text:v("tkMemo")};document.getElementById("tkMemo").value=""}
  addLog("me",(req.type==="사진"?"📷 사진 보냈어요 · ":req.type==="일정"?"📅 "+req.date+" · ":"")+(req.page?"["+req.page+"] ":"")+req.text);
  bubble={who:"me",t:req.type==="사진"?"이 사진으로 부탁해요!":req.text.slice(0,40),until:Date.now()+3500};
- b.textContent="보내는 중…";const ok=await post({action:"add",...req});b.textContent="보내기";
+ const lab=b.textContent;b.textContent="…";const ok=await post({action:"add",...req});b.textContent=lab;
  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("on"));
- setTimeout(()=>say("staff",ok?"받았어요! 고쳐서 미리보기로 보여 드릴게요 ✍️ 조금만 기다려 주세요.":"앗, 지금 연결이 안 됐어요. 잠시 뒤 다시 보내 주세요 🙏"),1600);loadReqs()});
-async function post(body){body.code=CODE;body.pin=PIN;if(DEMO){const R=ls.get("st_req_"+CODE,[]);if(body.action==="add")R.unshift({id:Date.now().toString(36),time:new Date().toISOString().slice(0,16).replace("T"," "),type:body.type,page:body.page,text:body.text,status:"접수"});if(body.action==="ok"||body.action==="again"){const r=R.find(x=>x.id===body.id);if(r)r.status=body.action==="ok"?"반영 대기":"다시 고치는 중"}ls.set("st_req_"+CODE,R);return true}
+ setTimeout(()=>say("staff",!ok?"앗, 지금 연결이 안 됐어요. 잠시 뒤 다시 보내 주세요 🙏":req.type==="말"?"네, 잘 들었어요 😊 답이 필요하면 여기로 남겨 드릴게요.":"받았어요! 고쳐서 미리보기로 보여 드릴게요 ✍️ 조금만 기다려 주세요."),1600);loadReqs()});
+async function post(body){body.code=CODE;body.pin=PIN;if(DEMO){const R=ls.get("st_req_"+CODE,[]);if(body.action==="add")R.unshift({id:Date.now().toString(36),time:(d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")} ${d.toTimeString().slice(0,5)}`)(new Date()),type:body.type,page:body.page,text:body.text,status:"접수"});if(body.action==="ok"||body.action==="again"){const r=R.find(x=>x.id===body.id);if(r)r.status=body.action==="ok"?"반영 대기":"다시 고치는 중"}ls.set("st_req_"+CODE,R);return true}
  try{const r=await fetch(CONFIG.endpoint,{method:"POST",body:JSON.stringify(body)});const j=await r.json();return !!j.ok}catch(e){return false}}
 async function loadReqs(){let R=[];if(DEMO)R=ls.get("st_req_"+CODE,[]);else{try{R=(await (await fetch(CONFIG.endpoint+"?action=list&code="+encodeURIComponent(CODE)+"&pin="+encodeURIComponent(PIN||""))).json()).requests||[]}catch(e){}}
  const C={"접수":"#9aa3ad","고치는 중":"#e0a030","미리보기":"#7a5aa8","다시 고치는 중":"#e0a030","반영 대기":"#3d85c6","반영 완료":"#2e9e5b"};
@@ -175,6 +174,7 @@ window.decide=async(id,a)=>{let memo="";if(a==="again")memo=prompt("어떻게 �
 // ─── 시작 ───
 async function start(){IMG.me=await load(ME.sprite);document.getElementById("who").textContent=`${ME.name}, 반가워요! 담당자 ${CONFIG.staff}에게 말만 걸면 홈페이지를 바꿔 드려요.`;
  doorOpen=60;guest.x=234;guest.y=100;guest.path=[[214,100],[160,98],[124,98],[124,114]];drawLog();loadReqs();setInterval(loadReqs,30000)}
+document.getElementById("tkMemo").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey&&!e.isComposing){e.preventDefault();document.querySelector('.send[data-s="talk"]').click()}});
 document.getElementById("upd").onclick=async()=>{document.getElementById("upd").textContent="⏳";try{if(window.caches)for(const k of await caches.keys())await caches.delete(k)}catch(e){}const u=new URL(location.href);u.searchParams.set("v",Date.now());location.replace(u.toString())};   // 🔄 최신 버전으로
 // ─── 🔒 비밀번호 문 ───
 async function sha(t){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(t));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
