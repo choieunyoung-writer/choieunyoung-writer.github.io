@@ -91,7 +91,7 @@ a{color:#5b3a8a}
  <button class="send" id="enter">🚪 들어가기</button></div></div>
 <script>
 // ─── 설정: 고객마다 비밀 링크 ?c=고객코드. endpoint는 구글 앱스 스크립트 주소(비어 있으면 시험 모드) ───
-const VER="22";   // 고칠 때마다 올리고 version.txt도 같은 숫자로
+const VER="23";   // 고칠 때마다 올리고 version.txt도 같은 숫자로
 fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(v=>{v=v.trim();if(v&&v!==VER&&!sessionStorage.getItem("st_rel_"+v)){sessionStorage.setItem("st_rel_"+v,"1");const u=new URL(location.href);u.searchParams.set("v",v);location.replace(u.toString())}}).catch(()=>{});
 const CONFIG={endpoint:"",staff:"은솔",staffSprite:"char_1_0_purple",
  pinHash:"61b7f44c537daf446b7e7fa3b6435217af16d4d801d224573e577ee229439bc1"};   // 비밀번호 자체는 적지 않고 암호화한 값만(구글 쪽에서도 한 번 더 확인)
@@ -168,16 +168,25 @@ const WARM=[[24,88],[38,88],[14,90]];   // 난로 앞(난로 그림과 안 겹�
 const CSPOT=[[62,132],[62,60],[176,60],[176,132],[200,140],[110,144],[66,144],[204,96],[150,144],[82,50],[134,50],[100,112],[148,112]];   // 통로·창가 + 소파 위(앞에서 폴짝)
 const COLX=[62,176];   // 가구 없는 세로 통로
 const STOVE=[10,38,50,84];   // 🔥 난로 자리(x1,y1,x2,y2) — 고양이가 못 들어감
+function catFree(s,k){return CATS.every(o=>o===k||(Math.hypot(o.tx-s[0],o.ty-s[1])>15&&Math.hypot(o.x-s[0],o.y-s[1])>15))}   /* 🐈 서로 안 겹치게 */
+function catSpot(L,k){const f=L.filter(s=>catFree(s,k));const A=f.length?f:CSPOT.filter(s=>catFree(s,k));const P=A.length?A:L;return P[Math.random()*P.length|0]}
 function catRoute(k,to){if(to[0]<STOVE[2]&&to[1]>STOVE[1]&&to[1]<STOVE[3])to=[to[0],STOVE[3]+4];if(k.x<STOVE[2]&&k.y>STOVE[1]&&k.y<STOVE[3]){k.y=STOVE[3]+4}const c=COLX.reduce((a,b)=>Math.abs(b-k.x)<Math.abs(a-k.x)?b:a),onSofa=to[1]<56||(to[1]>104&&to[1]<121&&to[0]>88&&to[0]<160),fy=onSofa?(to[1]<56?66:128):to[1];
  return[[c,k.y],[c,fy],[to[0],fy],to]}   // 지금 줄 → 통로 → 목표 줄 → (소파면 앞에서 올라감)
 function cats(tt){CATS.forEach(k=>{const dx=k.tx-k.x,dy=k.ty-k.y,d=Math.hypot(dx,dy);   // 🐈 돌아다니다 식빵·낮잠
- if(d>0.6){k.x+=dx/d*.45;k.y+=dy/d*.45;if(Math.abs(dx)>.3)k.dir=dx>0?1:-1;k.mv=true}else if(k.route&&k.route.length){const n=k.route.shift();k.tx=n[0];k.ty=n[1]}else{k.mv=false;k.wait-=1/60;if(k.wait<=0){const r=Math.random();if(r<.5){const s=CSPOT[Math.random()*CSPOT.length|0];k.route=catRoute(k,s);const n=k.route.shift();k.tx=n[0];k.ty=n[1];k.act="walk"}else if(r<.75&&Math.random()<.5){const w=WARM[Math.random()*WARM.length|0];k.route=catRoute(k,w);const n=k.route.shift();k.tx=n[0];k.ty=n[1];k.act="walk";k.warm=true}   // 따뜻한 난로 앞으로
-   else{k.act=k.warm||r>=.75?"sleep":"loaf";k.warm=false;k.wait=k.act==="sleep"?14+Math.random()*20:6+Math.random()*8}if(k.act==="walk")k.wait=1}}
+ if(d>0.6){const sp=k.act==="zoom"?1.7:.45;k.x+=dx/d*Math.min(sp,d);k.y+=dy/d*Math.min(sp,d);if(Math.abs(dx)>.3)k.dir=dx>0?1:-1;k.mv=true}else if(k.route&&k.route.length){const n=k.route.shift();k.tx=n[0];k.ty=n[1]}else{k.mv=false;k.wait-=1/60;
+  if(k.act!=="walk"&&k.act!=="zoom"&&k.wait>0&&!catFree([k.x,k.y],k)){k.wait=0}   /* 다른 고양이와 겹치면 바로 자리 옮김 */
+  if(k.wait<=0){const r=Math.random(),h=new Date().getHours(),night=h>=21||h<4;
+   if(Math.random()<(night?.1:.015)){let at={x:k.x,y:k.y},R=[];for(let i=0;i<4;i++){const s=CSPOT[Math.random()*CSPOT.length|0];R=R.concat(catRoute(at,s));at={x:s[0],y:s[1]}}k.route=R;const n=k.route.shift();k.tx=n[0];k.ty=n[1];k.act="zoom";k.wait=2.5}   /* 🌙 우다다(밤 9시~새벽 4시에 자주) */
+   else if(r<.5){const s=catSpot(CSPOT,k);k.route=catRoute(k,s);const n=k.route.shift();k.tx=n[0];k.ty=n[1];k.act="walk";k.wait=1}
+   else if(r<.75&&Math.random()<.5){const w=catSpot(WARM,k);k.route=catRoute(k,w);const n=k.route.shift();k.tx=n[0];k.ty=n[1];k.act="walk";k.warm=true;k.wait=1}   /* 따뜻한 난로 앞으로 */
+   else if(!catFree([k.x,k.y],k)){const s=catSpot(CSPOT,k);k.route=catRoute(k,s);const n=k.route.shift();k.tx=n[0];k.ty=n[1];k.act="walk";k.wait=1}
+   else{k.act=k.warm||r>=.75?"sleep":"loaf";k.warm=false;k.wait=k.act==="sleep"?14+Math.random()*20:6+Math.random()*8}}}
  const x=k.x,y=k.y,ph=Math.floor(tt/150)%2;g.save();if(k.dir<0){g.translate(x*K*2,0);g.scale(-1,1)}
  g.fillStyle="rgba(20,20,40,.18)";g.beginPath();g.ellipse(x*K,(y+1)*K,6*K,1.6*K,0,0,7);g.fill();
  if(!k.mv&&k.act==="sleep"){px(x-6,y-5,12,5,k.c);px(x-4,y-5,2,4,k.st);px(x,y-5,2,4,k.st);px(x+3,y-4,4,4,k.c);px(x+4,y-6,1.5,2,k.c);px(x+6,y-6,1.5,2,k.c);px(x-7,y-2,6,2,k.st)}
  else if(!k.mv&&k.act==="loaf"){px(x-5,y-6,9,6,k.c);px(x-3,y-6,1.5,5,k.st);px(x,y-6,1.5,5,k.st);px(x+2,y-10,6,6,k.c);px(x+2,y-12,1.6,2.4,k.c);px(x+6.4,y-12,1.6,2.4,k.c);px(x+3,y-8,1.2,1.2,"#2b2b2b");px(x+6,y-8,1.2,1.2,"#2b2b2b");px(x+4,y-6,2,1.5,k.w);if(k.bib){px(x+2,y-5,6,4,k.w);px(x+2,y-1,2,1,k.w);px(x+6,y-1,2,1,k.w)}if(k.p){px(x-4,y-6,3,3,k.p);px(x+5,y-10,3,2,k.p)}}
  else{const a=k.mv?(ph?1:-1):0;px(x-6,y-7,10,5,k.c);px(x-4,y-7,1.5,4,k.st);px(x-1,y-7,1.5,4,k.st);px(x+3,y-10,6,6,k.c);px(x+3,y-12,1.6,2.4,k.c);px(x+7.4,y-12,1.6,2.4,k.c);px(x+4,y-8,1.2,1.2,"#2b2b2b");px(x+7,y-8,1.2,1.2,"#2b2b2b");px(x+5,y-6,2,1.2,k.w);const pw=k.bib?k.w:k.c;px(x-5+a,y-2,1.6,3,pw);px(x-2-a,y-2,1.6,3,pw);px(x+1+a,y-2,1.6,3,pw);px(x+3-a,y-2,1.6,3,pw);px(x-9,y-10+ph,1.6,5,k.c);if(k.bib)px(x+2,y-5,5,3,k.w);if(k.p){px(x-4,y-7,4,3,k.p);px(x+5,y-10,3,3,k.p)}}
+ if(k.mv&&k.act==="zoom"){[0,1,2].forEach(i=>{const o=((tt/60+i*5)%14);px(x-9-o,y-1-i*1.5,3-o/7,1.5,"rgba(160,140,120,"+(.6-o/25)+")")});px(x-8,y-12,1.5,5,k.st)}   /* 💨 우다다 먼지 */
  g.restore();txt(k.n,x,y+5,5.5,"#5a4a3a",true);if(!k.mv&&k.act==="sleep")txt("z",x+7,y-9+Math.sin(tt/600),6,"#5b4a7a",true)})}
 // 🍵 올 때마다 다른 차·다과(모두 비건, 지난번과 같은 차는 연달아 안 나옴) — 2026-10-21 고운대표
 const TEAS=[["캐모마일","#e8c96a","꽃향이 은은해요"],["루이보스","#b5562e","고소하고 달큰해요"],["보리차","#c9944a","구수해요"],["유자차","#f0b43c","새콤달콤해요"],["대추차","#8a4a2a","몸이 따뜻해져요"],["페퍼민트","#9cc98a","머리가 맑아져요"],["녹차","#a8c46a","향이 은은해요"],["생강차","#d9a441","목이 편해져요"],["히비스커스","#c0304a","새콤해요"]];
