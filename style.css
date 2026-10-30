@@ -522,3 +522,8 @@ html[lang="en"] .spread-title{font-size:clamp(2.2rem,1.6rem + 2.2vw,3.3rem);whit
 
 /* 🐈 응접실 문(작가님 전용 — 흐리게, 2026-10-21 고운대표) */
 .footnav .catdoor{opacity:.28;display:inline-flex;align-items:center;vertical-align:middle;transition:opacity .2s}.footnav .catdoor:hover,.footnav .catdoor:focus{opacity:.65}.footnav .catdoor img{image-rendering:pixelated;width:16px;height:14px}
+
+/* 첫 화면 = 작가님 소개(고운대표 확인 2026-10-30, 작가님 응접실 요청 2번) — 소개 아래에 새 책·연도별 책장 */
+.home-about{padding-top:clamp(24px,5vw,48px);padding-bottom:clamp(8px,2vw,16px);max-width:none}
+.home-about .spread{padding-bottom:0}
+.home-newbook{margin-top:clamp(24px,4vw,40px)}
