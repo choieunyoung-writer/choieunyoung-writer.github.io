@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 시안 단계 준비본. 정식 공개 후 각 페이지 noindex를 지운 뒤에 검색엔진에 제출한다. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.choieunyoung.net/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.choieunyoung.net/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.choieunyoung.net/en/"/>
+  </url>
+  <url>
+    <loc>https://www.choieunyoung.net/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.choieunyoung.net/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.choieunyoung.net/en/about.html"/>
+  </url>
+  <url>
+    <loc>https://www.choieunyoung.net/works.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.choieunyoung.net/works.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.choieunyoung.net/en/works.html"/>
+  </url>
+  <url>
+    <loc>https://www.choieunyoung.net/book-shoko.html</loc>
+  </url>
+  <url>
+    <loc>https://www.choieunyoung.net/book-harmless.html</loc>
+  </url>
+  <url>
+    <loc>https://www.choieunyoung.net/book-bright-night.html</loc>
+  </url>
+  <url>
+    <loc>https://www.choieunyoung.net/book-blank-page.html</loc>
+  </url>
+  <url>
+    <loc>https://www.choieunyoung.net/news.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.choieunyoung.net/news.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.choieunyoung.net/en/news.html"/>
+  </url>
+  <url>
+    <loc>https://www.choieunyoung.net/contact.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.choieunyoung.net/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.choieunyoung.net/en/contact.html"/>
+  </url>
+  <url>
+    <loc>https://www.choieunyoung.net/en/</loc>
+  </url>
+</urlset>
