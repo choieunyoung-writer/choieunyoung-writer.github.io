@@ -527,3 +527,10 @@ html[lang="en"] .spread-title{font-size:clamp(2.2rem,1.6rem + 2.2vw,3.3rem);whit
 .home-about{padding-top:clamp(24px,5vw,48px);padding-bottom:clamp(8px,2vw,16px);max-width:none}
 .home-about .spread{padding-bottom:0}
 .home-newbook{margin-top:clamp(24px,4vw,40px)}
+
+/* 접근성: 스크린리더 전용 숨김, 본문 바로가기(고도화 2026-11-17) */
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip-link{position:absolute;left:8px;top:-48px;z-index:100;background:var(--ink);color:#fff;padding:10px 16px;
+  border-radius:4px;text-decoration:none;font-size:.85rem;transition:top .15s}
+.skip-link:focus{top:8px}
+.spread-title{margin:0}

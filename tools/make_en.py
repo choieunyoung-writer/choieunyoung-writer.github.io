@@ -7,6 +7,17 @@ os.chdir(ROOT)
 PAGES = sorted(p for p in glob.glob('*.html'))
 M = [
  # 긴 문장부터
+ ('소설가 최은영의 공식 홈페이지. 작품과 소식을 만나 보세요.', 'The official website of novelist Choi Eunyoung — her books and news.'),
+ ('소설가 최은영의 프로필과 작품 세계.', 'A profile of novelist Choi Eunyoung and her work.'),
+ ('최은영 작가의 소설집·장편·짧은 소설·산문 작품 목록.', 'A list of Choi Eunyoung’s story collections, novels, short fiction and essays.'),
+ ('최은영 작가의 강연·낭독·행사 소식.', 'News on Choi Eunyoung’s talks, readings and events.'),
+ ('최은영 작가에게 문의하기.', 'Get in touch with Choi Eunyoung.'),
+ ('최은영 소설집 『쇼코의 미소』 소개.', 'About Choi Eunyoung’s story collection Shoko’s Smile.'),
+ ('최은영 소설집 『내게 무해한 사람』 소개.', 'About Choi Eunyoung’s story collection [English title].'),
+ ('최은영 장편소설 『밝은 밤』 소개.', 'About Choi Eunyoung’s novel [English title].'),
+ ('최은영 산문집 『백지 앞에서』 소개.', 'About Choi Eunyoung’s essay collection [English title].'),
+ ('최은영 작가의 작품 소개.', 'About this book by Choi Eunyoung.'),
+ ('본문으로 바로가기', 'Skip to content'),
  ('내밀하고 미세한 감정의 결을 파고들어 현재 가장 뜨거운 문제와 접촉시키는 7편의 감정-사회 소설', '[Publisher’s description — English pending]'),
  ('시간이 지나고 하나의 관계가 끝날 때마다 나는 누가 떠나는 쪽이고 누가 남겨지는 쪽인지 생각했다. 어떤 경우 나는 떠났고, 어떤 경우 남겨졌지만 정말 소중한 관계가 부서졌을 때는 누가 떠나고 누가 남겨지는 쪽인지 알 수 없었다.', '[Excerpt from the book — English translation pending]'),
  ('— 「씬짜오, 씬짜오」에서', '— [source, English pending]'),
