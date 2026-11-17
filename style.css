@@ -519,6 +519,17 @@ html[lang="en"] .spread-title{font-size:clamp(2.2rem,1.6rem + 2.2vw,3.3rem);whit
 .book-excerpt footer{margin:8px 0 0;padding:0;background:none;border:0;text-align:left;letter-spacing:0;font-size:.82rem;color:var(--soft)}
 .book-harmless.ko-ed .cover{background:#F5D850 url(images/cover-harmless.jpg) center/cover no-repeat;aspect-ratio:400/579}
 .book-harmless.ko-ed .cover > span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.book-effortless.ko-ed .cover{background:#94BDDD url(images/cover-effortless.jpg) center/cover no-repeat;aspect-ratio:400/572}
+.book-effortless.ko-ed .cover > span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.book-faint-light.ko-ed .cover{background:#D9C3BB url(images/cover-faint-light.jpg) center/cover no-repeat;aspect-ratio:400/601}
+.book-faint-light.ko-ed .cover > span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* 목차(자료조사 2026-11-17: 애쓰지 않아도·아주 희미한 빛으로도) */
+.toc{margin:22px 0 26px;max-width:34em}
+.toc h2{font-size:1rem;font-weight:600;margin:0 0 10px;color:var(--ink)}
+.toc-list{margin:0;padding:0;list-style:none;font-size:.92rem;line-height:1.9;color:var(--ink);opacity:.88}
+.toc-list li{border-bottom:1px solid rgb(var(--hero-2) / .15);padding:6px 0}
+.toc-list li:last-child{border-bottom:0}
 
 /* 🐈 응접실 문(작가님 전용 — 흐리게, 2026-10-21 고운대표) */
 .footnav .catdoor{opacity:.28;display:inline-flex;align-items:center;vertical-align:middle;transition:opacity .2s}.footnav .catdoor:hover,.footnav .catdoor:focus{opacity:.65}.footnav .catdoor img{image-rendering:pixelated;width:16px;height:14px}

@@ -85,3 +85,4 @@
 - ✅ 도메인 DNS 관리는 클라우드플레어로(2026-11-16 고운대표 결정, 플랜짐 예약앱 터미널 자문). 사이트 호스팅은 그대로 GitHub Pages. docs/custom-domain.md 절차 갱신
 - ✅ 검색엔진 등록 준비: robots.txt(지금은 Disallow: / 로 막음), sitemap.xml 초안, docs/search-engine-setup.md(구글·네이버·빙·다음 4곳 절차, 노출은 작가님 최종 확인 후) — 플랜짐 예약앱 터미널 공유 2026-11-16
 - ✅ SEO·접근성 고도화(2026-11-17): 메타 설명·OG·트위터카드, 파비콘(images/favicon.svg), 페이지별 h1 1개씩(홈·소개는 큰 제목을 h1로, 작품·소식·연락은 숨김 h1), 본문 바로가기(skip link). 한·영 20페이지 가로 스크롤·h1 개수·JS 오류 점검 통과. CSS v=42
+- ✅ 『애쓰지 않아도』『아주 희미한 빛으로도』 상세 페이지 신설(book-effortless.html, book-faint-light.html) + 목차 섹션 추가 — 자료조사 조사(docs/book-contents.md, 2026-11-17) 기반. 작품 목록 한 줄 소개도 채움. 한국어판 표지 CSS(.ko-ed), 목차 CSS(.toc) 추가, CSS v=43. 한·영 페이지 모두 생성·점검 통과. 쪽수·인용·게재 허락은 자료조사가 이미 "작가님·출판사 확인 필요"로 표시해 둠 — 그대로 유지
