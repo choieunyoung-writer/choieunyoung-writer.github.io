@@ -1,0 +1,7 @@
+# 시안 단계: 작가님 최종 확인 전까지는 크롤러 접근을 막아 둔다.
+# 각 페이지에도 <meta name="robots" content="noindex,nofollow">가 있어 이중으로 막혀 있다.
+# 정식 공개 시: 아래 Disallow를 지우고, Sitemap 줄의 주석을 해제한다(open-items.md "정식 공개" 항목 참고).
+User-agent: *
+Disallow: /
+
+# Sitemap: https://www.choieunyoung.net/sitemap.xml
